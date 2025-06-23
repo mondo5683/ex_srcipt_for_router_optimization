@@ -1,0 +1,342 @@
+router:0
+router:[(NodeIndex(5), 68.7089838516876), (NodeIndex(12), 175.5620347196166)]
+router:2
+router:[(NodeIndex(4), 43.26558273362941), (NodeIndex(6), 164.09992762623213), (NodeIndex(11), 269.40186581906016), (NodeIndex(13), 36.82176704146529)]
+router:3
+router:[(NodeIndex(7), 84.77872123047925), (NodeIndex(8), 85.72619095324927), (NodeIndex(9), 108.7749326869045), (NodeIndex(10), 20.03533290819819)]
+network_traffic: 9000, variance:9197.613180649798, obvalue: 9098.806590324899
+router:0
+router:[(NodeIndex(5), 68.7089838516876)]
+router:2
+router:[(NodeIndex(4), 43.26558273362941), (NodeIndex(6), 164.09992762623213), (NodeIndex(11), 269.40186581906016), (NodeIndex(13), 36.82176704146529), (NodeIndex(12), 175.5620347196166)]
+router:3
+router:[(NodeIndex(7), 84.77872123047925), (NodeIndex(8), 85.72619095324927), (NodeIndex(9), 108.7749326869045), (NodeIndex(10), 20.03533290819819)]
+network_traffic: 9500, variance:7714.012710946991, obvalue: 8607.006355473495
+---
+router:0
+router:[(NodeIndex(5), 74.80791135717982), (NodeIndex(9), 228.83958367744572), (NodeIndex(10), 68.2037376955458), (NodeIndex(11), 119.22663932530433), (NodeIndex(12), 0.08083705600983748)]
+router:1
+router:[(NodeIndex(4), 30.490453658905825), (NodeIndex(7), 199.04454764642014), (NodeIndex(8), 109.77302485890876)]
+router:2
+router:[(NodeIndex(13), 94.27215716187828)]
+router:3
+router:[(NodeIndex(6), 146.50547834548289)]
+network_traffic: 9500, variance:5716.630209431366, obvalue: 7608.3151047156825
+router:0
+router:[(NodeIndex(5), 74.80791135717982), (NodeIndex(9), 228.83958367744572), (NodeIndex(10), 68.2037376955458), (NodeIndex(11), 119.22663932530433), (NodeIndex(12), 0.08083705600983748), (NodeIndex(13), 94.27215716187828), (NodeIndex(4), 30.490453658905825)]
+router:1
+router:[(NodeIndex(7), 199.04454764642014), (NodeIndex(8), 109.77302485890876)]
+router:3
+router:[(NodeIndex(6), 146.50547834548289)]
+network_traffic: 9000, variance:4636.182963172083, obvalue: 6818.0914815860415
+---
+router:0
+router:[(NodeIndex(4), 32.817928074918065), (NodeIndex(9), 163.8236255249955)]
+router:1
+router:[(NodeIndex(8), 182.81852900644006), (NodeIndex(11), 102.20041713942751), (NodeIndex(13), 91.72369366302877)]
+router:2
+router:[(NodeIndex(6), 62.452375709994726), (NodeIndex(10), 212.69745933066528), (NodeIndex(12), 47.1052895545742)]
+router:3
+router:[(NodeIndex(5), 28.61814645695826), (NodeIndex(7), 183.95323528745863)]
+network_traffic: 8500, variance:6032.24745549486, obvalue: 7266.12372774743
+router:0
+router:[(NodeIndex(4), 32.817928074918065), (NodeIndex(5), 28.61814645695826)]
+router:1
+router:[(NodeIndex(11), 102.20041713942751), (NodeIndex(13), 91.72369366302877)]
+router:2
+router:[(NodeIndex(6), 62.452375709994726), (NodeIndex(10), 212.69745933066528), (NodeIndex(12), 47.1052895545742)]
+router:3
+router:[(NodeIndex(7), 183.95323528745863), (NodeIndex(9), 163.8236255249955), (NodeIndex(8), 182.81852900644006)]
+network_traffic: 10500, variance:5581.0983218664405, obvalue: 8040.54916093322
+---
+router:0
+router:[(NodeIndex(7), 106.17900138102382), (NodeIndex(10), 97.47866333052862)]
+router:1
+router:[(NodeIndex(5), 34.338457060004025), (NodeIndex(9), 41.276752542218055), (NodeIndex(13), 3.7502600360637715)]
+router:2
+router:[(NodeIndex(11), 143.33966045548192), (NodeIndex(12), 133.56206087909854)]
+router:3
+router:[(NodeIndex(4), 56.09629013475487), (NodeIndex(6), 88.46759195518959), (NodeIndex(8), 223.37581971175726)]
+network_traffic: 8500, variance:5247.841345941204, obvalue: 6873.920672970602
+router:0
+router:[(NodeIndex(7), 106.17900138102382), (NodeIndex(10), 97.47866333052862)]
+router:1
+router:[(NodeIndex(5), 34.338457060004025), (NodeIndex(9), 41.276752542218055), (NodeIndex(13), 3.7502600360637715)]
+router:2
+router:[(NodeIndex(11), 143.33966045548192), (NodeIndex(12), 133.56206087909854)]
+router:3
+router:[(NodeIndex(4), 56.09629013475487), (NodeIndex(6), 88.46759195518959), (NodeIndex(8), 223.37581971175726)]
+network_traffic: 8500, variance:5247.841345941204, obvalue: 6873.920672970602
+---
+router:0
+router:[(NodeIndex(6), 65.86414376568207), (NodeIndex(11), 72.48440228283573)]
+router:1
+router:[(NodeIndex(4), 179.71010265435655), (NodeIndex(8), 140.6144644146709), (NodeIndex(9), 102.75793928505486), (NodeIndex(12), 53.06211562913197)]
+router:2
+router:[(NodeIndex(5), 158.97050041606838), (NodeIndex(7), 130.95489717993087), (NodeIndex(13), 12.78847270337425)]
+router:3
+router:[(NodeIndex(10), 35.663213849217975)]
+network_traffic: 9500, variance:4013.0403471614786, obvalue: 6756.5201735807395
+router:0
+router:[(NodeIndex(6), 65.86414376568207), (NodeIndex(11), 72.48440228283573)]
+router:1
+router:[(NodeIndex(4), 179.71010265435655), (NodeIndex(8), 140.6144644146709), (NodeIndex(9), 102.75793928505486), (NodeIndex(12), 53.06211562913197)]
+router:2
+router:[(NodeIndex(5), 158.97050041606838), (NodeIndex(7), 130.95489717993087)]
+router:3
+router:[(NodeIndex(10), 35.663213849217975), (NodeIndex(13), 12.78847270337425)]
+network_traffic: 10500, variance:2191.1263847325004, obvalue: 6345.56319236625
+---
+router:0
+router:[(NodeIndex(4), 163.631142100264)]
+router:1
+router:[(NodeIndex(7), 109.69690411786387), (NodeIndex(8), 91.60480387792666), (NodeIndex(9), 41.186738844109115), (NodeIndex(10), 145.43988708377492)]
+router:2
+router:[(NodeIndex(5), 161.19467413298918), (NodeIndex(11), 219.72497170580655), (NodeIndex(13), 39.0336747682479)]
+router:3
+router:[(NodeIndex(6), 82.78560010224578), (NodeIndex(12), 72.26260077478221)]
+network_traffic: 9500, variance:5666.494476525762, obvalue: 7583.247238262881
+router:1
+router:[(NodeIndex(7), 109.69690411786387), (NodeIndex(8), 91.60480387792666), (NodeIndex(9), 41.186738844109115), (NodeIndex(13), 39.0336747682479)]
+router:2
+router:[(NodeIndex(5), 161.19467413298918), (NodeIndex(11), 219.72497170580655), (NodeIndex(4), 163.631142100264), (NodeIndex(10), 145.43988708377492)]
+router:3
+router:[(NodeIndex(6), 82.78560010224578), (NodeIndex(12), 72.26260077478221)]
+network_traffic: 11000, variance:957.787462598818, obvalue: 5978.893731299409
+---
+router:0
+router:[(NodeIndex(5), 106.18816722187546), (NodeIndex(11), 149.26732797272746)]
+router:1
+router:[(NodeIndex(6), 80.3183236417808), (NodeIndex(12), 15.859105097454474)]
+router:2
+router:[(NodeIndex(4), 126.76120881017204), (NodeIndex(7), 33.32308740429839), (NodeIndex(8), 21.52564389138218), (NodeIndex(9), 115.23661923724899)]
+router:3
+router:[(NodeIndex(10), 99.56468441441359), (NodeIndex(13), 88.0289327905626)]
+network_traffic: 9500, variance:2223.0485057201163, obvalue: 5861.524252860058
+router:0
+router:[(NodeIndex(5), 106.18816722187546), (NodeIndex(11), 149.26732797272746)]
+router:1
+router:[(NodeIndex(6), 80.3183236417808), (NodeIndex(12), 15.859105097454474)]
+router:2
+router:[(NodeIndex(4), 126.76120881017204), (NodeIndex(7), 33.32308740429839), (NodeIndex(8), 21.52564389138218), (NodeIndex(9), 115.23661923724899)]
+router:3
+router:[(NodeIndex(10), 99.56468441441359), (NodeIndex(13), 88.0289327905626)]
+network_traffic: 9500, variance:2223.0485057201163, obvalue: 5861.524252860058
+---
+router:0
+router:[(NodeIndex(7), 222.7853402233721), (NodeIndex(8), 241.0667308058386)]
+router:1
+router:[(NodeIndex(12), 305.703549414834)]
+router:2
+router:[(NodeIndex(4), 168.4455616747528), (NodeIndex(6), 159.02662084573907), (NodeIndex(9), 116.23329970274274), (NodeIndex(10), 106.01479574240994), (NodeIndex(11), 207.85375752110025), (NodeIndex(13), 33.53619907647304)]
+router:3
+router:[(NodeIndex(5), 1.5506315536961317)]
+network_traffic: 8500, variance:3071.886258998138, obvalue: 5785.943129499069
+router:0
+router:[(NodeIndex(7), 222.7853402233721), (NodeIndex(8), 241.0667308058386)]
+router:1
+router:[(NodeIndex(12), 305.703549414834)]
+router:2
+router:[(NodeIndex(4), 168.4455616747528), (NodeIndex(6), 159.02662084573907), (NodeIndex(9), 116.23329970274274), (NodeIndex(10), 106.01479574240994), (NodeIndex(11), 207.85375752110025), (NodeIndex(13), 33.53619907647304)]
+router:3
+router:[(NodeIndex(5), 1.5506315536961317)]
+network_traffic: 8500, variance:3071.886258998138, obvalue: 5785.943129499069
+---
+router:0
+router:[(NodeIndex(4), 40.77946764943435), (NodeIndex(10), 179.13797695371665)]
+router:1
+router:[(NodeIndex(5), 88.6783664405038), (NodeIndex(7), 88.0023270585816), (NodeIndex(9), 103.66137857231641)]
+router:2
+router:[(NodeIndex(6), 23.221552179168924), (NodeIndex(8), 34.355439306594185), (NodeIndex(11), 70.56006354472026), (NodeIndex(13), 94.6333247534836)]
+router:3
+router:[(NodeIndex(12), 67.57985397391354)]
+network_traffic: 9500, variance:4785.769274225792, obvalue: 7142.884637112897
+router:0
+router:[(NodeIndex(4), 40.77946764943435), (NodeIndex(10), 179.13797695371665), (NodeIndex(12), 67.57985397391354)]
+router:1
+router:[(NodeIndex(5), 88.6783664405038), (NodeIndex(7), 88.0023270585816), (NodeIndex(9), 103.66137857231641)]
+router:2
+router:[(NodeIndex(6), 23.221552179168924), (NodeIndex(8), 34.355439306594185), (NodeIndex(11), 70.56006354472026), (NodeIndex(13), 94.6333247534836)]
+network_traffic: 8500, variance:3589.6169563134863, obvalue: 6044.808478156743
+---
+router:0
+router:[(NodeIndex(5), 131.6160032484603), (NodeIndex(6), 70.48496754755634), (NodeIndex(9), 67.4181321022408), (NodeIndex(11), 59.120180591716384)]
+router:1
+router:[(NodeIndex(7), 120.67768536559991), (NodeIndex(8), 154.4267547345528)]
+router:2
+router:[(NodeIndex(10), 186.03261904462053), (NodeIndex(12), 13.605202708872088), (NodeIndex(13), 159.17592863998976)]
+router:3
+router:[(NodeIndex(4), 180.05859834097052)]
+network_traffic: 9500, variance:5738.147996869366, obvalue: 7619.073998434683
+router:0
+router:[(NodeIndex(5), 131.6160032484603), (NodeIndex(6), 70.48496754755634), (NodeIndex(9), 67.4181321022408), (NodeIndex(11), 59.120180591716384)]
+router:1
+router:[(NodeIndex(7), 120.67768536559991), (NodeIndex(8), 154.4267547345528)]
+router:2
+router:[(NodeIndex(10), 186.03261904462053), (NodeIndex(12), 13.605202708872088), (NodeIndex(13), 159.17592863998976), (NodeIndex(4), 180.05859834097052)]
+network_traffic: 9000, variance:4988.864981655505, obvalue: 6994.432490827752
+---
+router:0
+router:[(NodeIndex(4), 52.83591170527564), (NodeIndex(5), 133.25754942887846)]
+router:1
+router:[(NodeIndex(8), 178.6422502555906), (NodeIndex(10), 72.53181206945005)]
+router:2
+router:[(NodeIndex(7), 5.665950322127017), (NodeIndex(12), 80.9179149921022)]
+router:3
+router:[(NodeIndex(6), 96.85808603414502), (NodeIndex(9), 82.40787449147398), (NodeIndex(11), 124.14569532362168), (NodeIndex(13), 111.1182574083574)]
+network_traffic: 9500, variance:2814.856273013688, obvalue: 6157.428136506844
+router:0
+router:[(NodeIndex(4), 52.83591170527564), (NodeIndex(10), 72.53181206945005)]
+router:1
+router:[(NodeIndex(8), 178.6422502555906)]
+router:2
+router:[(NodeIndex(7), 5.665950322127017), (NodeIndex(12), 80.9179149921022)]
+router:3
+router:[(NodeIndex(6), 96.85808603414502), (NodeIndex(9), 82.40787449147398), (NodeIndex(11), 124.14569532362168), (NodeIndex(13), 111.1182574083574), (NodeIndex(5), 133.25754942887846)]
+network_traffic: 10500, variance:1415.7145466727982, obvalue: 5957.857273336399
+---
+router:0
+router:[(NodeIndex(4), 157.04865281001116), (NodeIndex(6), 144.01506704574268), (NodeIndex(8), 26.466653538409595), (NodeIndex(10), 75.23506888940067), (NodeIndex(11), 51.47691123564145)]
+router:1
+router:[(NodeIndex(5), 117.14217887934828), (NodeIndex(7), 16.895543394843656), (NodeIndex(12), 11.487484573494772)]
+router:3
+router:[(NodeIndex(9), 142.4271800883635), (NodeIndex(13), 97.71575521288243)]
+network_traffic: 8000, variance:2629.613494034597, obvalue: 5314.806747017298
+router:0
+router:[(NodeIndex(4), 157.04865281001116), (NodeIndex(6), 144.01506704574268), (NodeIndex(8), 26.466653538409595), (NodeIndex(10), 75.23506888940067), (NodeIndex(11), 51.47691123564145), (NodeIndex(5), 117.14217887934828)]
+router:1
+router:[(NodeIndex(7), 16.895543394843656), (NodeIndex(12), 11.487484573494772)]
+router:3
+router:[(NodeIndex(9), 142.4271800883635), (NodeIndex(13), 97.71575521288243)]
+network_traffic: 8500, variance:2287.3666741425436, obvalue: 5393.683337071272
+---
+router:0
+router:[(NodeIndex(6), 240.68010406700117), (NodeIndex(8), 52.868067393034245)]
+router:2
+router:[(NodeIndex(7), 157.6712809780596), (NodeIndex(11), 219.00451427747248)]
+router:3
+router:[(NodeIndex(4), 136.6336199602137), (NodeIndex(5), 63.552012115478874), (NodeIndex(9), 149.977805170762), (NodeIndex(10), 141.4307833906186), (NodeIndex(12), 99.32860667340469), (NodeIndex(13), 0.5492514854834667)]
+network_traffic: 7500, variance:8818.340279905875, obvalue: 8159.1701399529375
+router:0
+router:[(NodeIndex(6), 240.68010406700117)]
+router:2
+router:[(NodeIndex(7), 157.6712809780596), (NodeIndex(11), 219.00451427747248)]
+router:3
+router:[(NodeIndex(4), 136.6336199602137), (NodeIndex(5), 63.552012115478874), (NodeIndex(9), 149.977805170762), (NodeIndex(10), 141.4307833906186), (NodeIndex(12), 99.32860667340469), (NodeIndex(13), 0.5492514854834667), (NodeIndex(8), 52.868067393034245)]
+network_traffic: 8000, variance:2650.6451121663836, obvalue: 5325.322556083192
+---
+router:0
+router:[(NodeIndex(6), 83.44919345456611), (NodeIndex(9), 127.68829390339621), (NodeIndex(11), 78.72267914216806)]
+router:1
+router:[(NodeIndex(4), 17.964117332183783)]
+router:2
+router:[(NodeIndex(7), 80.33911095139328), (NodeIndex(8), 122.96124964044245), (NodeIndex(10), 123.66354159399047), (NodeIndex(13), 140.2329842690101)]
+router:3
+router:[(NodeIndex(5), 113.0356833056496), (NodeIndex(12), 164.7366017738462)]
+network_traffic: 9500, variance:668.2462426137779, obvalue: 5084.123121306889
+router:0
+router:[(NodeIndex(6), 83.44919345456611), (NodeIndex(9), 127.68829390339621), (NodeIndex(11), 78.72267914216806), (NodeIndex(5), 113.0356833056496)]
+router:1
+router:[(NodeIndex(4), 17.964117332183783)]
+router:2
+router:[(NodeIndex(7), 80.33911095139328), (NodeIndex(8), 122.96124964044245), (NodeIndex(10), 123.66354159399047), (NodeIndex(13), 140.2329842690101)]
+router:3
+router:[(NodeIndex(12), 164.7366017738462)]
+network_traffic: 10000, variance:490.89259497180825, obvalue: 5245.446297485904
+---
+router:0
+router:[(NodeIndex(4), 166.61419942634598), (NodeIndex(5), 159.25691873604677), (NodeIndex(8), 149.84109895361968)]
+router:1
+router:[(NodeIndex(10), 161.87790625552847)]
+router:2
+router:[(NodeIndex(9), 273.1819614284833), (NodeIndex(12), 68.48803291321732), (NodeIndex(13), 195.2690775153324)]
+router:3
+router:[(NodeIndex(6), 89.37138997505363), (NodeIndex(7), 121.86183504636098), (NodeIndex(11), 89.87041178395083)]
+network_traffic: 9500, variance:7115.939457897826, obvalue: 8307.969728948912
+router:0
+router:[(NodeIndex(4), 166.61419942634598), (NodeIndex(5), 159.25691873604677), (NodeIndex(8), 149.84109895361968)]
+router:2
+router:[(NodeIndex(9), 273.1819614284833), (NodeIndex(12), 68.48803291321732), (NodeIndex(13), 195.2690775153324), (NodeIndex(10), 161.87790625552847)]
+router:3
+router:[(NodeIndex(6), 89.37138997505363), (NodeIndex(7), 121.86183504636098), (NodeIndex(11), 89.87041178395083)]
+network_traffic: 9000, variance:5391.792911251193, obvalue: 7195.896455625596
+---
+router:0
+router:[(NodeIndex(6), 145.70975581665192), (NodeIndex(9), 17.414348400594957)]
+router:1
+router:[(NodeIndex(8), 92.04517954252415), (NodeIndex(10), 191.11655096533642), (NodeIndex(12), 4.847053558947856), (NodeIndex(13), 9.333457596942825)]
+router:2
+router:[(NodeIndex(4), 5.926494140672656), (NodeIndex(5), 160.6739427031993), (NodeIndex(7), 92.54144813573802), (NodeIndex(11), 126.968727666186)]
+network_traffic: 8000, variance:5751.339079853154, obvalue: 6875.669539926577
+router:1
+router:[(NodeIndex(8), 92.04517954252415), (NodeIndex(12), 4.847053558947856), (NodeIndex(13), 9.333457596942825), (NodeIndex(9), 17.414348400594957)]
+router:2
+router:[(NodeIndex(4), 5.926494140672656), (NodeIndex(5), 160.6739427031993), (NodeIndex(7), 92.54144813573802), (NodeIndex(11), 126.968727666186), (NodeIndex(6), 145.70975581665192), (NodeIndex(10), 191.11655096533642)]
+network_traffic: 9000, variance:3531.1312287608725, obvalue: 6265.565614380436
+---
+router:0
+router:[(NodeIndex(8), 182.3407990738426)]
+router:1
+router:[(NodeIndex(6), 122.7553871077895), (NodeIndex(7), 61.283021326673975), (NodeIndex(11), 12.699470471971257)]
+router:2
+router:[(NodeIndex(4), 156.91226078859307), (NodeIndex(5), 82.31691484531953), (NodeIndex(9), 68.7992174075266), (NodeIndex(13), 131.97786021100794)]
+router:3
+router:[(NodeIndex(10), 46.4048961969363), (NodeIndex(12), 187.19128074376454)]
+network_traffic: 9500, variance:4955.201518441849, obvalue: 7227.600759220924
+router:1
+router:[(NodeIndex(6), 122.7553871077895), (NodeIndex(7), 61.283021326673975), (NodeIndex(11), 12.699470471971257), (NodeIndex(10), 46.4048961969363)]
+router:2
+router:[(NodeIndex(4), 156.91226078859307), (NodeIndex(5), 82.31691484531953), (NodeIndex(9), 68.7992174075266), (NodeIndex(13), 131.97786021100794)]
+router:3
+router:[(NodeIndex(12), 187.19128074376454), (NodeIndex(8), 182.3407990738426)]
+network_traffic: 10000, variance:1589.8956092459043, obvalue: 5794.947804622952
+---
+router:0
+router:[(NodeIndex(5), 92.86242378080908), (NodeIndex(7), 113.40299845421305), (NodeIndex(12), 115.10945726744296)]
+router:1
+router:[(NodeIndex(6), 31.07782596758014), (NodeIndex(9), 167.04124717999827), (NodeIndex(11), 117.1020280717009)]
+router:2
+router:[(NodeIndex(4), 61.49422026278147), (NodeIndex(8), 93.09269454942705), (NodeIndex(13), 124.08219476184792)]
+router:3
+router:[(NodeIndex(10), 50.619639517284824)]
+network_traffic: 9500, variance:3153.348984509175, obvalue: 6326.674492254588
+router:0
+router:[(NodeIndex(5), 92.86242378080908), (NodeIndex(7), 113.40299845421305), (NodeIndex(12), 115.10945726744296)]
+router:1
+router:[(NodeIndex(9), 167.04124717999827), (NodeIndex(11), 117.1020280717009)]
+router:2
+router:[(NodeIndex(4), 61.49422026278147), (NodeIndex(8), 93.09269454942705), (NodeIndex(13), 124.08219476184792)]
+router:3
+router:[(NodeIndex(10), 50.619639517284824), (NodeIndex(6), 31.07782596758014)]
+network_traffic: 10500, variance:652.8963613950252, obvalue: 5576.448180697513
+---
+router:0
+router:[(NodeIndex(5), 62.99271753421333), (NodeIndex(7), 12.898669613870783), (NodeIndex(10), 80.63881001535563)]
+router:1
+router:[(NodeIndex(8), 229.11896748843927), (NodeIndex(9), 143.90877190414034), (NodeIndex(12), 104.97930573574708), (NodeIndex(13), 45.184664159840445)]
+router:2
+router:[(NodeIndex(4), 15.413732281787514)]
+router:3
+router:[(NodeIndex(6), 177.3004661925351), (NodeIndex(11), 83.33207746112859)]
+network_traffic: 8500, variance:4458.788308738728, obvalue: 6479.394154369364
+router:0
+router:[(NodeIndex(5), 62.99271753421333), (NodeIndex(7), 12.898669613870783), (NodeIndex(10), 80.63881001535563), (NodeIndex(13), 45.184664159840445), (NodeIndex(4), 15.413732281787514)]
+router:1
+router:[(NodeIndex(8), 229.11896748843927), (NodeIndex(9), 143.90877190414034), (NodeIndex(12), 104.97930573574708)]
+router:3
+router:[(NodeIndex(6), 177.3004661925351), (NodeIndex(11), 83.33207746112859)]
+network_traffic: 8500, variance:2687.437376415931, obvalue: 5593.718688207966
+---
+router:1
+router:[(NodeIndex(13), 68.98747980985371)]
+router:2
+router:[(NodeIndex(4), 208.8807859806984), (NodeIndex(7), 181.43724105843097), (NodeIndex(8), 76.11417586206002), (NodeIndex(9), 126.62723462808505), (NodeIndex(10), 60.463480619586996), (NodeIndex(12), 35.99146672624296)]
+router:3
+router:[(NodeIndex(5), 132.48154799774147), (NodeIndex(6), 43.33931153837002), (NodeIndex(11), 106.65521613303291)]
+network_traffic: 8000, variance:4015.2249753864526, obvalue: 6007.612487693226
+router:2
+router:[(NodeIndex(4), 208.8807859806984), (NodeIndex(7), 181.43724105843097), (NodeIndex(8), 76.11417586206002), (NodeIndex(9), 126.62723462808505), (NodeIndex(10), 60.463480619586996), (NodeIndex(12), 35.99146672624296), (NodeIndex(13), 68.98747980985371), (NodeIndex(6), 43.33931153837002)]
+router:3
+router:[(NodeIndex(5), 132.48154799774147), (NodeIndex(11), 106.65521613303291)]
+network_traffic: 9000, variance:3699.825873312652, obvalue: 6349.912936656327
+---

@@ -1,0 +1,50 @@
+case 100
+k=2
+network_traffic: 910000, variance:14753.976350845669, obvalue: 462376.9881754228
+network_traffic: 380500, variance:3093.5321463308146, obvalue: 191796.7660731654
+
+case 101
+k = 4
+network_traffic: 542000, variance:30230.285526133473, obvalue: 286115.14276306675
+network_traffic: 386000, variance:752.6996815759549, obvalue: 193376.34984078797
+
+case 102
+k = 2
+network_traffic: 648000, variance:1418.112419020465, obvalue: 324709.05620951025
+network_traffic: 379500, variance:3017.009396219091, obvalue: 191258.50469810955
+
+case 103
+k = 2
+network_traffic: 603500, variance:28095.066001639032, obvalue: 315797.5330008195
+network_traffic: 381000, variance:4121.14993566624, obvalue: 192560.57496783312
+
+case 104
+k = 1
+network_traffic: 591000, variance:47114.94952790677, obvalue: 319057.47476395336
+network_traffic: 372000, variance:14141.2396124252, obvalue: 193070.6198062126
+
+case 105
+k = 2
+network_traffic: 583500, variance:31824.128969307672, obvalue: 307662.0644846538
+network_traffic: 388500, variance:4004.4092186577686, obvalue: 196252.20460932888
+
+case 106
+k = 2
+network_traffic: 652000, variance:20078.784265011363, obvalue: 336039.39213250566
+network_traffic: 389000, variance:5188.335490422515, obvalue: 197094.16774521125
+
+case 107
+k = 2
+network_traffic: 826500, variance:4759.114736566221, obvalue: 415629.5573682831
+network_traffic: 382000, variance:5318.676819069718, obvalue: 193659.33840953486
+
+
+case 108
+k = 2
+network_traffic: 534000, variance:32725.540367152826, obvalue: 283362.7701835764
+network_traffic: 369000, variance:4527.193193684421, obvalue: 186763.59659684222
+
+case 109
+k = 1
+network_traffic: 906500, variance:3392.339103521454, obvalue: 454946.1695517607
+network_traffic: 374000, variance:12325.301887744667, obvalue: 193162.65094387234

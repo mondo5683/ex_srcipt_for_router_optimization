@@ -1,0 +1,263 @@
+extern crate petgraph;
+extern crate nalgebra as na;
+
+use petgraph::{algo::{all_simple_paths, dijkstra}, graph::{NodeIndex, UnGraph}, Graph, Undirected};
+
+fn divide_path(path: &Vec::<NodeIndex>,pivot:NodeIndex) 
+    -> Option<(Vec::<NodeIndex>, Vec<NodeIndex>)>{
+     
+    let mut previous = Vec::<NodeIndex>::new();
+    let mut merged = Vec::<NodeIndex>::new();
+
+    let mut flag = false;
+
+    for vertex in path{
+        if flag == true{
+            merged.push(*vertex);
+        } else {
+            if *vertex == pivot {
+               flag = true;
+               previous.push(*vertex);
+               merged.push(*vertex);
+            }else{
+                previous.push(*vertex);
+            }
+        }
+    }
+
+    if flag == false { return None;}
+
+    return Some((previous, merged));
+}
+
+fn minimum_cost_to_ps(ps: &NodeIndex, vertex: &NodeIndex, gr:&UnGraph<&str,&str>) -> Option<i32> {
+
+    let res = dijkstra(gr, *vertex, None,|_| 1);
+
+    for (key, value) in res{
+        if key == *ps{
+            return Some(value);
+        }
+    }
+    return None;
+
+}
+
+
+
+fn main() {
+/*    let gr : UnGraph<(),()> = Graph::from_edges(&[
+        (0,1), (0,2), (0,3), 
+        (1,3),
+        (2,3),(2,4),
+        (4,0),(4,5),]);
+*/
+ 
+    let mut topology = Graph::<&str, &str, Undirected>::new_undirected();
+
+    // Create Vertexes
+    let ps = topology.add_node("parameter_server");
+    let r1 = topology.add_node("router1");
+    let r2 = topology.add_node("router2");
+    let r3 = topology.add_node("router3");
+    let r4 = topology.add_node("router4");
+    let d1 = topology.add_node("device1");
+    let d2 = topology.add_node("device2");
+    let d3 = topology.add_node("device3");
+    let d4 = topology.add_node("device4");
+    let d5 = topology.add_node("device5");
+    let d6 = topology.add_node("device6");
+    let d7 = topology.add_node("device7");
+    
+    //Create Edges
+    topology.extend_with_edges(&[
+    (ps,r1),
+    (r1,r2),(r1,r3), (r1,r4),
+    (r2,d1),(r2,d2),
+    (r3,d3),(r3,d4),(r3,d5),
+    (r4,d6),(r4,d7),
+    ]);
+ 
+    let model_size = 20.0 * 1000.0 * 1000.0;
+    
+    let a = na::matrix![
+        1,1,1,1,1,1,1;
+        0,0,0,0,0,0,0;
+        0,0,0,0,0,0,0;
+        0,0,0,0,0,0,0;
+    ];
+
+    
+    let b = na::matrix![
+        1,0,1,0,1,0,1;
+        0,0,0,0,0,0,0;
+        0,1,0,1,0,0,0;
+        0,0,0,0,0,1,0;
+    ];
+
+    let c = na::matrix![
+        0,0,0,0,0,0,0;
+        0,0,1,0,1,0,1;
+        1,0,0,1,0,0,0;
+        0,1,0,0,0,1,0;
+    ];
+
+    let d = na::matrix![
+        0,0,0,0,0,0,0;
+        0,0,1,0,0,1,1;
+        0,1,0,1,1,0,0;
+        1,0,0,0,0,0,0;
+    ];
+    
+    let e = na::matrix![
+        0,0,0,0,0,0,0;
+        1,0,0,0,0,0,1;
+        0,1,0,1,0,0,0;
+        0,0,1,0,1,1,0;
+    ];
+
+    let f = na::matrix![
+        0,0,0,0,0,0,0;
+        1,1,0,0,0,0,0;
+        0,0,1,1,1,0,0;
+        0,0,0,0,0,1,1;
+    ];
+
+    let a_vec = vec![a,b,c,d,e,f];
+
+
+    let device_vec = vec![d1,d2,d3,d4,d5,d6,d7];
+    let router_vec = vec![r1,r2,r3,r4];
+
+
+    let data_amount = na::vector![50,50,50,50,50,50,50];
+//    let data_amount = na::vector![12,6,25,19,12,50,25];
+    let time_exec = na::vector![20,100,35,100,60,300,40];
+//    let time_exec = na::vector![40,200,70,200,120,600,80];
+
+    let data_amount_average = data_amount.iter().sum::<i32>() as f32 / data_amount.len() as f32; 
+    let time_exec_average = time_exec.iter().sum::<i32>() as f32 / time_exec.len() as f32 ;
+
+    let alpha = (model_size / time_exec_average as f64) ;
+    //let alpha = 1.0;
+
+    println!("Data amount average: {}", data_amount_average); 
+    println!("Time execution average: {}", time_exec_average);
+
+    let one_vector = na::vector![1,1,1,1,1,1,1];
+    let data_amount_overall = (&data_amount.transpose() * &one_vector)[0];
+
+    println!("data_amount_overall: {}",data_amount_overall);
+
+    for a in a_vec {
+        println!("----- gains after merge-------");
+        let mut gains = 0.0;
+        for (i,row) in a.row_iter().enumerate() {
+//            let num = (row * one_vector)[0];
+            let router = router_vec[i];
+
+            let data_amount_cluster = (&row * &data_amount)[0];
+
+            //Device Cluster 
+            let mut device_cluster = Vec::<NodeIndex>::new();
+            for (i,r) in row.iter().enumerate(){
+//                println!("{}",*r);
+                if *r == 1{
+                    device_cluster.push(device_vec[i]);
+                }
+            }
+            let mut overall_hopping = 0;
+            let mut before_merge_hopping = 0;
+            let mut after_merge_hopping = 0;
+
+            for d in device_cluster{
+
+                match minimum_cost_to_ps(&ps, &d, &topology){
+                    Some(cost) => {
+//                        println!("minimum_cost_to_ps:{}",cost);
+                        overall_hopping += cost;
+                    },                     
+                    None => println!("Can't go to {:?}", d7),
+                } 
+
+                let start = d;
+                let goal = router;
+                let mut paths = all_simple_paths::<Vec<_>, &Graph<&str, &str, Undirected>>
+                            ( &topology, start, goal, 0, None);
+
+                let p = paths.next().unwrap();
+//                println!("Before Merge Path: {:?}", p);
+                before_merge_hopping += p.len() - 1;
+
+                let start = router;
+                let goal = ps;
+                let mut paths = all_simple_paths::<Vec<_>, &Graph<&str, &str, Undirected>>
+                            ( &topology, start, goal, 0, None);
+
+                let p = paths.next().unwrap();
+ 
+//                println!("After Merge Path: {:?}", p);
+
+                after_merge_hopping = p.len() - 1;
+            
+/*                match divide_path(&p, router) {
+                    Some(result) => {
+                        let (previous, merged) = result;
+                        println!("Before Merge Path: {:?}", previous);
+                        println!("After Merge Path: {:?}", merged);
+                        before_merge_hopping += previous.len() - 1;
+                        after_merge_hopping = merged.len() - 1;
+                
+                    },
+                    None => println!("Can't divide by the vertex\n Path:{:?}, Vertex:{:?}",p,router),
+                }
+*/
+
+            }
+
+            let before_merge_cost = model_size * overall_hopping as f64;
+            let after_merge_cost = model_size * (after_merge_hopping + before_merge_hopping) as f64;
+
+            println!("before:{}, after:{}",before_merge_cost,after_merge_cost);
+
+           
+            println!("data_amount_cluster: {}", data_amount_cluster);
+//            let new_gains = (before_merge_cost - after_merge_cost) * data_amount_cluster as f64;
+            let new_gains = (before_merge_cost - after_merge_cost) ;
+            println!("new gains: {}", new_gains);
+            gains = gains + new_gains;
+        }
+        println!("gains: {}", gains);
+
+        println!("-----time execution variance--------");
+//        let mut time_penalty = 0.0;
+        let mut max_variance = 0.0;        
+        for row in a.row_iter() {
+            let mut variance = 0.0;
+            let num = (row * one_vector)[0];
+
+            if num == 0{
+                println!("No Client");
+                continue;
+            }
+            let time_exec_average = (&row * &time_exec)[0] as f64 / num as f64;
+
+//       println!("row is : {}", row);
+            for i in 0..row.len() {
+                let std = (time_exec[i] as f64 - time_exec_average) 
+                    * (time_exec[i] as f64 - time_exec_average) * row[i] as f64;
+                variance = variance + std;
+            }
+//            println!("{}", variance);
+            if max_variance < variance{
+                max_variance = variance;
+            }
+            //time_penalty += variance / num as f32; 
+            println!("Variance is: {}", variance / num as f64);
+        }
+
+
+        println!("Final gains: {}", (gains - alpha * max_variance));
+    }
+        
+}

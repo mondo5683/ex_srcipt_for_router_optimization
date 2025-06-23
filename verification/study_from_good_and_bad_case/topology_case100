@@ -1,0 +1,176 @@
+Router: 11, 0階層, 11番目, 親ノードなし, 最上位ルータ:11
+--Device: NodeIndex(1248), time:148.14979374869043
+--Device: NodeIndex(1245), time:158.16165792223904
+--Device: NodeIndex(1254), time:155.29933526877156
+--Device: NodeIndex(1255), time:153.876921065674
+--Device: NodeIndex(1206), time:93.60276320373177
+--Device: NodeIndex(1260), time:154.45015275909415
+--Device: NodeIndex(1251), time:150.7456340785771
+--Device: NodeIndex(1198), time:281.5983218807286
+Router: 17, 1階層, 3番目, 親ノード:0, 最上位ルータ:0
+--Device: NodeIndex(1219), time:83.99188706044295
+--Device: NodeIndex(1270), time:50.8948393918542
+Router: 35, 1階層, 21番目, 親ノード:5, 最上位ルータ:5
+--Device: NodeIndex(1316), time:15.149126815715421
+--Device: NodeIndex(1308), time:16.135329397474873
+--Device: NodeIndex(1272), time:35.56897394200006
+--Device: NodeIndex(1293), time:43.45974668995361
+--Device: NodeIndex(1225), time:79.35941010839622
+--Device: NodeIndex(1229), time:96.33448159669074
+Router: 56, 1階層, 42番目, 親ノード:10, 最上位ルータ:10
+--Device: NodeIndex(1252), time:148.6775156147002
+--Device: NodeIndex(1197), time:204.20464674716686
+Router: 59, 1階層, 45番目, 親ノード:11, 最上位ルータ:11
+--Device: NodeIndex(1239), time:56.86478902755404
+--Device: NodeIndex(1214), time:99.26019597845828
+--Device: NodeIndex(1284), time:41.27740385934174
+--Device: NodeIndex(1286), time:42.37341480485022
+Router: 64, 1階層, 50番目, 親ノード:12, 最上位ルータ:12
+--Device: NodeIndex(1264), time:149.61564606503774
+--Device: NodeIndex(1259), time:167.74952214850535
+--Device: NodeIndex(1262), time:149.48784145031803
+Router: 65, 1階層, 51番目, 親ノード:12, 最上位ルータ:12
+--Device: NodeIndex(1303), time:35.91738854618161
+--Device: NodeIndex(1297), time:45.02236641984083
+--Device: NodeIndex(1312), time:17.374482454234162
+--Device: NodeIndex(1271), time:44.35288422519417
+--Device: NodeIndex(1307), time:15.34842008454524
+--Device: NodeIndex(1311), time:13.338365228250023
+Router: 84, 2階層, 14番目, 親ノード:0, 最上位ルータ:0
+--Device: NodeIndex(1227), time:139.2455018443248
+--Device: NodeIndex(1266), time:185.5473011065949
+--Device: NodeIndex(1247), time:161.8724122711708
+--Device: NodeIndex(1244), time:170.42782385972663
+Router: 100, 2階層, 30番目, 親ノード:1, 最上位ルータ:1
+--Device: NodeIndex(1191), time:430.27545059933
+Router: 101, 2階層, 31番目, 親ノード:1, 最上位ルータ:1
+--Device: NodeIndex(1228), time:90.81170840610504
+--Device: NodeIndex(1305), time:36.484516023282715
+Router: 119, 2階層, 49番目, 親ノード:3, 最上位ルータ:3
+--Device: NodeIndex(1306), time:42.54216503843019
+--Device: NodeIndex(1313), time:14.629958749738089
+Router: 159, 2階層, 89番目, 親ノード:5, 最上位ルータ:5
+--Device: NodeIndex(1211), time:42.99947558772768
+--Device: NodeIndex(1299), time:30.05279962406045
+--Device: NodeIndex(1296), time:39.24723907111106
+Router: 181, 2階層, 111番目, 親ノード:6, 最上位ルータ:6
+--Device: NodeIndex(1234), time:48.91499882518891
+--Device: NodeIndex(1222), time:99.94036175963427
+--Device: NodeIndex(1216), time:86.46153510945668
+Router: 189, 2階層, 119番目, 親ノード:7, 最上位ルータ:7
+--Device: NodeIndex(1243), time:155.67664698737437
+--Device: NodeIndex(1265), time:141.84147004607695
+--Device: NodeIndex(1208), time:99.78735378528467
+--Device: NodeIndex(1203), time:82.90350070454366
+Router: 195, 2階層, 125番目, 親ノード:7, 最上位ルータ:7
+--Device: NodeIndex(1261), time:161.96421705578055
+--Device: NodeIndex(1246), time:141.69182614125012
+--Device: NodeIndex(1204), time:89.46107831229062
+Router: 206, 2階層, 136番目, 親ノード:8, 最上位ルータ:8
+--Device: NodeIndex(1318), time:17.311223517414994
+--Device: NodeIndex(1210), time:18.813952108489644
+--Device: NodeIndex(1304), time:32.596732488817295
+Router: 221, 2階層, 151番目, 親ノード:9, 最上位ルータ:9
+--Device: NodeIndex(1310), time:16.63233158444781
+--Device: NodeIndex(1290), time:39.79501123468679
+--Device: NodeIndex(1282), time:36.874592762670254
+--Device: NodeIndex(1213), time:77.79585935783368
+--Device: NodeIndex(1207), time:66.15304356875019
+Router: 229, 2階層, 159番目, 親ノード:9, 最上位ルータ:9
+--Device: NodeIndex(1276), time:28.159832188072855
+--Device: NodeIndex(1285), time:49.46641181253619
+--Device: NodeIndex(1231), time:77.64762209722207
+Router: 278, 2階層, 208番目, 親ノード:13, 最上位ルータ:13
+--Device: NodeIndex(1212), time:81.24272346429518
+--Device: NodeIndex(1283), time:34.92491280711291
+Router: 281, 2階層, 211番目, 親ノード:13, 最上位ルータ:13
+--Device: NodeIndex(1217), time:70.23310238334454
+--Device: NodeIndex(1280), time:42.82631214334482
+--Device: NodeIndex(1317), time:14.735503122940042
+--Device: NodeIndex(1314), time:7.657674253018758
+Router: 284, 2階層, 214番目, 親ノード:13, 最上位ルータ:13
+--Device: NodeIndex(1279), time:46.16326271310665
+--Device: NodeIndex(1319), time:16.05986705375431
+--Device: NodeIndex(1238), time:67.24183920681753
+Router: 370, 3階層, 76番目, 親ノード:1, 最上位ルータ:1
+--Device: NodeIndex(1226), time:66.40245007679493
+--Device: NodeIndex(1273), time:46.33195321129109
+Router: 378, 3階層, 84番目, 親ノード:1, 最上位ルータ:1
+--Device: NodeIndex(1235), time:69.41207220093197
+--Device: NodeIndex(1275), time:20.420464674716687
+--Device: NodeIndex(1298), time:51.368775315988565
+Router: 383, 3階層, 89番目, 親ノード:1, 最上位ルータ:1
+--Device: NodeIndex(1257), time:140.4842115133367
+--Device: NodeIndex(1267), time:156.48702504366304
+Router: 391, 3階層, 97番目, 親ノード:1, 最上位ルータ:1
+--Device: NodeIndex(1291), time:35.648784024574375
+--Device: NodeIndex(1309), time:19.08556477194532
+Router: 497, 3階層, 203番目, 親ノード:3, 最上位ルータ:3
+--Device: NodeIndex(1289), time:38.6664273024689
+--Device: NodeIndex(1315), time:10.559937070527322
+Router: 523, 3階層, 229番目, 親ノード:3, 最上位ルータ:3
+--Device: NodeIndex(1218), time:64.14035252222784
+--Device: NodeIndex(1249), time:113.28837126509379
+Router: 532, 3階層, 238番目, 親ノード:3, 最上位ルータ:3
+--Device: NodeIndex(1242), time:151.7421004227262
+Router: 558, 3階層, 264番目, 親ノード:4, 最上位ルータ:4
+--Device: NodeIndex(1268), time:40.92912022545397
+--Device: NodeIndex(1269), time:43.027545059933
+Router: 576, 3階層, 282番目, 親ノード:4, 最上位ルータ:4
+--Device: NodeIndex(1253), time:161.55611758707497
+--Device: NodeIndex(1220), time:109.58253691417559
+--Device: NodeIndex(1301), time:39.12121439930563
+Router: 630, 3階層, 336番目, 親ノード:5, 最上位ルータ:5
+--Device: NodeIndex(1230), time:70.51461358664028
+--Device: NodeIndex(1232), time:95.69489506200259
+--Device: NodeIndex(1263), time:147.4995511921292
+Router: 635, 3階層, 341番目, 親ノード:5, 最上位ルータ:5
+--Device: NodeIndex(1200), time:392.9467499450678
+--Device: NodeIndex(1199), time:403.97671508574456
+Router: 694, 3階層, 400番目, 親ノード:6, 最上位ルータ:6
+--Device: NodeIndex(1241), time:87.94426574509436
+--Device: NodeIndex(1288), time:39.726848773502944
+Router: 699, 3階層, 405番目, 親ノード:6, 最上位ルータ:6
+--Device: NodeIndex(1256), time:144.13986143000673
+--Device: NodeIndex(1205), time:114.04637309954435
+Router: 728, 3階層, 434番目, 親ノード:6, 最上位ルータ:6
+--Device: NodeIndex(1190), time:409.2912022545397
+--Device: NodeIndex(1202), time:428.26312143344825
+Router: 813, 3階層, 519番目, 親ノード:8, 最上位ルータ:8
+--Device: NodeIndex(1258), time:152.39513223626577
+--Device: NodeIndex(1233), time:115.52742286246428
+Router: 874, 3階層, 580番目, 親ノード:9, 最上位ルータ:9
+--Device: NodeIndex(1221), time:87.41692126515693
+--Device: NodeIndex(1277), time:40.397671508574454
+--Device: NodeIndex(1281), time:42.06769123502614
+Router: 909, 3階層, 615番目, 親ノード:9, 最上位ルータ:9
+--Device: NodeIndex(1240), time:69.01411257275849
+--Device: NodeIndex(1300), time:36.61186310429823
+Router: 953, 3階層, 659番目, 親ノード:10, 最上位ルータ:10
+--Device: NodeIndex(1274), time:39.0132233326349
+--Device: NodeIndex(1209), time:76.91632291448407
+Router: 986, 3階層, 692番目, 親ノード:10, 最上位ルータ:10
+--Device: NodeIndex(1236), time:77.2537949978301
+--Device: NodeIndex(1224), time:75.8325853202153
+--Device: NodeIndex(1302), time:41.60994760707564
+--Device: NodeIndex(1250), time:127.7996853526366
+Router: 1014, 3階層, 720番目, 親ノード:11, 最上位ルータ:11
+--Device: NodeIndex(1196), time:390.132233326349
+--Device: NodeIndex(1194), time:355.6897394200006
+Router: 1029, 3階層, 735番目, 親ノード:11, 最上位ルータ:11
+--Device: NodeIndex(1237), time:85.03108627211137
+--Device: NodeIndex(1287), time:46.38091576308297
+Router: 1030, 3階層, 736番目, 親ノード:11, 最上位ルータ:11
+--Device: NodeIndex(1292), time:58.958560590183936
+--Device: NodeIndex(1294), time:45.227034110941034
+Router: 1068, 3階層, 774番目, 親ノード:12, 最上位ルータ:12
+--Device: NodeIndex(1223), time:79.1464024171967
+--Device: NodeIndex(1215), time:88.83222544795258
+Router: 1123, 3階層, 829番目, 親ノード:12, 最上位ルータ:12
+--Device: NodeIndex(1195), time:463.3195321129109
+--Device: NodeIndex(1193), time:443.5288422519416
+--Device: NodeIndex(1201), time:461.6326271310665
+--Device: NodeIndex(1192), time:508.94839391854197
+Router: 1124, 3階層, 830番目, 親ノード:12, 最上位ルータ:12
+--Device: NodeIndex(1278), time:39.29467499450678
+--Device: NodeIndex(1295), time:36.96467634772489
