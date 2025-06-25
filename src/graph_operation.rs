@@ -33,7 +33,7 @@ pub fn minimum_hop_to_node(target_node_index: &NodeIndex, source_node_index: &No
 
     if res.contains_key(target_node_index){
         let hop_num = *res.get(target_node_index).unwrap() as usize; 
-        println!("Cost {:?} to {:?}: {}", *source_node_index, *target_node_index, hop_num );
+//        println!("Cost {:?} to {:?}: {}", *source_node_index, *target_node_index, hop_num );
         Some(hop_num)
     }
     else { 

@@ -2,6 +2,8 @@ extern crate rand_distr;
 extern crate rand;
 
 use petgraph::graph::NodeIndex;
+use std::collections::HashMap;
+use na::{DVector};
 use rand::{rngs::StdRng, Rng, SeedableRng};
 use rand_distr::{Distribution, Normal};
 use crate::na;
@@ -24,6 +26,44 @@ pub fn generate_random_time_exec(device_num:usize, seed:u64, mean:f64, std_dev:f
     time_exec
 
 }
+
+pub fn generate_random_time_exec_based_on_ratio(device_num:usize, seed:u64) -> na::DVector<f64>{
+
+    let device_type_order = vec!["server", "desktop", "laptop", "raspi", "sensor"];
+
+    let hashmap_device_type_to_ratio = HashMap::from([
+        ("server", 0.1),
+        ("desktop", 0.3),
+        ("laptop", 0.3),
+        ("raspi", 0.2),
+        ("sensor", 0.1),
+    ]);
+
+    let hashmap_timeexec_kind_to_mean_and_std = HashMap::from([
+        ("server", (15.0,3.0)),
+        ("desktop", (40.0,8.0)),
+        ("laptop", (80.0,25.0)),
+        ("raspi", (150.0, 15.0)),
+        ("sensor", (400.0, 80.0)),
+    ]);
+
+    let mut time_exec_buff = Vec::<f64>::new();
+    for device_type in device_type_order {
+        let mean_and_std = hashmap_timeexec_kind_to_mean_and_std[device_type];
+        let ratio = hashmap_device_type_to_ratio[device_type];
+        let num_samples = (device_num as f64 * ratio) as usize;
+
+        let time_exec_for_the_device_type = generate_random_time_exec(num_samples, seed, mean_and_std.0, mean_and_std.1)
+                                            .iter().copied().collect::<Vec<f64>>();
+        time_exec_buff.extend(time_exec_for_the_device_type);
+    }
+
+    let time_exec = DVector::from_vec(time_exec_buff.clone());
+    time_exec
+
+
+}
+
 
 pub fn generate_random_edge_distribution(router_num:usize,device_num:usize,seed:u64) -> na::DMatrix<i32>{
     

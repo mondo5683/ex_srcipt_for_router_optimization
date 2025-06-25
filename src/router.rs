@@ -518,11 +518,10 @@ impl<'a> Router<'a> {
         }
         
         let before_merge_cost = self.model_size * overall_hopping as f64;
-       let after_merge_cost = self.model_size * (after_merge_hopping + before_merge_hopping) as f64;
+        let after_merge_cost = self.model_size * (after_merge_hopping + before_merge_hopping) as f64;
         let network_traffic = before_merge_cost - after_merge_cost;
  
         let device_time_list: Vec<f64> = device_list.iter().map(|(_,x)| *x).collect();
-        //TODO CHANGE いったん分散をクラスタごとの最小値と最大値の差の二乗に変えてみる
         
         let time_exec_average = device_time_list.iter().sum::<f64>() as f64 / device_time_list.len() as f64 ;
         let mut variance = 0.0;
@@ -539,6 +538,7 @@ impl<'a> Router<'a> {
 
         }
         
+        //TODO CHANGE いったん分散をクラスタごとの最小値と最大値の差の二乗に変えてみる
 /*
         let min = device_time_list.iter().cloned().min_by(|a, b| a.partial_cmp(b).unwrap()).unwrap();
         let max = device_time_list.iter().cloned().max_by(|a, b| a.partial_cmp(b).unwrap()).unwrap();
