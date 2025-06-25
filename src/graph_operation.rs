@@ -27,16 +27,17 @@ pub fn _divide_path(path: &Vec::<NodeIndex>,pivot:NodeIndex)
     return Some((previous, merged));
 }
 
-pub fn minimum_cost_to_ps(ps: &NodeIndex, vertex: &NodeIndex, gr:&UnGraph<String,String>) -> Option<i32> {
+pub fn minimum_hop_to_node(target_node_index: &NodeIndex, source_node_index: &NodeIndex, gr:&UnGraph<String,String>) -> Option<usize> {
 
-    let res = dijkstra(gr, *vertex, None,|_| 1);
-    
+    let res = dijkstra(gr, *source_node_index, None,|_| 1);
 
-    for (key, value) in res{
-        if key == *ps{
-            return Some(value);
-        }
+    if res.contains_key(target_node_index){
+        let hop_num = *res.get(target_node_index).unwrap() as usize; 
+        println!("Cost {:?} to {:?}: {}", *source_node_index, *target_node_index, hop_num );
+        Some(hop_num)
     }
-    return None;
+    else { 
+        println!("Unreachable from {:?} to {:?}", *source_node_index,*target_node_index);
+        None }
 
 }

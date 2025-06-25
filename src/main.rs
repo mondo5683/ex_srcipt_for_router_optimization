@@ -69,6 +69,7 @@ fn main() -> std::io::Result<()> {
         0,0,0,0,0,0,0,0,0,0,0;
     ];
 */
+
     let rt = generate_topology();
     let rand_seeds: [u64; 10] = [100,101,102,103,104,105,106,107,108,109];
     //let rand_seeds: [u64; 4] = [100,109,101,108];
@@ -78,9 +79,11 @@ fn main() -> std::io::Result<()> {
 
     for rand in rand_seeds{
         println!("Seed: {}", rand);
-        //for k in k_vec{ println!("For k: {}", k);
+        for k in k_vec{ println!("For k: {}", k);
     //    let time_exec = na::vector![20.0,100.0,35.0,100.0,60.0,300.0,40.0];
     //    let time_exec = na::vector![20.0,35.0,100.0,100.0,80.0,300.0,40.0];
+        let model_size = 500.0;
+
         let mut rng = StdRng::seed_from_u64(rand);
         let te_seed:u64 = rng.random();
         let ed_seed:u64 = rng.random();
@@ -140,34 +143,21 @@ fn main() -> std::io::Result<()> {
         }
         println!("");
 
-        
-        
-        //let k = 8;
-        /*
-        let max_iter = 100;
-        let clustering_result = clustering_device(&device_list, k, max_iter);
-
-        let clustered_group = generate_hashmap(time_exec.as_slice().to_vec(), &d, clustering_result.membership);
-        let variance_vec = calculate_variances_clusters(&clustered_group);
-
-        let max_cluster_variance = variance_vec.iter().max_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Less)).unwrap();
-        */
         // Create Vertexes
         let ps = topology.add_node(String::from("parameter_server"));
         let mut edge_array = generate_edge_array(&rt, &e, &r, &d);
-        //edge_array.push(random_locate_ps(rt.nrows(), &ps, &r, ps_location_seed));
-        edge_array.push((ps, r[276]));
+        edge_array.push(random_locate_ps(rt.nrows(), &ps, &r, ps_location_seed));
+        //edge_array.push((ps, r[143]));
         topology.extend_with_edges(&edge_array);
 
 
-        let model_size = 500.0;
     //    println!("{:?}",topology);
         let topology_for_routers = topology.clone();
 
 
-//        let time_exec_average = time_exec.iter().sum::<f64>() as f64 / time_exec.len() as f64 ;
+    //        let time_exec_average = time_exec.iter().sum::<f64>() as f64 / time_exec.len() as f64 ;
 
-//        println!("Time execution average: {}", time_exec_average);
+    //        println!("Time execution average: {}", time_exec_average);
 
         let mut routers = Vec::<Router>::new();
         for router in r.iter(){
@@ -183,6 +173,7 @@ fn main() -> std::io::Result<()> {
             }
         }
       
+
         //TODO delete this
         //let device9 = (d[9],time_exec[9]); 
         //routers[1].add_device(device9);
@@ -194,7 +185,8 @@ fn main() -> std::io::Result<()> {
         for r in routers.iter_mut(){
             if r.get_devices().len() > 0{
 //                println!("router:{}",r.get_router().index());
-                //println!("router:{:?}",r.get_devices());
+                println!("router:{:?}",r.get_devices());
+            
                 let (network_traffic, variance) = r.update_obvalue();
                 network_traffic_cost += network_traffic;
                 if max_variance < variance{
@@ -205,10 +197,11 @@ fn main() -> std::io::Result<()> {
         println!("network_traffic: {}, variance:{}, obvalue: {}",network_traffic_cost,max_variance,ALPHA*network_traffic_cost + BETA*max_variance);
     //    println!("router num:{}",router_num);
         
-        let mut routers_stratum_dict:HashMap<i32,Vec<usize>> = HashMap::new();
+        /*
+        let mut routers_stratum_dict:HashMap<usize,Vec<usize>> = HashMap::new();
         let mut max_depth = 0;
         for r in routers.iter() {
-            let depth_of_r = r.hop_to_ps(&ps);
+            let depth_of_r = r.hop_to_node(&ps);
     //        println!("router {:?} is {}",r.get_router(), depth_of_r));
             routers_stratum_dict.entry(depth_of_r).or_insert(vec![]).push(r.get_router().index());
 
@@ -216,13 +209,16 @@ fn main() -> std::io::Result<()> {
                 max_depth = depth_of_r
             }
         }
-       /* 
+        */
+        
+        /*
         match manually_operation(&mut routers, &r, &d, time_exec_buff){
             Ok(_) => println!("Manual Operation completed."),
             Err(msg) => eprintln!("Manual Operation stops due to error {}",msg),
 
         };
         */
+        
         
         
 
@@ -264,8 +260,16 @@ fn main() -> std::io::Result<()> {
             inner_cluster_routers.push(r);
         }
 
-        //allocate_cluster_to_optimal_router(&mut inner_cluster_routers, clustered_group, *max_cluster_variance);
-        optimize_obvalue_in_cluster(&mut inner_cluster_routers);
+        //let k = 8;
+        let max_iter = 100;
+        let clustering_result = clustering_device(&device_list, k, max_iter);
+
+        let clustered_group = generate_hashmap(time_exec.as_slice().to_vec(), &d, clustering_result.membership);
+        let variance_vec = calculate_variances_clusters(&clustered_group);
+
+        let max_cluster_variance = variance_vec.iter().max_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Less)).unwrap();
+        allocate_cluster_to_optimal_router(&mut inner_cluster_routers, clustered_group, *max_cluster_variance);
+        //optimize_obvalue_in_cluster(&mut inner_cluster_routers);
 
         network_traffic_cost = 0.0;
         max_variance = 0.0;
@@ -286,9 +290,9 @@ fn main() -> std::io::Result<()> {
         println!("---");
 //    println!("router num:{}",router_num);
 
-        //let filename = format!("topology_cluster_{}_with_seed_{}_generated_ratio_oriented.json",k,rand.to_string());
-        //let mut file = File::create(filename)?;
-        let mut file = File::create("topology.json")?;
+        let filename = format!("topology_cluster_{}_with_seed_{}_generated_ratio_oriented.json",k,rand.to_string());
+        let mut file = File::create(filename)?;
+        //let mut file = File::create("topology.json")?;
     
         writeln!(file, "{{")?;
         let last_index = routers.len().saturating_sub(1);
@@ -303,7 +307,7 @@ fn main() -> std::io::Result<()> {
         writeln!(file, "}}")?;
     
     //The followed } is the end of loop of k
-    //}
+    }
 
     }
     Ok(())
@@ -348,3 +352,99 @@ fn generate_topology() -> na::DMatrix<i32> {
     matrix
 }
 
+//この関数によって生成されるrouterのlifetimeはトポロジーの配列rtと同値になります
+/*
+fn generete_router_vec(rand:u64, model_size: f64, rt:&na::DMatrix<i32>) -> Vec<Router> {
+
+    let mut rng = StdRng::seed_from_u64(rand);
+    let te_seed:u64 = rng.random();
+    let ed_seed:u64 = rng.random();
+    let ps_location_seed:u64 = rng.random();
+
+    //let time_exec = generate_random_time_exec(DEVICE_NUM, te_seed, TE_MEAN, TE_STD);
+    let server_rate = 0.1;
+    let desktop_rate= 0.3;
+    let laptop_rate = 0.3;
+    let raspi_rate  = 0.2;
+    let sensor_rate = 0.1;
+
+    let hashmap_device_type_to_ratio = HashMap::from([
+        ("server", server_rate),
+        ("desktop", desktop_rate),
+        ("laptop", laptop_rate),
+        ("raspi", raspi_rate),
+        ("sensor", sensor_rate),
+    ]);
+
+    let mut hashmap_timeexec_kind_to_mean_and_std: HashMap<&str,(f64,f64)> = HashMap::new();
+    hashmap_timeexec_kind_to_mean_and_std.insert("server", (15.0,3.0));
+    hashmap_timeexec_kind_to_mean_and_std.insert("desktop", (40.0,8.0));
+    hashmap_timeexec_kind_to_mean_and_std.insert("laptop", (80.0,25.0));
+    hashmap_timeexec_kind_to_mean_and_std.insert("raspi", (150.0, 15.0));
+    hashmap_timeexec_kind_to_mean_and_std.insert("sensor", (400.0, 80.0));
+
+    let mut time_exec_buff = Vec::<f64>::new();
+    for (device_type, mean_and_std) in hashmap_timeexec_kind_to_mean_and_std{
+        let num_samples:usize = ( DEVICE_NUM as f64 * *hashmap_device_type_to_ratio.get(device_type).unwrap() ) as usize;
+        let time_exec_for_the_device_type = generate_random_time_exec(num_samples, te_seed, mean_and_std.0, mean_and_std.1);
+
+        let time_exec_for_the_device_type_vec = time_exec_for_the_device_type.iter().copied().collect::<Vec<f64>>();
+        time_exec_buff.extend(time_exec_for_the_device_type_vec);
+
+    }
+
+    let time_exec = DVector::from_vec(time_exec_buff.clone());
+    let e = generate_random_edge_distribution(rt.nrows(), DEVICE_NUM, ed_seed);
+//    println!("{:?}", e);
+    println!("{:?}",time_exec);
+
+    let mut topology = Graph::<String, String, Undirected>::new_undirected();
+    
+    let r = generate_router_array(&rt, &mut topology);
+    let d = generate_device_array(&e, &mut topology);
+
+    let mut device_list = Vec::<Device>::new();
+    for i in 0..d.len(){
+        let id = d[i];
+        let learning_time = time_exec[i];
+        let device = Device::new(id, learning_time);
+    //    print!("{}, ", learning_time);
+
+        device_list.push(device);
+    
+    }
+    println!("");
+
+    // Create Vertexes
+    let ps = topology.add_node(String::from("parameter_server"));
+    let mut edge_array = generate_edge_array(&rt, &e, &r, &d);
+    //edge_array.push(random_locate_ps(rt.nrows(), &ps, &r, ps_location_seed));
+    edge_array.push((ps, r[105]));
+    topology.extend_with_edges(&edge_array);
+
+
+//    println!("{:?}",topology);
+    let topology_for_routers = topology.clone();
+
+
+//        let time_exec_average = time_exec.iter().sum::<f64>() as f64 / time_exec.len() as f64 ;
+
+//        println!("Time execution average: {}", time_exec_average);
+
+    let mut routers = Vec::<Router>::new();
+    for router in r.iter(){
+        routers.push(Router::new(&topology_for_routers, router,&ps, model_size));
+    } 
+    //vecに応じてデバイスを割り当てる
+    for (col_index, column) in e.column_iter().enumerate() {
+        for (row_index, value) in column.iter().enumerate() {
+            if *value == 1 {
+                let device = (d[col_index], time_exec[col_index]);
+                routers[row_index].add_device(device);
+            }
+        }
+    }
+    routers
+
+}
+*/

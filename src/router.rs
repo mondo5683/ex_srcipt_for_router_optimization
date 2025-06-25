@@ -2,7 +2,7 @@ use core::net;
 use std::cmp::Ordering;
 use std::collections::HashMap;
 
-use crate::graph_operation::minimum_cost_to_ps;
+use crate::graph_operation::minimum_hop_to_node;
 use crate::{all_simple_paths, sell_info::{SellInfo}, ALPHA, BETA};
 use petgraph::{graph::NodeIndex, Graph,Undirected};
 use std::io::{Write, Result};
@@ -90,8 +90,8 @@ impl<'a> Router<'a> {
         Ok(())
     }
     
-    pub fn hop_to_ps(&self, ps: &NodeIndex) -> i32 {
-        match  minimum_cost_to_ps(ps, &self.router, &self.topo) {
+    pub fn hop_to_node(&self, target_node_index: &NodeIndex) -> usize {
+        match  minimum_hop_to_node(target_node_index, &self.router, &self.topo) {
             Some(hop_to_ps) => hop_to_ps,
             None => 0
         }
@@ -351,23 +351,18 @@ impl<'a> Router<'a> {
 */
            let start = device;
            let goal = *self.router;
-           let mut paths = all_simple_paths::<Vec<_>, &Graph<String, String, Undirected>>
-                       ( self.topo, start, goal, 0, None);
-
-           let p = paths.next().unwrap();
+           if let Some(hop_to_router_from_device) = minimum_hop_to_node(&goal, &start, self.topo){
+                before_merge_hopping += hop_to_router_from_device;
+           }
 //               println!("Before Merge Path: {:?}", p);
-           before_merge_hopping += p.len() - 1;
 
            let start = *self.router;
            let goal = *self.ps;
-           let mut paths = all_simple_paths::<Vec<_>, &Graph<String, String, Undirected>>
-                           ( self.topo, start, goal, 0, None);
 
-           let p = paths.next().unwrap();
- 
-//         println!("After Merge Path: {:?}", p);
+           if let Some(hop_to_ps_from_router) = minimum_hop_to_node(&goal, &start, self.topo){
+                after_merge_hopping = hop_to_ps_from_router;
+           }
 
-           after_merge_hopping = p.len() - 1;
         }
         
 //        let before_merge_cost = self.model_size * overall_hopping as f64;
@@ -430,23 +425,20 @@ impl<'a> Router<'a> {
 */
            let start = device;
            let goal = *self.router;
-           let mut paths = all_simple_paths::<Vec<_>, &Graph<String, String, Undirected>>
-                       ( self.topo, start, goal, 0, None);
-
-           let p = paths.next().unwrap();
+           if let Some(hop_to_router_from_device) = minimum_hop_to_node(&goal, &start, self.topo){
+                before_merge_hopping += hop_to_router_from_device;
+           }
 //               println!("Before Merge Path: {:?}", p);
-           before_merge_hopping += p.len() - 1;
 
            let start = *self.router;
            let goal = *self.ps;
-           let mut paths = all_simple_paths::<Vec<_>, &Graph<String, String, Undirected>>
-                           ( self.topo, start, goal, 0, None);
 
-           let p = paths.next().unwrap();
+           if let Some(hop_to_ps_from_router) = minimum_hop_to_node(&goal, &start, self.topo){
+                after_merge_hopping = hop_to_ps_from_router; 
+           }
  
 //         println!("After Merge Path: {:?}", p);
 
-           after_merge_hopping = p.len() - 1;
         }
         
         //let before_merge_cost = self.model_size * overall_hopping as f64;
@@ -501,7 +493,7 @@ impl<'a> Router<'a> {
         for device in device_cluster{
 
 
-           match minimum_cost_to_ps(self.ps, &device, self.topo){
+           match minimum_hop_to_node(self.ps, &device, self.topo){
                Some(cost) => {
 //                   println!("minimum_cost_to_ps:{}",cost);
                    overall_hopping += cost;
@@ -509,25 +501,20 @@ impl<'a> Router<'a> {
                None => println!("Can't go to {:?}", device),
            } 
 
-           let start = device;
+                      let start = device;
            let goal = *self.router;
-           let mut paths = all_simple_paths::<Vec<_>, &Graph<String, String, Undirected>>
-                       ( self.topo, start, goal, 0, None);
-
-           let p = paths.next().unwrap();
+           if let Some(hop_to_router_from_device) = minimum_hop_to_node(&goal, &start, self.topo){
+                before_merge_hopping += hop_to_router_from_device;
+           }
 //               println!("Before Merge Path: {:?}", p);
-           before_merge_hopping += p.len() - 1;
 
            let start = *self.router;
            let goal = *self.ps;
-           let mut paths = all_simple_paths::<Vec<_>, &Graph<String, String, Undirected>>
-                           ( self.topo, start, goal, 0, None);
 
-           let p = paths.next().unwrap();
- 
-//         println!("After Merge Path: {:?}", p);
+           if let Some(hop_to_ps_from_router) = minimum_hop_to_node(&goal, &start, self.topo){
+                after_merge_hopping = hop_to_ps_from_router;
+           }
 
-           after_merge_hopping = p.len() - 1;
         }
         
         let before_merge_cost = self.model_size * overall_hopping as f64;

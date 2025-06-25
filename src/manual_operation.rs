@@ -59,7 +59,28 @@ pub fn manually_operation(routers: &mut Vec<Router>, router_vec: &Vec<NodeIndex>
                                 print_usage();
                             }
                         };
-                    },
+                    }
+                    /*
+                    "generate" => {
+                        match parse_nodeindex(&args[1][..]) {
+                            Ok(nodeindex) => {
+                                println!("")
+                                let rand_seed = nodeindex as u64;
+                                let mut rng = StdRng::seed_from_u64(rand);
+                                let te_seed:u64 = rng.random();
+                                let ed_seed:u64 = rng.random();
+                                
+
+
+                            
+                            },
+                            Err(msg) => {
+                                eprintln!("Systax Error: {}",msg);
+                                print_usage();
+                            }
+                        };
+                    }
+                    */
                     "write" => {
                         let file_name = args[1].to_string();
                         match write_topology(file_name, routers){
@@ -71,6 +92,19 @@ pub fn manually_operation(routers: &mut Vec<Router>, router_vec: &Vec<NodeIndex>
                         eprintln!("Error: invalid command");
                         print_usage();
                     }
+                }
+            }
+            3 => {
+                let cmd = &args[0];
+                let source_router_index = parse_nodeindex(&args[1][..])?;
+                let target_router_index = parse_nodeindex(&args[2][..])?; 
+
+                match &cmd[..] {
+                    "hop" => {
+                       let hop_num = routers[source_router_index].hop_to_node(&router_vec[target_router_index]);
+                            println!("The number of hop is {}", hop_num);   
+                    } _ => print_usage(),
+
                 }
             }
             4 => {
@@ -235,8 +269,9 @@ fn print_usage(){
     println!("  obvalue                    - Update OB values");
     println!("  optimize                   - Run optimization");
     println!("  exit                       - Exit the program");
-    println!("  write  <file_name>         - write topology as file <file_name>");
+    println!("  write <file_name>          - write topology as file <file_name>");
     println!("  show <node_index>          - Show information of the node");
+    println!("  hop <src> <tgt>            - Calculate the number of hops from source router to target router");
     println!("  mv <dev_idx> <src> <tgt>   - Move device from source router to target router");
 
 
@@ -285,18 +320,27 @@ fn get_node_info(node_id: usize) -> Option<(usize, usize, Option<usize>, usize)>
     }
 
     let pos_in_level = node_id - start;
-    let original_level = level; // ← ここでコピー
+    let original_level = level;
 
     // 親とトップルータを探す処理
     let mut parent: Option<usize> = None;
     let mut current_id = node_id;
-    while level > 0 {
-        let (parent_start, _) = levels[level - 1];
-        let parent_id_in_prev_level = (current_id - levels[level].0) / 4;
+    let mut current_level = level;
+
+    // 1つ上のレベルの親だけ求める
+    if current_level > 0 {
+        let (parent_start, _) = levels[current_level - 1];
+        let parent_id_in_prev_level = (current_id - levels[current_level].0) / 4;
+        parent = Some(parent_start + parent_id_in_prev_level);
+    }
+
+    // 最上位ルータまでたどる（top_router計算用）
+    while current_level > 0 {
+        let (parent_start, _) = levels[current_level - 1];
+        let parent_id_in_prev_level = (current_id - levels[current_level].0) / 4;
         let parent_id = parent_start + parent_id_in_prev_level;
-        parent = Some(parent_id);
         current_id = parent_id;
-        level -= 1;
+        current_level -= 1;
     }
 
     let top_router = current_id;
