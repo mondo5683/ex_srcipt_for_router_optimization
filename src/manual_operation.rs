@@ -31,11 +31,7 @@ pub fn manually_operation(routers: &mut Vec<Router>, router_vec: &Vec<NodeIndex>
                     }
                     "optimize" => {
                         println!("最適化を実行します...");
-                        let mut inner_cluster_routers = Vec::<&mut Router>::new();
-                        for r in routers.iter_mut() {
-                            inner_cluster_routers.push(r);
-                        }
-                        optimize_obvalue_in_cluster(&mut inner_cluster_routers);
+                        optimize_obvalue_in_cluster(routers);
                     },
                     "exit" => {
                         println!("操作を終了します");

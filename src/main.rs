@@ -13,12 +13,14 @@ mod manual_operation;
 
 
 use gen_topology::{generate_device_array, generate_edge_array, generate_router_array};
+use petgraph::graph::NodeIndex;
 use petgraph::{algo::all_simple_paths, Graph, Undirected};
 use random_generation::{generate_random_edge_distribution, generate_random_time_exec_based_on_ratio, random_locate_ps};
 use router::Router;
 use algorithms::optimize_obvalue_in_cluster;
 use rand::{rngs::StdRng, Rng, SeedableRng};
 use device::Device;
+use na::{DVector};
 use clustering::*;
 use benchmark_algorithms::*;
 use manual_operation::*;
@@ -78,7 +80,7 @@ fn main() -> std::io::Result<()> {
 
     for rand in rand_seeds{
         println!("Seed: {}", rand);
-        //for k in k_vec{ println!("For k: {}", k);
+        for k in k_vec{ println!("For k: {}", k);
     //    let time_exec = na::vector![20.0,100.0,35.0,100.0,60.0,300.0,40.0];
 
         let mut rng = StdRng::seed_from_u64(rand);
@@ -96,17 +98,6 @@ fn main() -> std::io::Result<()> {
         let r = generate_router_array(&rt, &mut topology);
         let d = generate_device_array(&e, &mut topology);
 
-        let mut device_list = Vec::<Device>::new();
-        for i in 0..d.len(){
-            let id = d[i];
-            let learning_time = time_exec[i];
-            let device = Device::new(id, learning_time);
-        //    print!("{}, ", learning_time);
-
-            device_list.push(device);
-        
-        }
-        println!("");
 
         // Create Vertexes
         let ps = topology.add_node(String::from("parameter_server"));
@@ -133,55 +124,28 @@ fn main() -> std::io::Result<()> {
             }
         }
       
-
         print_current_obvalue(&mut routers);
         
+        /*
         match manually_operation(&mut routers, &r, &d, time_exec.column(0).iter().map(|x| *x).collect()){
             Ok(_) => println!("Manual Operation completed."),
             Err(msg) => eprintln!("Manual Operation stops due to error {}",msg),
 
         };
-        
-        let mut inner_cluster_routers = Vec::<&mut Router>::new();
-        for r in routers.iter_mut() {
-            inner_cluster_routers.push(r);
-        }
-
-        //CLUSTERING
-        /*
-        let max_iter = 100;
-        let clustering_result = clustering_device(&device_list, k, max_iter);
-
-        let clustered_group = generate_hashmap(time_exec.as_slice().to_vec(), &d, clustering_result.membership);
-        let variance_vec = calculate_variances_clusters(&clustered_group);
-
-        let max_cluster_variance = variance_vec.iter().max_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Less)).unwrap();
-        allocate_cluster_to_optimal_router(&mut inner_cluster_routers, clustered_group, *max_cluster_variance);
         */
-        //optimize_obvalue_in_cluster(&mut inner_cluster_routers);
+        
+        //clustering(k, &d, &time_exec ,&mut routers);
+        optimize_obvalue_in_cluster(&mut routers);
 
         print_current_obvalue(&mut routers);
         println!("---");
 //    println!("router num:{}",router_num);
+        
+        write_topology_json(routers)?;
 
-        //let filename = format!("topology_cluster_{}_with_seed_{}_generated_ratio_oriented.json",k,rand.to_string());
-        //let mut file = File::create(filename)?;
-        let mut file = File::create("topology.json")?;
-    
-        writeln!(file, "{{")?;
-        let last_index = routers.len().saturating_sub(1);
-        for (i, r) in routers.iter().enumerate() {
-            r.print_inner_cluster_devices(&mut file, routers.len())?;
-            if i != last_index {
-                writeln!(file, ",")?;
-            } else {
-                writeln!(file)?;
-            }
-        }
-        writeln!(file, "}}")?;
     
     //The followed } is the end of loop of k
-    //}
+    }
 
     }
     Ok(())
@@ -243,5 +207,53 @@ fn print_current_obvalue(routers: &mut Vec<Router>) {
         }
     }
     println!("network_traffic: {}, variance:{}, obvalue: {}",network_traffic_cost,max_variance,ALPHA*network_traffic_cost + BETA*max_variance);
+
+}
+
+fn write_topology_json(routers: Vec<Router>) -> std::io::Result<()>{
+
+    //let filename = format!("topology_cluster_{}_with_seed_{}_generated_ratio_oriented.json",k,rand.to_string());
+    //let mut file = File::create(filename)?;
+    let mut file = File::create("topology.json")?;
+
+    writeln!(file, "{{")?;
+    let last_index = routers.len().saturating_sub(1);
+    for (i, r) in routers.iter().enumerate() {
+        r.print_inner_cluster_devices(&mut file, routers.len())?;
+        if i != last_index {
+            writeln!(file, ",")?;
+        } else {
+            writeln!(file)?;
+        }
+    }
+    writeln!(file, "}}")?;
+
+    Ok(())
+
+}
+
+fn clustering(k: usize, d:&Vec<NodeIndex>, time_exec:&DVector<f64>,  routers: &mut Vec<Router>){
+
+    let max_iter = 100;
+
+    let mut device_list = Vec::<Device>::new();
+    for i in 0..d.len(){
+        let id = d[i];
+        let learning_time = time_exec[i];
+        let device = Device::new(id, learning_time);
+    //    print!("{}, ", learning_time);
+
+        device_list.push(device);
+    
+    }
+    println!("");
+
+    let clustering_result = clustering_device(&device_list, k, max_iter);
+
+    let clustered_group = generate_hashmap(time_exec.as_slice().to_vec(), &d, clustering_result.membership);
+    let variance_vec = calculate_variances_clusters(&clustered_group);
+
+    let max_cluster_variance = variance_vec.iter().max_by(|a, b| a.partial_cmp(b).unwrap_or(std::cmp::Ordering::Less)).unwrap();
+    allocate_cluster_to_optimal_router(routers, clustered_group, *max_cluster_variance);
 
 }

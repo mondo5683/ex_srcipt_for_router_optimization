@@ -44,7 +44,7 @@ pub fn calculate_variances_clusters(clustered_group:&HashMap<usize, Vec<Device>>
 }
 
 //TODO その後各クラスターの最適なルータを検索できる
-pub fn allocate_cluster_to_optimal_router(routers: &mut Vec<&mut Router>, clustered_group:HashMap<usize, Vec<Device>>, max_variance:f64){
+pub fn allocate_cluster_to_optimal_router(routers: &mut Vec<Router>, clustered_group:HashMap<usize, Vec<Device>>, max_variance:f64){
 
     //println!("Max Variance: {}", max_variance);
 

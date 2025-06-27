@@ -5,7 +5,7 @@ use petgraph::graph::NodeIndex;
 use crate::{sell_info::{ max_obvalue_from_sell_info, SellInfo}, INF};
 use crate::router::Router;
 
-pub fn optimize_obvalue_in_cluster(routers: &mut  Vec<&mut Router>) {
+pub fn optimize_obvalue_in_cluster(routers: &mut  Vec<Router>) {
 
 /*
     println!("Router list");
