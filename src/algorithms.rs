@@ -1,8 +1,8 @@
-use std::collections::{binary_heap::Iter, HashMap};
+use std::collections::{HashMap};
 
 use petgraph::graph::NodeIndex;
 
-use crate::{sell_info::{ max_obvalue_from_sell_info, SellInfo}, INF};
+use crate::{sell_info::{SellInfo}};
 use crate::router::Router;
 
 pub fn optimize_obvalue_in_cluster(routers: &mut  Vec<Router>) {
@@ -18,7 +18,7 @@ for r in routers {
     for i in 0..routers.len(){
 //            println!("Updating obvalue of router {}",i);
         
-        let (network_cost, variance) = routers[i].update_router_value();
+        let (_, variance) = routers[i].update_router_value();
         println!("router {} variance: {}",i,variance);
 //        println!("router {} NodeIndex: {}",i,routers[i].get_router().index());
     }
@@ -50,7 +50,7 @@ for r in routers {
         
         for i in 0..routers.len(){
             //    println!("Updating obvalue of router {}",i);
-            let (network_cost, variance )  = routers[i].update_router_value();
+            let (_ , variance )  = routers[i].update_router_value();
             variance_hashmap.insert(routers[i].get_router(), variance);
             
         }
@@ -61,7 +61,7 @@ for r in routers {
 
         for i in 0..routers.len(){
             //    println!("Updating obvalue of router {}",i);
-            let (network_cost, variance )  = routers[i].update_router_value();
+            let (_, _ )  = routers[i].update_router_value();
             //println!("router {}, network_cost: {}, variance: {}",i,network_cost,variance);
             //println!("router value: {}",routers[i].get_router_value());
             
@@ -177,7 +177,7 @@ for r in routers {
         if max_value > 0.0{
             max_router_value_device_hashmap.entry(max_value_router).insert_entry(max_candidate);
         }
-        for (nodeindex, device) in max_router_value_device_hashmap.iter(){
+        for (_, device) in max_router_value_device_hashmap.iter(){
             for si in sell_info_list.iter(){
                 if si.get_device() == *device{
                     remove_router_value_device_hashmap.entry(si.get_router()).or_insert(vec![]).push(*device);
@@ -187,66 +187,60 @@ for r in routers {
         }
 
         let mut dist: usize = 0;
+        let mut dist_router_index: usize = 0;
         let mut source: usize = 0;
+        let mut source_router_index:usize = 0;
         let mut device_no: usize = 0;
+        let mut moved_device: (NodeIndex,f64) = (NodeIndex::new(0), 0.0);
 
-        let mut routers_index_map: HashMap<NodeIndex, usize> = routers
-    .iter()
-    .enumerate()
-    .map(|(i, r)| (r.get_router(), i))
-    .collect();
+        let routers_index_map: HashMap<NodeIndex, usize> = routers
+                                                        .iter()
+                                                        .enumerate()
+                                                        .map(|(i, r)| (r.get_router(), i))
+                                                        .collect();
+   
 
         // HashMapを使ってVecを更新
         for (nodeindex, device) in max_router_value_device_hashmap.iter() {
             if let Some(&index) = routers_index_map.get(nodeindex) {
                 dist = nodeindex.index();
                 device_no = device.0.index();
-                routers[index].add_device(*device);
+                //routers[index].add_device(*device);
+                dist_router_index = index;
             }
         }
+
 
         for (nodeindex, devices) in remove_router_value_device_hashmap.iter() {
             if let Some(&index) = routers_index_map.get(nodeindex) {
                 for device in devices {
-                    source= nodeindex.index();
-                    println!("{}, {}, {}", dist  , source ,device_no);
-                    routers[index].remove_device(*device);
+                    source = nodeindex.index();
+                    //routers[index].remove_device(*device);
+                    source_router_index = index;
+                    moved_device = *device;
                 }
             }
         }
 
-    /*
-        for (nodeindex, device) in max_router_value_device_hashmap.iter(){
-            routers[*routers_nodeindex_hashmap.get(nodeindex).unwrap()].add_device(*device);
-//            routers[*routers_nodeindex_hashmap.get(nodeindex).unwrap()].set_optimal(false);
-
-        }
-
-        for (nodeindex, device) in remove_router_value_device_hashmap.iter(){
-            for d in device{
-//                println!("devise remove to {:?} from {:?}", *routers_nodeindex_hashmap.get(nodeindex).unwrap(),nodeindex);
-                routers[*routers_nodeindex_hashmap.get(nodeindex).unwrap()].remove_device(*d);
-//                routers[*routers_nodeindex_hashmap.get(nodeindex).unwrap()].set_optimal(false);
+        if let Some(lca) = find_lca(dist, source) {
+            if lca.eq(&source) || lca.eq(&dist) {
+                routers[source_router_index].remove_device(moved_device);
+                routers[dist_router_index].add_device(moved_device);
+            }else {
+                println!("Before Detected: {}, {}, {}", dist, source, device_no);
+                println!("Redunduncy Detected!! Device:{} will be allocated to Router: {}",moved_device.0.index(),lca);
+                routers[source_router_index].remove_device(moved_device);
+                routers[lca].add_device(moved_device);
+                dist = lca;
             }
+        } else {
+            routers[source_router_index].remove_device(moved_device);
+            routers[dist_router_index].add_device(moved_device);
         }
-      */  
-//        let mut max_variance = 0.0;
-//        let mut network_traffic_cost = 0.0;
-       /* 
-        for r in routers.iter_mut(){
-            if r.get_devices().len() > 0{
-//                println!("router:{}",r.get_router().index());
-//                println!("router:{:?}",r.get_devices());
-                let (network_traffic, variance) = r.update_obvalue();
-                network_traffic_cost += network_traffic;
-                if max_variance < variance{
-                    max_variance = variance;
-                }
-            }
-        }
-        println!("network_traffic: {}, variance:{}, obvalue: {}",network_traffic_cost,max_variance,crate::ALPHA*network_traffic_cost + crate::BETA*max_variance);
-        println!("---");
-        */
+
+        println!("{}, {}, {}", dist, source, device_no);
+        
+
 //        let mut terminate = false;
         for r in routers.iter_mut(){
             if r.get_optimal() == false{
@@ -260,4 +254,82 @@ for r in routers {
     }
 
 
+}
+
+fn get_node_info(node_id: usize) -> Option<(usize, usize, Option<usize>, usize)> {
+    if node_id >= 1190 {
+        return None;
+    }
+
+    let levels = [
+        (0, 14),     // level 0
+        (14, 56),    // level 1
+        (70, 224),   // level 2
+        (294, 896),  // level 3
+    ];
+
+    let mut level = 0;
+    let mut start = 0;
+    for (i, &(s, count)) in levels.iter().enumerate() {
+        if node_id >= s && node_id < s + count {
+            level = i;
+            start = s;
+            break;
+        }
+    }
+
+    let pos_in_level = node_id - start;
+    let original_level = level;
+
+    let mut parent: Option<usize> = None;
+    let mut current_id = node_id;
+    let mut current_level = level;
+
+    if current_level > 0 {
+        let (parent_start, _) = levels[current_level - 1];
+        let parent_id_in_prev_level = (current_id - levels[current_level].0) / 4;
+        parent = Some(parent_start + parent_id_in_prev_level);
+    }
+
+    // top_routerの計算
+    while current_level > 0 {
+        let (parent_start, _) = levels[current_level - 1];
+        let parent_id_in_prev_level = (current_id - levels[current_level].0) / 4;
+        let parent_id = parent_start + parent_id_in_prev_level;
+        current_id = parent_id;
+        current_level -= 1;
+    }
+
+    let top_router = current_id;
+
+    Some((original_level, pos_in_level, parent, top_router))
+}
+
+/// ノードからrootまでの親チェインをVecで返す
+fn get_parent_chain(mut node_id: usize) -> Vec<usize> {
+    let mut chain = Vec::new();
+    chain.push(node_id);
+
+    while let Some((_level, _pos, parent, _top)) = get_node_info(node_id) {
+        if let Some(p) = parent {
+            chain.push(p);
+            node_id = p;
+        } else {
+            break;
+        }
+    }
+    chain
+}
+
+/// 2ノードの最短共通親を求める
+fn find_lca(node1: usize, node2: usize) -> Option<usize> {
+    let chain1 = get_parent_chain(node1);
+    let chain2 = get_parent_chain(node2);
+
+    for a in &chain1 {
+        if chain2.contains(a) {
+            return Some(*a);
+        }
+    }
+    None
 }

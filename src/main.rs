@@ -80,7 +80,7 @@ fn main() -> std::io::Result<()> {
 
     for rand in rand_seeds{
         println!("Seed: {}", rand);
-        for k in k_vec{ println!("For k: {}", k);
+        //for k in k_vec{ println!("For k: {}", k);
     //    let time_exec = na::vector![20.0,100.0,35.0,100.0,60.0,300.0,40.0];
 
         let mut rng = StdRng::seed_from_u64(rand);
@@ -126,16 +126,16 @@ fn main() -> std::io::Result<()> {
       
         print_current_obvalue(&mut routers);
         
-        /*
+        
         match manually_operation(&mut routers, &r, &d, time_exec.column(0).iter().map(|x| *x).collect()){
             Ok(_) => println!("Manual Operation completed."),
             Err(msg) => eprintln!("Manual Operation stops due to error {}",msg),
 
         };
-        */
+        
         
         //clustering(k, &d, &time_exec ,&mut routers);
-        optimize_obvalue_in_cluster(&mut routers);
+        //optimize_obvalue_in_cluster(&mut routers);
 
         print_current_obvalue(&mut routers);
         println!("---");
@@ -145,7 +145,7 @@ fn main() -> std::io::Result<()> {
 
     
     //The followed } is the end of loop of k
-    }
+    //}
 
     }
     Ok(())
