@@ -125,17 +125,18 @@ fn main() -> std::io::Result<()> {
         }
       
         print_current_obvalue(&mut routers);
-        
-        
+       
+        /*
         match manually_operation(&mut routers, &r, &d, time_exec.column(0).iter().map(|x| *x).collect()){
             Ok(_) => println!("Manual Operation completed."),
             Err(msg) => eprintln!("Manual Operation stops due to error {}",msg),
 
         };
-        
+        */
         
         //clustering(k, &d, &time_exec ,&mut routers);
-        //optimize_obvalue_in_cluster(&mut routers);
+
+        optimize_obvalue_in_cluster(&mut routers);
 
         print_current_obvalue(&mut routers);
         println!("---");
@@ -154,7 +155,7 @@ fn main() -> std::io::Result<()> {
 
 fn generate_topology() -> na::DMatrix<i32> {
 
-    let n = 1190; // 総ルータ数
+    let n = 294; // 総ルータ数
     let mut matrix = na::DMatrix::<i32>::zeros(n, n);
 
     // ルータの接続関係（最上位14個）
@@ -173,7 +174,7 @@ fn generate_topology() -> na::DMatrix<i32> {
     let mut next_id = 14; // 13番目まで使っているので14から開始
     let mut current_layer = vec![0,1,2,3,4,5,6,7,8,9,10,11,12,13];
     
-    for _ in 0..4 { // 4層分の4分木を作成
+    for _ in 0..2 { // 4層分の4分木を作成
         let mut next_layer = Vec::new();
         for &parent in &current_layer {
             for _ in 0..4 {
@@ -257,3 +258,22 @@ fn clustering(k: usize, d:&Vec<NodeIndex>, time_exec:&DVector<f64>,  routers: &m
     allocate_cluster_to_optimal_router(routers, clustered_group, *max_cluster_variance);
 
 }
+
+fn get_descendants(matrix: &na::DMatrix<i32>, root_id: usize) -> Vec<usize> {
+    let mut descendants = Vec::new();
+    let mut stack = Vec::new();
+    stack.push(root_id);
+
+    while let Some(node) = stack.pop() {
+        // nodeの子ノードを探索
+        for child in 0..matrix.ncols() {
+            if matrix[(node, child)] != 0 {
+                descendants.push(child);
+                stack.push(child);
+            }
+        }
+    }
+
+    descendants
+}
+
