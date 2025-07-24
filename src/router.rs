@@ -1,9 +1,7 @@
-use core::net;
-use std::cmp::Ordering;
 use std::collections::HashMap;
 
 use crate::graph_operation::minimum_hop_to_node;
-use crate::{all_simple_paths, sell_info::{SellInfo}, ALPHA, BETA};
+use crate::{sell_info::{SellInfo}, ALPHA, BETA};
 use petgraph::{graph::NodeIndex, Graph,Undirected};
 use std::io::{Write, Result};
 
@@ -29,7 +27,9 @@ pub struct Router<'a> {
     model_size: f64,
     router: &'a NodeIndex,
     ps:     &'a NodeIndex,
-    variance_vec: HashMap::<NodeIndex,f64>
+    variance_vec: HashMap::<NodeIndex,f64>,
+    is_updated_in_previous_round: bool,
+    improved_queue: Vec<(f64,SellInfo)>
 }
 
 impl<'a> Router<'a> {
@@ -44,6 +44,9 @@ impl<'a> Router<'a> {
             router,
             optimal: false, 
             variance_vec: HashMap::new(),
+            //To make routers conduct first sell info process, we initialize is_updated true
+            is_updated_in_previous_round: true,
+            improved_queue: Vec::<(f64, SellInfo)>::new()
         }
     }
     pub fn get_optimal(&self) -> bool {
@@ -73,6 +76,19 @@ impl<'a> Router<'a> {
     pub fn get_variance_vec(&self) -> HashMap::<NodeIndex,f64>{
         self.variance_vec.clone()
     }
+    pub fn set_is_updated(&mut self, is_updated: bool) {
+        self.is_updated_in_previous_round = is_updated;
+    }
+    pub fn get_is_updated(&self) -> bool{
+        self.is_updated_in_previous_round
+    }
+    pub fn insert_to_improve_queue(&mut self, value:f64, sell_info: SellInfo) {
+        self.improved_queue.push( (value, sell_info) );
+    }
+    pub fn get_improve_queue(&mut self) -> &mut Vec<(f64,SellInfo)>{
+        &mut self.improved_queue
+    }
+
     pub fn print_inner_cluster_devices(&self, writer: &mut impl Write, device_index_offset:usize) -> Result<()> {
         write!(writer, "\t\"{}\": [", self.router.index())?;
     
@@ -115,8 +131,8 @@ impl<'a> Router<'a> {
         let device_list = self.devices.clone();
 
         for d in device_list{
-            let (network_traffic, variance, router_value) = self.assume_remove_device(d);
-            let sell_info = SellInfo::new(d, self.get_router(), self.router_obvalue, router_value, variance, network_traffic);
+            let (network_traffic, before_variance, variance, router_value) = self.assume_remove_device(d);
+            let sell_info = SellInfo::new(d, self.get_router(), self.router_obvalue, router_value, variance, before_variance, network_traffic);
             sell_info_list.push(sell_info);
         }
 
@@ -124,7 +140,7 @@ impl<'a> Router<'a> {
 
     }
 
-    pub fn assume_add_device(&mut self, device: (NodeIndex, f64), before_variance:f64, after_variance:f64) -> (f64,f64){
+    pub fn assume_add_device(&self, device: (NodeIndex, f64), before_variance:f64, after_variance:f64) -> (f64,f64){
 
 //        if self.devices.len() < 1 {
 //            return INF;
@@ -151,12 +167,13 @@ impl<'a> Router<'a> {
         }
         
     }
-    pub fn assume_remove_device(&mut self, device: (NodeIndex, f64)) -> (f64,f64,f64){
+    pub fn assume_remove_device(&mut self, device: (NodeIndex, f64)) -> (f64,f64,f64,f64){
 
 //        if self.devices.len() < 1 {
 //            return INF;
 //        }
         let mut device_list = self.devices.clone();
+        let ( _ , before_variance) = self.calc_router_value_return_two_variables(&device_list);
         device_list.retain(|&x| x != device);
         let (network_traffic, variance) = self.calc_router_value_return_two_variables(&device_list);
         
@@ -164,12 +181,12 @@ impl<'a> Router<'a> {
 
         if *max_variance_from_hasmap > variance{
             if *router == self.get_router(){
-                (network_traffic, variance, ALPHA * network_traffic - BETA * variance)
+                (network_traffic, before_variance, variance, ALPHA * network_traffic - BETA * variance)
             } else {
-                (network_traffic,variance, ALPHA * network_traffic - BETA * *max_variance_from_hasmap)
+                (network_traffic, before_variance, variance, ALPHA * network_traffic - BETA * *max_variance_from_hasmap)
             }
         } else {
-            (network_traffic, variance, ALPHA * network_traffic - BETA * variance)
+            (network_traffic, before_variance, variance, ALPHA * network_traffic - BETA * variance)
         }
         
     }
@@ -209,113 +226,7 @@ impl<'a> Router<'a> {
         
 
     }
-    /*
-    pub fn remove_while_under_obvalue(&mut self, max_obvalue:f64, sell_info_list:&mut Vec<SellInfo>) {
 
-        sell_info_list.sort_by(|a, b| a.get_device().1.partial_cmp(&b.get_device().1).unwrap_or(Ordering::Equal));
-
-        // valueフィールドでソートして中央値を計算
-        sell_info_list.sort_by(|a, b| a.get_device().1.partial_cmp(&b.get_device().1).unwrap_or(Ordering::Equal));
-
-        // 中央値を計算
-        let median = if sell_info_list.len() % 2 == 0 {
-            (sell_info_list[sell_info_list.len() / 2 - 1].get_device().1 
-             + sell_info_list[sell_info_list.len() / 2].get_device().1 ) / 2.0
-        } else {
-            sell_info_list[sell_info_list.len() / 2].get_device().1
-        };
-
-//        println!("Median: {}", median);
-
-        // 中央値との差を基にソート（中央値に近い順）
-        sell_info_list.sort_by(|a, b| {
-            let diff_a = (a.get_device().1 - median).abs();
-            let diff_b = (b.get_device().1 - median).abs();
-            diff_a.partial_cmp(&diff_b).unwrap_or(Ordering::Equal)
-        });
-
-
-        while sell_info_list.len() > 0 {
-            let current_assume_obvalue = self.assume_add_device(sell_info_list[0].get_device());
-            if current_assume_obvalue >= max_obvalue {
-                break;
-            }
-            self.add_device(sell_info_list[0].get_device());
-            sell_info_list.remove(0);
-
-        }
-
-    }
-    */
-/*
-    pub fn is_not_optimal(&mut self) -> Result<SellInfo,String>{
-
-        if self.devices.len() ==  1 {
-            self.optimal = true;
-            return Ok(SellInfo::new(self.devices[0], self.router.clone(), self.previous_obvalue, self.previous_obvalue));
-        }else 
-        if self.devices.len() < 1 {
-            self.optimal = true;
-            return Err("デバイスの数が1未満です。".to_string())
-        }
-
-        let mut device_list = self.devices.clone();
-        let time_exec:Vec<f64> = device_list.iter().map(|(_,x)| *x).collect();
-        let median_time = median(&time_exec);
-        let mut remove_candidate: (NodeIndex,f64) = (NodeIndex::new(0),0.0);
-
-        // 中央値から最も遠いデバイスの検索
-        if let Some((closest_index, closest_value)) = self.devices.iter()
-            .enumerate()
-            .max_by(|(_, a), (_, b)| {
-                (a.1 - median_time).abs().partial_cmp(&(b.1 - median_time).abs()).unwrap()
-            })
-        {
-//                println!("最も遠いデバイスはインデックス {} の {:?} です。",
-//                closest_index, closest_value 
-//                );
-                device_list.remove(closest_index);
-                remove_candidate = *closest_value;
-        } else {
-//            println!("データが空です。");
-        }
-
-        let mut after_remove_cost = self.calc_obvalue(device_list);
-        
-        //調整: 消したデバイスで削減可能であったコストを足しておく
-        let device = remove_candidate.0;
-        match minimum_cost_to_ps(self.ps, &device, self.topo){
-               Some(_hop_to_router) => {
-//                   println!("minimum_cost_to_ps:{}",cost);
-                    
-                    let start = device;
-                    let goal = *self.router;
-                    let mut paths = all_simple_paths::<Vec<_>, &Graph<String, String, Undirected>>
-                            ( self.topo, start, goal, 0, None);
-
-                    let p = paths.next().unwrap();
-//                      println!("Before Merge Path: {:?}", p);
-                    let before_merge_hopping = p.len() - 1;
-                    
-                    //after_remove_cost += (hop_to_router - before_merge_hopping as i32) as f64 * self.model_size;           
-                    after_remove_cost += ALPHA * (1 + before_merge_hopping as usize) as f64 * self.model_size;           
-               },                     
-               None => println!("Can't go to {:?}", device),
-           } 
-
-//        println!("In Router is_not_optimal() after_merge_cost: {}", after_remove_cost);
-        //調整終わり----------
-
-//        println!("print: after_merge_cost:{}, previous_obvalue:{}", after_remove_cost, self.previous_obvalue);
-        if after_remove_cost < self.previous_obvalue {
-            return Ok(SellInfo::new(remove_candidate, self.router.clone(), self.previous_obvalue, after_remove_cost));
-        }
-        
-        self.optimal = true;
-        Err("最適なデバイスはありません".to_string())
-
-    }
-    */
     pub fn remove_device(&mut self, device:(NodeIndex,f64)){
         self.devices.retain(|&x| x != device);
     }
@@ -474,7 +385,7 @@ impl<'a> Router<'a> {
     }
 
 
-    pub fn calc_router_value_return_two_variables(&mut self, device_list: &Vec::<(NodeIndex,f64)>) -> (f64,f64){
+    pub fn calc_router_value_return_two_variables(&self, device_list: &Vec::<(NodeIndex,f64)>) -> (f64,f64){
 
         if device_list.len() <= 0{
             return (0.0,0.0);
