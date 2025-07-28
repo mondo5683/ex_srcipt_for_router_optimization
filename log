@@ -1,6 +1,43 @@
 Seed: 100
+VecStorage { data: [15.34842008454524, 16.135329397474873, 19.08556477194532, 16.63233158444781, 13.338365228250023, 17.374482454234162, 14.629958749738089, 7.657674253018758, 10.559937070527322, 15.149126815715421, 14.735503122940042, 17.311223517414994, 16.05986705375431, 40.92912022545397, 43.027545059933, 50.8948393918542, 44.35288422519417, 35.56897394200006, 46.33195321129109, 39.0132233326349, 20.420464674716687, 28.159832188072855, 40.397671508574454, 39.29467499450678, 46.16326271310665, 42.82631214334482, 42.06769123502614, 36.874592762670254, 34.92491280711291, 41.27740385934174, 49.46641181253619, 42.37341480485022, 46.38091576308297, 39.726848773502944, 38.6664273024689, 39.79501123468679, 35.648784024574375, 58.958560590183936, 43.45974668995361, 45.227034110941034, 36.96467634772489, 39.24723907111106, 45.02236641984083, 51.368775315988565, 30.05279962406045, 36.61186310429823, 39.12121439930563, 41.60994760707564, 35.91738854618161, 32.596732488817295, 36.484516023282715, 42.54216503843019, 82.90350070454366, 89.46107831229062, 114.04637309954435, 93.60276320373177, 66.15304356875019, 99.78735378528467, 76.91632291448407, 18.813952108489644, 42.99947558772768, 81.24272346429518, 77.79585935783368, 99.26019597845828, 88.83222544795258, 86.46153510945668, 70.23310238334454, 64.14035252222784, 83.99188706044295, 109.58253691417559, 87.41692126515693, 99.94036175963427, 79.1464024171967, 75.8325853202153, 79.35941010839622, 66.40245007679493, 139.2455018443248, 90.81170840610504, 96.33448159669074, 70.51461358664028, 77.64762209722207, 95.69489506200259, 115.52742286246428, 48.91499882518891, 69.41207220093197, 77.2537949978301, 85.03108627211137, 67.24183920681753, 56.86478902755404, 69.01411257275849, 87.94426574509436, 151.7421004227262, 155.67664698737437, 170.42782385972663, 158.16165792223904, 141.69182614125012, 161.8724122711708, 148.14979374869043, 113.28837126509379, 127.7996853526366, 150.7456340785771, 148.6775156147002, 161.55611758707497, 155.29933526877156, 153.876921065674, 144.13986143000673, 140.4842115133367, 152.39513223626577, 167.74952214850535, 154.45015275909415, 161.96421705578055, 149.48784145031803, 147.4995511921292, 149.61564606503774, 141.84147004607695, 185.5473011065949, 156.48702504366304, 409.2912022545397, 430.27545059933, 508.94839391854197, 443.5288422519416, 355.6897394200006, 463.3195321129109, 390.132233326349, 204.20464674716686, 281.5983218807286, 403.97671508574456, 392.9467499450678, 461.6326271310665, 428.26312143344825], nrows: Dyn(130), ncols: Const }
 PS allocated router 129
 network_traffic: 408500, variance:42220.36560019745, obvalue: 225360.18280009873
+SellInfo:
+  device: (NodeIndex: 305, value: 17.311223517414994)
+  router: 284
+  previous_obvalue: -19360.182800098726
+  after_remove_obvalue: -214.13156071672412
+  before_remove_variance: 42220.36560019745
+  after_remove_variance: 428.26312143344825
+  network_cost: 0
+ max_gain: 11191.720482750832, device: (NodeIndex(305), 17.311223517414994), source_router: 284
+SellInfo:
+  device: (NodeIndex: 423, value: 428.26312143344825)
+  router: 284
+  previous_obvalue: -19360.182800098726
+  after_remove_obvalue: -8.655611758707497
+  before_remove_variance: 42220.36560019745
+  after_remove_variance: 17.311223517414994
+  network_cost: 0
+ max_gain: 11691.720482750832, device: (NodeIndex(423), 428.26312143344825), source_router: 284
+SellInfo:
+  device: (NodeIndex: 305, value: 17.311223517414994)
+  router: 284
+  previous_obvalue: -19360.182800098726
+  after_remove_obvalue: -214.13156071672412
+  before_remove_variance: 42220.36560019745
+  after_remove_variance: 428.26312143344825
+  network_cost: 0
+ max_gain: 11941.720482750832, device: (NodeIndex(305), 17.311223517414994), source_router: 284
+SellInfo:
+  device: (NodeIndex: 423, value: 428.26312143344825)
+  router: 284
+  previous_obvalue: -19360.182800098726
+  after_remove_obvalue: -8.655611758707497
+  before_remove_variance: 42220.36560019745
+  after_remove_variance: 17.311223517414994
+  network_cost: 0
+ max_gain: 12191.720482750832, device: (NodeIndex(423), 428.26312143344825), source_router: 284
 SellInfo:
   device: (NodeIndex: 423, value: 428.26312143344825)
   router: 284
@@ -11,6 +48,42 @@ SellInfo:
   network_cost: 0
 67, 284, 423
 SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
+  network_cost: 0
+ max_gain: 5522.016275407859, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
+  network_cost: 0
+ max_gain: 5772.016275407859, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
+  network_cost: 0
+ max_gain: 6022.016275407859, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 6272.016275407859, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
   device: (NodeIndex: 302, value: 10.559937070527322)
   router: 57
   previous_obvalue: -13139.32255872331
@@ -19,6 +92,42 @@ SellInfo:
   after_remove_variance: 355.6897394200006
   network_cost: 0
 243, 57, 302
+SellInfo:
+  device: (NodeIndex: 384, value: 87.94426574509436)
+  router: 281
+  previous_obvalue: -9878.31442101938
+  after_remove_obvalue: -196.4733749725339
+  before_remove_variance: 23256.62884203876
+  after_remove_variance: 392.9467499450678
+  network_cost: 0
+ max_gain: 2980.8419761145633, device: (NodeIndex(384), 87.94426574509436), source_router: 281
+SellInfo:
+  device: (NodeIndex: 421, value: 392.9467499450678)
+  router: 281
+  previous_obvalue: -9878.31442101938
+  after_remove_obvalue: -43.97213287254718
+  before_remove_variance: 23256.62884203876
+  after_remove_variance: 87.94426574509436
+  network_cost: 0
+ max_gain: 3480.8419761145633, device: (NodeIndex(421), 392.9467499450678), source_router: 281
+SellInfo:
+  device: (NodeIndex: 384, value: 87.94426574509436)
+  router: 281
+  previous_obvalue: -9878.31442101938
+  after_remove_obvalue: -196.4733749725339
+  before_remove_variance: 23256.62884203876
+  after_remove_variance: 392.9467499450678
+  network_cost: 0
+ max_gain: 3730.8419761145633, device: (NodeIndex(384), 87.94426574509436), source_router: 281
+SellInfo:
+  device: (NodeIndex: 421, value: 392.9467499450678)
+  router: 281
+  previous_obvalue: -9878.31442101938
+  after_remove_obvalue: -43.97213287254718
+  before_remove_variance: 23256.62884203876
+  after_remove_variance: 87.94426574509436
+  network_cost: 0
+ max_gain: 3980.8419761145633, device: (NodeIndex(421), 392.9467499450678), source_router: 281
 SellInfo:
   device: (NodeIndex: 421, value: 392.9467499450678)
   router: 281
@@ -29,6 +138,33 @@ SellInfo:
   network_cost: 0
 66, 281, 421
 SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 39.79501123468679
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
+SellInfo:
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 114.04637309954435
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
+SellInfo:
+  device: (NodeIndex: 301, value: 7.657674253018758)
+  router: 193
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 7.657674253018758
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(301), 7.657674253018758), source_router: 193
+SellInfo:
   device: (NodeIndex: 301, value: 7.657674253018758)
   router: 193
   previous_obvalue: -21110.182800098726
@@ -38,6 +174,24 @@ SellInfo:
   network_cost: 0
 44, 193, 301
 SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 39.79501123468679
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
+SellInfo:
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 114.04637309954435
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
+SellInfo:
   device: (NodeIndex: 296, value: 19.08556477194532)
   router: 190
   previous_obvalue: -21110.182800098726
@@ -45,7 +199,43 @@ SellInfo:
   before_remove_variance: 19.08556477194532
   after_remove_variance: 0
   network_cost: 0
-44, 117, 296
+ max_gain: 1750, device: (NodeIndex(296), 19.08556477194532), source_router: 190
+SellInfo:
+  device: (NodeIndex: 296, value: 19.08556477194532)
+  router: 190
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 19.08556477194532
+  after_remove_variance: 0
+  network_cost: 0
+44, 190, 296
+SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 39.79501123468679
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
+SellInfo:
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 114.04637309954435
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
+SellInfo:
+  device: (NodeIndex: 408, value: 141.84147004607695)
+  router: 214
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 141.84147004607695
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(408), 141.84147004607695), source_router: 214
 SellInfo:
   device: (NodeIndex: 408, value: 141.84147004607695)
   router: 214
@@ -63,7 +253,52 @@ SellInfo:
   before_remove_variance: 25566.596037439114
   after_remove_variance: 461.6326271310665
   network_cost: 0
+ max_gain: 5790.809171514917, device: (NodeIndex(408), 141.84147004607695), source_router: 50
+SellInfo:
+  device: (NodeIndex: 408, value: 141.84147004607695)
+  router: 50
+  previous_obvalue: -11033.298018719557
+  after_remove_obvalue: -230.81631356553325
+  before_remove_variance: 25566.596037439114
+  after_remove_variance: 461.6326271310665
+  network_cost: 0
+ max_gain: 6040.809171514917, device: (NodeIndex(408), 141.84147004607695), source_router: 50
+SellInfo:
+  device: (NodeIndex: 408, value: 141.84147004607695)
+  router: 50
+  previous_obvalue: -11033.298018719557
+  after_remove_obvalue: -230.81631356553325
+  before_remove_variance: 25566.596037439114
+  after_remove_variance: 461.6326271310665
+  network_cost: 0
+ max_gain: 6290.809171514917, device: (NodeIndex(408), 141.84147004607695), source_router: 50
+SellInfo:
+  device: (NodeIndex: 408, value: 141.84147004607695)
+  router: 50
+  previous_obvalue: -11033.298018719557
+  after_remove_obvalue: -230.81631356553325
+  before_remove_variance: 25566.596037439114
+  after_remove_variance: 461.6326271310665
+  network_cost: 0
 216, 50, 408
+SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 39.79501123468679
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
+SellInfo:
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 114.04637309954435
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
 SellInfo:
   device: (NodeIndex: 340, value: 39.12121439930563)
   router: 243
@@ -72,1013 +307,2758 @@ SellInfo:
   before_remove_variance: 39.12121439930563
   after_remove_variance: 0
   network_cost: 0
-57, 81, 340
+ max_gain: 1750, device: (NodeIndex(340), 39.12121439930563), source_router: 243
 SellInfo:
-  device: (NodeIndex: 319, value: 42.82631214334482)
-  router: 264
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
   previous_obvalue: -21110.182800098726
   after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 42.82631214334482
+  before_remove_variance: 39.12121439930563
   after_remove_variance: 0
   network_cost: 0
-62, 264, 319
+57, 243, 340
 SellInfo:
-  device: (NodeIndex: 327, value: 39.726848773502944)
-  router: 263
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 39.726848773502944
-  after_remove_variance: 0
-  network_cost: 0
-62, 263, 327
-SellInfo:
-  device: (NodeIndex: 351, value: 99.78735378528467)
-  router: 80
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 99.78735378528467
-  after_remove_variance: 0
-  network_cost: 0
-16, 80, 351
-SellInfo:
-  device: (NodeIndex: 376, value: 115.52742286246428)
-  router: 113
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 115.52742286246428
-  after_remove_variance: 0
-  network_cost: 0
-24, 113, 376
-SellInfo:
-  device: (NodeIndex: 392, value: 113.28837126509379)
-  router: 173
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 113.28837126509379
-  after_remove_variance: 0
-  network_cost: 0
-39, 109, 392
-SellInfo:
-  device: (NodeIndex: 412, value: 430.27545059933)
-  router: 39
-  previous_obvalue: -19962.12132128347
-  after_remove_obvalue: -14.079916094036427
-  before_remove_variance: 40424.24264256694
-  after_remove_variance: 28.159832188072855
-  network_cost: 0
-8, 39, 412
-SellInfo:
-  device: (NodeIndex: 360, value: 70.23310238334454)
-  router: 172
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 70.23310238334454
-  after_remove_variance: 0
-  network_cost: 0
-39, 270, 360
-SellInfo:
-  device: (NodeIndex: 411, value: 409.2912022545397)
-  router: 39
-  previous_obvalue: -17657.640156092762
-  after_remove_obvalue: -14.079916094036427
-  before_remove_variance: 36315.280312185525
-  after_remove_variance: 28.159832188072855
-  network_cost: 0
-65, 39, 411
-SellInfo:
-  device: (NodeIndex: 345, value: 42.54216503843019)
-  router: 171
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 42.54216503843019
-  after_remove_variance: 0
-  network_cost: 0
-39, 281, 345
-SellInfo:
-  device: (NodeIndex: 387, value: 170.42782385972663)
-  router: 280
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 170.42782385972663
-  after_remove_variance: 0
-  network_cost: 0
-66, 225, 387
-SellInfo:
-  device: (NodeIndex: 401, value: 152.39513223626577)
-  router: 67
-  previous_obvalue: -8012.893432962099
-  after_remove_obvalue: -214.13156071672412
-  before_remove_variance: 19025.786865924198
-  after_remove_variance: 428.26312143344825
-  network_cost: 0
-13, 67, 401
-SellInfo:
-  device: (NodeIndex: 348, value: 114.04637309954435)
+  device: (NodeIndex: 340, value: 39.12121439930563)
   router: 57
-  previous_obvalue: -9012.893432962099
-  after_remove_obvalue: -9512.893432962099
-  before_remove_variance: 14597.87912167055
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
   after_remove_variance: 355.6897394200006
   network_cost: 0
-16, 57, 348
-SellInfo:
-  device: (NodeIndex: 305, value: 17.311223517414994)
-  router: 284
-  previous_obvalue: -14889.32255872331
-  after_remove_obvalue: -14889.32255872331
-  before_remove_variance: 17.311223517414994
-  after_remove_variance: 0
-  network_cost: 0
-67, 224, 305
-SellInfo:
-  device: (NodeIndex: 344, value: 36.484516023282715)
-  router: 67
-  previous_obvalue: -18436.309457141775
-  after_remove_obvalue: -214.13156071672412
-  before_remove_variance: 38372.61891428355
-  after_remove_variance: 428.26312143344825
-  network_cost: 0
-222, 67, 344
-SellInfo:
-  device: (NodeIndex: 342, value: 35.91738854618161)
-  router: 285
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 35.91738854618161
-  after_remove_variance: 0
-  network_cost: 0
-67, 285, 342
-SellInfo:
-  device: (NodeIndex: 342, value: 35.91738854618161)
-  router: 67
-  previous_obvalue: -17741.8967643558
-  after_remove_obvalue: -214.13156071672412
-  before_remove_variance: 38483.7935287116
-  after_remove_variance: 428.26312143344825
-  network_cost: 0
-13, 67, 342
-SellInfo:
-  device: (NodeIndex: 418, value: 204.20464674716686)
-  router: 282
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 204.20464674716686
-  after_remove_variance: 0
-  network_cost: 0
-67, 282, 418
-SellInfo:
-  device: (NodeIndex: 338, value: 30.05279962406045)
-  router: 44
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 30.05279962406045
-  after_remove_variance: 0
-  network_cost: 0
-190, 57, 338
+ max_gain: 5028.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
 SellInfo:
   device: (NodeIndex: 415, value: 355.6897394200006)
-  router: 190
-  previous_obvalue: -13412.796298812313
-  after_remove_obvalue: -9.54278238597266
-  before_remove_variance: 28325.592597624625
-  after_remove_variance: 19.08556477194532
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -19.560607199652814
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 39.12121439930563
   network_cost: 0
-54, 190, 415
+ max_gain: 5278.120892520397, device: (NodeIndex(415), 355.6897394200006), source_router: 57
 SellInfo:
-  device: (NodeIndex: 296, value: 19.08556477194532)
-  router: 190
-  previous_obvalue: -7166.725093943031
-  after_remove_obvalue: -7166.725093943031
-  before_remove_variance: 19.08556477194532
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5528.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 6278.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 340
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
   after_remove_variance: 0
   network_cost: 0
-44, 236, 296
+ max_gain: 1250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
 SellInfo:
-  device: (NodeIndex: 317, value: 39.29467499450678)
-  router: 220
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 39.29467499450678
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
   after_remove_variance: 0
   network_cost: 0
-221, 235, 317
+ max_gain: 1750, device: (NodeIndex(302), 10.559937070527322), source_router: 243
 SellInfo:
-  device: (NodeIndex: 414, value: 443.5288422519416)
-  router: 54
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 443.5288422519416
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
   after_remove_variance: 0
   network_cost: 0
-230, 69, 414
+ max_gain: 2250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
 SellInfo:
-  device: (NodeIndex: 416, value: 463.3195321129109)
-  router: 65
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 463.3195321129109
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
   after_remove_variance: 0
   network_cost: 0
-277, 222, 416
+57, 243, 302
 SellInfo:
-  device: (NodeIndex: 344, value: 36.484516023282715)
-  router: 222
-  previous_obvalue: -7666.725093943031
-  after_remove_obvalue: -7166.725093943031
-  before_remove_variance: 36.484516023282715
-  after_remove_variance: 0
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
   network_cost: 0
-53, 222, 344
+ max_gain: 9752.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
 SellInfo:
-  device: (NodeIndex: 316, value: 40.397671508574454)
-  router: 68
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 40.397671508574454
-  after_remove_variance: 0
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
   network_cost: 0
-13, 68, 316
+ max_gain: 10002.858251522423, device: (NodeIndex(415), 355.6897394200006), source_router: 57
 SellInfo:
-  device: (NodeIndex: 318, value: 46.16326271310665)
-  router: 62
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 46.16326271310665
-  after_remove_variance: 0
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
   network_cost: 0
-13, 62, 318
+ max_gain: 10252.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
 SellInfo:
-  device: (NodeIndex: 380, value: 85.03108627211137)
-  router: 56
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 85.03108627211137
-  after_remove_variance: 0
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
   network_cost: 0
-13, 56, 380
+ max_gain: 10502.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
 SellInfo:
-  device: (NodeIndex: 395, value: 148.6775156147002)
-  router: 96
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 148.6775156147002
-  after_remove_variance: 0
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
   network_cost: 0
-20, 196, 395
-SellInfo:
-  device: (NodeIndex: 337, value: 51.368775315988565)
-  router: 201
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 51.368775315988565
-  after_remove_variance: 0
-  network_cost: 0
-46, 163, 337
-SellInfo:
-  device: (NodeIndex: 362, value: 83.99188706044295)
-  router: 200
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 83.99188706044295
-  after_remove_variance: 0
-  network_cost: 0
-46, 162, 362
-SellInfo:
-  device: (NodeIndex: 308, value: 43.027545059933)
-  router: 198
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 43.027545059933
-  after_remove_variance: 0
-  network_cost: 0
-46, 198, 308
-SellInfo:
-  device: (NodeIndex: 355, value: 81.24272346429518)
-  router: 204
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 81.24272346429518
-  after_remove_variance: 0
-  network_cost: 0
-47, 204, 355
-SellInfo:
-  device: (NodeIndex: 314, value: 20.420464674716687)
-  router: 209
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 20.420464674716687
-  after_remove_variance: 0
-  network_cost: 0
-48, 209, 314
-SellInfo:
-  device: (NodeIndex: 385, value: 151.7421004227262)
-  router: 53
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 151.7421004227262
-  after_remove_variance: 0
-  network_cost: 0
-50, 53, 385
-SellInfo:
-  device: (NodeIndex: 385, value: 151.7421004227262)
-  router: 50
-  previous_obvalue: -10754.017317946571
-  after_remove_obvalue: -230.81631356553325
-  before_remove_variance: 24008.034635893142
-  after_remove_variance: 461.6326271310665
-  network_cost: 0
-53, 50, 385
-SellInfo:
-  device: (NodeIndex: 344, value: 36.484516023282715)
-  router: 53
-  previous_obvalue: -12504.017317946571
-  after_remove_obvalue: -12004.017317946571
-  before_remove_variance: 36.484516023282715
-  after_remove_variance: 0
-  network_cost: 0
-2, 53, 344
-SellInfo:
-  device: (NodeIndex: 384, value: 87.94426574509436)
-  router: 39
-  previous_obvalue: -9262.893432962099
-  after_remove_obvalue: -9512.893432962099
-  before_remove_variance: 893.5446239334797
-  after_remove_variance: 28.159832188072855
-  network_cost: 0
-66, 39, 384
-SellInfo:
-  device: (NodeIndex: 343, value: 32.596732488817295)
-  router: 14
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 32.596732488817295
-  after_remove_variance: 0
-  network_cost: 0
-70, 14, 343
-SellInfo:
-  device: (NodeIndex: 333, value: 45.227034110941034)
-  router: 157
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 45.227034110941034
-  after_remove_variance: 0
-  network_cost: 0
-154, 53, 333
-SellInfo:
-  device: (NodeIndex: 334, value: 36.96467634772489)
-  router: 155
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 36.96467634772489
-  after_remove_variance: 0
-  network_cost: 0
-Redunduncy Detected!! Device:334 will be allocated to Router: 35
-35, 155, 334
-SellInfo:
-  device: (NodeIndex: 334, value: 36.96467634772489)
-  router: 35
-  previous_obvalue: -6823.760419182465
-  after_remove_obvalue: -6823.760419182465
-  before_remove_variance: 36.96467634772489
-  after_remove_variance: 0
-  network_cost: 0
-154, 35, 334
-SellInfo:
-  device: (NodeIndex: 397, value: 155.29933526877156)
-  router: 154
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 155.29933526877156
-  after_remove_variance: 0
-  network_cost: 0
-Redunduncy Detected!! Device:397 will be allocated to Router: 35
-35, 154, 397
-SellInfo:
-  device: (NodeIndex: 397, value: 155.29933526877156)
-  router: 35
-  previous_obvalue: -6823.760419182465
-  after_remove_obvalue: -6823.760419182465
-  before_remove_variance: 155.29933526877156
-  after_remove_variance: 0
-  network_cost: 0
-154, 35, 397
-SellInfo:
-  device: (NodeIndex: 366, value: 79.1464024171967)
-  router: 160
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 79.1464024171967
-  after_remove_variance: 0
-  network_cost: 0
-Redunduncy Detected!! Device:366 will be allocated to Router: 36
-36, 160, 366
-SellInfo:
-  device: (NodeIndex: 366, value: 79.1464024171967)
-  router: 36
-  previous_obvalue: -6823.760419182465
-  after_remove_obvalue: -6823.760419182465
-  before_remove_variance: 79.1464024171967
-  after_remove_variance: 0
-  network_cost: 0
-159, 36, 366
-SellInfo:
-  device: (NodeIndex: 315, value: 28.159832188072855)
-  router: 39
-  previous_obvalue: -6823.760419182465
-  after_remove_obvalue: -6823.760419182465
-  before_remove_variance: 28.159832188072855
-  after_remove_variance: 0
-  network_cost: 0
-171, 159, 315
-SellInfo:
-  device: (NodeIndex: 366, value: 79.1464024171967)
-  router: 159
-  previous_obvalue: -7323.760419182465
-  after_remove_obvalue: -6823.760419182465
-  before_remove_variance: 79.1464024171967
-  after_remove_variance: 0
-  network_cost: 0
-2, 159, 366
-SellInfo:
-  device: (NodeIndex: 354, value: 42.99947558772768)
-  router: 246
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 42.99947558772768
-  after_remove_variance: 0
-  network_cost: 0
-248, 151, 354
-SellInfo:
-  device: (NodeIndex: 388, value: 158.16165792223904)
-  router: 253
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 158.16165792223904
-  after_remove_variance: 0
-  network_cost: 0
-250, 85, 388
-SellInfo:
-  device: (NodeIndex: 390, value: 161.8724122711708)
-  router: 256
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 161.8724122711708
-  after_remove_variance: 0
-  network_cost: 0
-Redunduncy Detected!! Device:374 will be allocated to Router: 11
-11, 250, 390
-SellInfo:
-  device: (NodeIndex: 374, value: 77.64762209722207)
-  router: 11
-  previous_obvalue: -7573.760419182465
-  after_remove_obvalue: -6823.760419182465
-  before_remove_variance: 77.64762209722207
-  after_remove_variance: 0
-  network_cost: 0
-2, 11, 374
-SellInfo:
-  device: (NodeIndex: 398, value: 153.876921065674)
-  router: 255
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 153.876921065674
-  after_remove_variance: 0
-  network_cost: 0
-Redunduncy Detected!! Device:398 will be allocated to Router: 60
-60, 255, 398
-SellInfo:
-  device: (NodeIndex: 398, value: 153.876921065674)
-  router: 60
-  previous_obvalue: -6823.760419182465
-  after_remove_obvalue: -6823.760419182465
-  before_remove_variance: 153.876921065674
-  after_remove_variance: 0
-  network_cost: 0
-254, 16, 398
-SellInfo:
-  device: (NodeIndex: 407, value: 149.61564606503774)
-  router: 254
-  previous_obvalue: -3323.760419182465
-  after_remove_obvalue: -3323.760419182465
-  before_remove_variance: 2357.9691568864773
-  after_remove_variance: 2879.7280030677202
-  network_cost: 7000
-16, 254, 407
-SellInfo:
-  device: (NodeIndex: 297, value: 16.63233158444781)
-  router: 259
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 16.63233158444781
-  after_remove_variance: 0
-  network_cost: 0
-Redunduncy Detected!! Device:297 will be allocated to Router: 61
-61, 259, 297
-SellInfo:
-  device: (NodeIndex: 297, value: 16.63233158444781)
-  router: 61
-  previous_obvalue: -6823.760419182465
-  after_remove_obvalue: -6823.760419182465
-  before_remove_variance: 16.63233158444781
-  after_remove_variance: 0
-  network_cost: 0
-258, 61, 297
-SellInfo:
-  device: (NodeIndex: 368, value: 79.35941010839622)
-  router: 15
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 79.35941010839622
-  after_remove_variance: 0
-  network_cost: 0
-2, 15, 368
-SellInfo:
-  device: (NodeIndex: 309, value: 50.8948393918542)
-  router: 174
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 50.8948393918542
-  after_remove_variance: 0
-  network_cost: 0
-4, 248, 309
-SellInfo:
-  device: (NodeIndex: 320, value: 42.06769123502614)
-  router: 149
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 42.06769123502614
-  after_remove_variance: 0
-  network_cost: 0
-4, 149, 320
-SellInfo:
-  device: (NodeIndex: 324, value: 49.46641181253619)
-  router: 147
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 49.46641181253619
-  after_remove_variance: 0
-  network_cost: 0
-4, 147, 324
-SellInfo:
-  device: (NodeIndex: 367, value: 75.8325853202153)
-  router: 38
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 75.8325853202153
-  after_remove_variance: 0
-  network_cost: 0
-4, 38, 367
-SellInfo:
-  device: (NodeIndex: 423, value: 428.26312143344825)
-  router: 67
-  previous_obvalue: -7166.725093943031
-  after_remove_obvalue: -7166.725093943031
-  before_remove_variance: 428.26312143344825
-  after_remove_variance: 0
-  network_cost: 0
-8, 67, 423
-SellInfo:
-  device: (NodeIndex: 418, value: 204.20464674716686)
-  router: 67
-  previous_obvalue: -6823.760419182465
-  after_remove_obvalue: -6823.760419182465
-  before_remove_variance: 204.20464674716686
-  after_remove_variance: 0
-  network_cost: 0
-13, 67, 418
-SellInfo:
-  device: (NodeIndex: 365, value: 99.94036175963427)
-  router: 48
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 99.94036175963427
-  after_remove_variance: 0
-  network_cost: 0
-8, 171, 365
-SellInfo:
-  device: (NodeIndex: 400, value: 140.4842115133367)
-  router: 8
-  previous_obvalue: -5422.170786757172
-  after_remove_obvalue: 1428.5831949127135
-  before_remove_variance: 14844.341573514344
-  after_remove_variance: 142.8336101745733
-  network_cost: 3000
-2, 8, 400
-SellInfo:
-  device: (NodeIndex: 345, value: 42.54216503843019)
-  router: 171
-  previous_obvalue: -7422.170786757172
-  after_remove_obvalue: -7422.170786757172
-  before_remove_variance: 42.54216503843019
-  after_remove_variance: 0
-  network_cost: 0
-39, 171, 345
-SellInfo:
-  device: (NodeIndex: 307, value: 40.92912022545397)
-  router: 47
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 40.92912022545397
-  after_remove_variance: 0
-  network_cost: 0
-8, 46, 307
-SellInfo:
-  device: (NodeIndex: 356, value: 77.79585935783368)
-  router: 13
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 77.79585935783368
-  after_remove_variance: 0
-  network_cost: 0
-8, 13, 356
-SellInfo:
-  device: (NodeIndex: 356, value: 77.79585935783368)
-  router: 8
-  previous_obvalue: -8478.822798196661
-  after_remove_obvalue: -4706.317016907641
-  before_remove_variance: 22957.645596393322
-  after_remove_variance: 13412.634033815282
-  network_cost: 4000
-13, 8, 356
-SellInfo:
-  device: (NodeIndex: 352, value: 76.91632291448407)
-  router: 2
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 76.91632291448407
-  after_remove_variance: 0
-  network_cost: 0
-24, 2, 352
-SellInfo:
-  device: (NodeIndex: 353, value: 18.813952108489644)
-  router: 132
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 18.813952108489644
-  after_remove_variance: 0
-  network_cost: 0
-29, 132, 353
-SellInfo:
-  device: (NodeIndex: 353, value: 18.813952108489644)
-  router: 29
-  previous_obvalue: -9745.623573969922
-  after_remove_obvalue: -5823.760419182465
-  before_remove_variance: 23491.247147939845
-  after_remove_variance: 13647.52083836493
-  network_cost: 2000
-131, 29, 353
-SellInfo:
-  device: (NodeIndex: 346, value: 82.90350070454366)
-  router: 131
-  previous_obvalue: -21110.182800098726
-  after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 82.90350070454366
-  after_remove_variance: 0
-  network_cost: 0
-29, 46, 346
-SellInfo:
-  device: (NodeIndex: 303, value: 15.149126815715421)
-  router: 29
-  previous_obvalue: -10454.378610962143
-  after_remove_obvalue: -5823.760419182465
-  before_remove_variance: 23908.757221924287
-  after_remove_variance: 13647.52083836493
-  network_cost: 2000
-2, 29, 303
-SellInfo:
-  device: (NodeIndex: 422, value: 461.6326271310665)
-  router: 50
-  previous_obvalue: -7166.725093943031
-  after_remove_obvalue: -7166.725093943031
-  before_remove_variance: 461.6326271310665
-  after_remove_variance: 0
-  network_cost: 0
-54, 44, 422
+243, 57, 302
 SellInfo:
   device: (NodeIndex: 329, value: 39.79501123468679)
-  router: 54
-  previous_obvalue: -13528.12186608127
-  after_remove_obvalue: 285.53650170996104
-  before_remove_variance: 30056.24373216254
-  after_remove_variance: 1928.926996580078
-  network_cost: 2500
-2, 54, 329
-SellInfo:
-  device: (NodeIndex: 339, value: 36.61186310429823)
-  router: 93
+  router: 117
   previous_obvalue: -21110.182800098726
   after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 36.61186310429823
+  before_remove_variance: 39.79501123468679
   after_remove_variance: 0
   network_cost: 0
-91, 101, 339
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
 SellInfo:
-  device: (NodeIndex: 377, value: 48.91499882518891)
-  router: 92
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
   previous_obvalue: -21110.182800098726
   after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 48.91499882518891
+  before_remove_variance: 114.04637309954435
   after_remove_variance: 0
   network_cost: 0
-91, 100, 377
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
 SellInfo:
-  device: (NodeIndex: 330, value: 35.648784024574375)
-  router: 91
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(340), 39.12121439930563), source_router: 243
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 340
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5028.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -19.560607199652814
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 39.12121439930563
+  network_cost: 0
+ max_gain: 5278.120892520397, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5528.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 6278.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 340
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 2250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 302
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 9752.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
+  network_cost: 0
+ max_gain: 10002.858251522423, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10252.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10502.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 302
+SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
   previous_obvalue: -21110.182800098726
   after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 35.648784024574375
+  before_remove_variance: 39.79501123468679
   after_remove_variance: 0
   network_cost: 0
-Redunduncy Detected!! Device:330 will be allocated to Router: 19
-19, 91, 330
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
 SellInfo:
-  device: (NodeIndex: 330, value: 35.648784024574375)
-  router: 19
-  previous_obvalue: -6823.760419182465
-  after_remove_obvalue: -6823.760419182465
-  before_remove_variance: 35.648784024574375
-  after_remove_variance: 0
-  network_cost: 0
-91, 19, 330
-SellInfo:
-  device: (NodeIndex: 331, value: 58.958560590183936)
-  router: 20
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
   previous_obvalue: -21110.182800098726
   after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 58.958560590183936
+  before_remove_variance: 114.04637309954435
   after_remove_variance: 0
   network_cost: 0
-94, 20, 331
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
 SellInfo:
-  device: (NodeIndex: 350, value: 66.15304356875019)
-  router: 20
-  previous_obvalue: -7323.760419182465
-  after_remove_obvalue: -6823.760419182465
-  before_remove_variance: 66.15304356875019
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
   after_remove_variance: 0
   network_cost: 0
-44, 20, 350
+ max_gain: 1750, device: (NodeIndex(340), 39.12121439930563), source_router: 243
 SellInfo:
-  device: (NodeIndex: 370, value: 139.2455018443248)
-  router: 87
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 340
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5028.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -19.560607199652814
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 39.12121439930563
+  network_cost: 0
+ max_gain: 5278.120892520397, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5528.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 6278.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 340
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 2250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 302
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 9752.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
+  network_cost: 0
+ max_gain: 10002.858251522423, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10252.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10502.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 302
+SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
   previous_obvalue: -21110.182800098726
   after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 139.2455018443248
+  before_remove_variance: 39.79501123468679
   after_remove_variance: 0
   network_cost: 0
-2, 87, 370
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
 SellInfo:
-  device: (NodeIndex: 321, value: 36.874592762670254)
-  router: 230
-  previous_obvalue: -4666.725093943031
-  after_remove_obvalue: -5166.725093943031
-  before_remove_variance: 2387.463920401771
-  after_remove_variance: 2623.7233549928255
-  network_cost: 4000
-13, 230, 321
-SellInfo:
-  device: (NodeIndex: 403, value: 154.45015275909415)
-  router: 8
-  previous_obvalue: -4823.760419182465
-  after_remove_obvalue: -5323.760419182465
-  before_remove_variance: 13412.634033815282
-  after_remove_variance: 142.8336101745733
-  network_cost: 3000
-2, 8, 403
-SellInfo:
-  device: (NodeIndex: 412, value: 430.27545059933)
-  router: 8
-  previous_obvalue: -5323.760419182465
-  after_remove_obvalue: -5823.760419182465
-  before_remove_variance: 142.8336101745733
-  after_remove_variance: 147.45738332144552
-  network_cost: 2000
-2, 8, 412
-SellInfo:
-  device: (NodeIndex: 386, value: 155.67664698737437)
-  router: 277
-  previous_obvalue: -2666.7250939430314
-  after_remove_obvalue: -3166.7250939430314
-  before_remove_variance: 3391.8908307499737
-  after_remove_variance: 2805.098209219933
-  network_cost: 8000
-2, 277, 386
-SellInfo:
-  device: (NodeIndex: 323, value: 41.27740385934174)
-  router: 4
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
   previous_obvalue: -21110.182800098726
   after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 41.27740385934174
+  before_remove_variance: 114.04637309954435
   after_remove_variance: 0
   network_cost: 0
-2, 4, 323
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
 SellInfo:
-  device: (NodeIndex: 323, value: 41.27740385934174)
-  router: 2
-  previous_obvalue: 3676.239580817535
-  after_remove_obvalue: 3176.239580817535
-  before_remove_variance: 11251.390664853698
-  after_remove_variance: 11724.221730516954
-  network_cost: 20000
-4, 91, 323
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(340), 39.12121439930563), source_router: 243
 SellInfo:
-  device: (NodeIndex: 413, value: 508.94839391854197)
-  router: 98
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 340
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5028.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -19.560607199652814
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 39.12121439930563
+  network_cost: 0
+ max_gain: 5278.120892520397, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5528.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 6278.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 340
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 2250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 302
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 9752.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
+  network_cost: 0
+ max_gain: 10002.858251522423, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10252.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10502.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 302
+SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
   previous_obvalue: -21110.182800098726
   after_remove_obvalue: -21110.182800098726
-  before_remove_variance: 508.94839391854197
+  before_remove_variance: 39.79501123468679
   after_remove_variance: 0
   network_cost: 0
-8, 91, 413
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
 SellInfo:
-  device: (NodeIndex: 371, value: 90.81170840610504)
-  router: 8
-  previous_obvalue: -10307.533727560836
-  after_remove_obvalue: 926.2713083392772
-  before_remove_variance: 23615.067455121673
-  after_remove_variance: 147.45738332144552
-  network_cost: 2000
-2, 8, 371
-SellInfo:
-  device: (NodeIndex: 330, value: 35.648784024574375)
-  router: 91
-  previous_obvalue: -11807.533727560836
-  after_remove_obvalue: -11807.533727560836
-  before_remove_variance: 35.648784024574375
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 114.04637309954435
   after_remove_variance: 0
   network_cost: 0
-Redunduncy Detected!! Device:330 will be allocated to Router: 19
-19, 91, 330
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
 SellInfo:
-  device: (NodeIndex: 330, value: 35.648784024574375)
-  router: 19
-  previous_obvalue: -6823.760419182465
-  after_remove_obvalue: -6823.760419182465
-  before_remove_variance: 35.648784024574375
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
   after_remove_variance: 0
   network_cost: 0
-92, 19, 330
+ max_gain: 1750, device: (NodeIndex(340), 39.12121439930563), source_router: 243
 SellInfo:
-  device: (NodeIndex: 323, value: 41.27740385934174)
-  router: 2
-  previous_obvalue: 4426.239580817535
-  after_remove_obvalue: 3926.239580817535
-  before_remove_variance: 10430.056439302554
-  after_remove_variance: 10824.003226172354
-  network_cost: 21500
-4, 2, 323
-SellInfo:
-  device: (NodeIndex: 378, value: 69.41207220093197)
-  router: 221
-  previous_obvalue: -4416.725093943031
-  after_remove_obvalue: -5166.725093943031
-  before_remove_variance: 2336.240736409447
-  after_remove_variance: 3316.4157600541434
-  network_cost: 4000
-13, 221, 378
-SellInfo:
-  device: (NodeIndex: 318, value: 46.16326271310665)
-  router: 13
-  previous_obvalue: 3176.239580817535
-  after_remove_obvalue: 1926.2395808175352
-  before_remove_variance: 3026.46247196673
-  after_remove_variance: 3212.5755573341376
-  network_cost: 17500
-62, 4, 318
-SellInfo:
-  device: (NodeIndex: 409, value: 185.5473011065949)
-  router: 62
-  previous_obvalue: -5073.760419182465
-  after_remove_obvalue: -5073.760419182465
-  before_remove_variance: 4626.943520272964
-  after_remove_variance: 2.4016682952478927
-  network_cost: 3500
-2, 62, 409
-SellInfo:
-  device: (NodeIndex: 410, value: 156.48702504366304)
-  router: 29
-  previous_obvalue: -5823.760419182465
-  after_remove_obvalue: -195.0661166631745
-  before_remove_variance: 13647.52083836493
-  after_remove_variance: 390.132233326349
-  network_cost: 0
-131, 29, 410
-SellInfo:
-  device: (NodeIndex: 421, value: 392.9467499450678)
-  router: 66
-  previous_obvalue: -3416.7250939430314
-  after_remove_obvalue: 1842.8705528785188
-  before_remove_variance: 14333.450187886063
-  after_remove_variance: 814.2588942429625
-  network_cost: 4500
-8, 24, 421
-SellInfo:
-  device: (NodeIndex: 352, value: 76.91632291448407)
-  router: 8
-  previous_obvalue: -11333.49458277945
-  after_remove_obvalue: 926.2713083392772
-  before_remove_variance: 25666.9891655589
-  after_remove_variance: 147.45738332144552
-  network_cost: 2000
-2, 8, 352
-SellInfo:
-  device: (NodeIndex: 421, value: 392.9467499450678)
-  router: 66
-  previous_obvalue: -1317.379172007264
-  after_remove_obvalue: 3333.263428930693
-  before_remove_variance: 13134.758344014528
-  after_remove_variance: 833.4731421386142
-  network_cost: 7500
-8, 66, 421
-SellInfo:
-  device: (NodeIndex: 412, value: 430.27545059933)
-  router: 2
-  previous_obvalue: 7892.521300706935
-  after_remove_obvalue: 10217.976962646175
-  before_remove_variance: 9714.95739858613
-  after_remove_variance: 2564.046074707652
-  network_cost: 23000
-8, 66, 412
-SellInfo:
-  device: (NodeIndex: 404, value: 161.96421705578055)
-  router: 8
-  previous_obvalue: -3024.9006854623694
-  after_remove_obvalue: 1891.1813467002435
-  before_remove_variance: 11549.801370924739
-  after_remove_variance: 217.6373065995133
-  network_cost: 4000
-2, 8, 404
-SellInfo:
-  device: (NodeIndex: 412, value: 430.27545059933)
-  router: 2
-  previous_obvalue: 9165.411438116498
-  after_remove_obvalue: 11172.790634426974
-  before_remove_variance: 9169.177123767002
-  after_remove_variance: 2654.4187311460523
-  network_cost: 25000
-8, 154, 412
-SellInfo:
-  device: (NodeIndex: 385, value: 151.7421004227262)
-  router: 8
-  previous_obvalue: -3507.018581425151
-  after_remove_obvalue: 1891.1813467002435
-  before_remove_variance: 12514.037162850302
-  after_remove_variance: 217.6373065995133
-  network_cost: 4000
-4, 8, 385
-SellInfo:
-  device: (NodeIndex: 412, value: 430.27545059933)
-  router: 2
-  previous_obvalue: 9165.411438116498
-  after_remove_obvalue: 11172.790634426974
-  before_remove_variance: 9169.177123767002
-  after_remove_variance: 2654.4187311460523
-  network_cost: 25000
-8, 2, 412
-SellInfo:
-  device: (NodeIndex: 419, value: 281.5983218807286)
-  router: 122
-  previous_obvalue: -1706.7525747375184
-  after_remove_obvalue: -63.8998426763183
-  before_remove_variance: 5913.505149475037
-  after_remove_variance: 127.7996853526366
-  network_cost: 0
-8, 122, 419
-SellInfo:
-  device: (NodeIndex: 393, value: 127.7996853526366)
-  router: 122
-  previous_obvalue: -1750.3864377450561
-  after_remove_obvalue: -1750.3864377450561
-  before_remove_variance: 127.7996853526366
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
   after_remove_variance: 0
   network_cost: 0
-4, 122, 393
+57, 243, 340
 SellInfo:
-  device: (NodeIndex: 417, value: 390.132233326349)
-  router: 29
-  previous_obvalue: -6567.379172007264
-  after_remove_obvalue: -6567.379172007264
-  before_remove_variance: 390.132233326349
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5028.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -19.560607199652814
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 39.12121439930563
+  network_cost: 0
+ max_gain: 5278.120892520397, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5528.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 6278.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 340
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
   after_remove_variance: 0
   network_cost: 0
-8, 29, 417
+ max_gain: 1250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
 SellInfo:
-  device: (NodeIndex: 313, value: 39.0132233326349)
-  router: 44
-  previous_obvalue: -2823.760419182465
-  after_remove_obvalue: -3823.760419182465
-  before_remove_variance: 439.15668613779064
-  after_remove_variance: 580.7197205149554
-  network_cost: 6000
-13, 44, 313
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(302), 10.559937070527322), source_router: 243
 SellInfo:
-  device: (NodeIndex: 318, value: 46.16326271310665)
-  router: 13
-  previous_obvalue: 9499.613562254945
-  after_remove_obvalue: 8249.613562254945
-  before_remove_variance: 2899.0014813838648
-  after_remove_variance: 3090.2518582138755
-  network_cost: 20000
-62, 13, 318
-network_traffic: 299500, variance:3500.7728754901123, obvalue: 151500.38643774507
----
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 2250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 302
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 9752.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
+  network_cost: 0
+ max_gain: 10002.858251522423, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10252.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10502.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 302
+SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 39.79501123468679
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
+SellInfo:
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 114.04637309954435
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(340), 39.12121439930563), source_router: 243
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 340
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5028.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -19.560607199652814
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 39.12121439930563
+  network_cost: 0
+ max_gain: 5278.120892520397, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5528.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 6278.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 340
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 2250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 302
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 9752.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
+  network_cost: 0
+ max_gain: 10002.858251522423, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10252.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10502.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 302
+SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 39.79501123468679
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
+SellInfo:
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 114.04637309954435
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(340), 39.12121439930563), source_router: 243
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 340
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5028.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -19.560607199652814
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 39.12121439930563
+  network_cost: 0
+ max_gain: 5278.120892520397, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5528.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 6278.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 340
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 2250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 302
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 9752.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
+  network_cost: 0
+ max_gain: 10002.858251522423, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10252.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10502.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 302
+SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 39.79501123468679
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
+SellInfo:
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 114.04637309954435
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(340), 39.12121439930563), source_router: 243
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 340
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5028.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -19.560607199652814
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 39.12121439930563
+  network_cost: 0
+ max_gain: 5278.120892520397, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5528.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 6278.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 340
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 2250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 302
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 9752.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
+  network_cost: 0
+ max_gain: 10002.858251522423, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10252.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10502.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 302
+SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 39.79501123468679
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
+SellInfo:
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 114.04637309954435
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(340), 39.12121439930563), source_router: 243
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 340
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5028.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -19.560607199652814
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 39.12121439930563
+  network_cost: 0
+ max_gain: 5278.120892520397, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5528.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 6278.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 340
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 2250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 302
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 9752.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
+  network_cost: 0
+ max_gain: 10002.858251522423, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10252.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10502.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 302
+SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 39.79501123468679
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
+SellInfo:
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 114.04637309954435
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(340), 39.12121439930563), source_router: 243
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 340
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5028.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -19.560607199652814
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 39.12121439930563
+  network_cost: 0
+ max_gain: 5278.120892520397, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5528.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 6278.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 340
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 2250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 302
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 9752.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
+  network_cost: 0
+ max_gain: 10002.858251522423, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10252.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10502.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 302
+SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 39.79501123468679
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
+SellInfo:
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 114.04637309954435
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(340), 39.12121439930563), source_router: 243
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 340
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5028.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -19.560607199652814
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 39.12121439930563
+  network_cost: 0
+ max_gain: 5278.120892520397, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5528.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 6278.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 340
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 2250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 302
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 9752.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
+  network_cost: 0
+ max_gain: 10002.858251522423, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10252.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10502.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 302
+SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 39.79501123468679
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
+SellInfo:
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 114.04637309954435
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(340), 39.12121439930563), source_router: 243
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 340
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5028.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -19.560607199652814
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 39.12121439930563
+  network_cost: 0
+ max_gain: 5278.120892520397, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5528.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 6278.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 340
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 2250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 302
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 9752.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
+  network_cost: 0
+ max_gain: 10002.858251522423, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10252.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10502.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 302
+SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 39.79501123468679
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
+SellInfo:
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 114.04637309954435
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(340), 39.12121439930563), source_router: 243
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 340
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5028.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -19.560607199652814
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 39.12121439930563
+  network_cost: 0
+ max_gain: 5278.120892520397, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5528.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 6278.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 340
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 2250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 302
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 9752.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
+  network_cost: 0
+ max_gain: 10002.858251522423, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10252.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10502.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 302
+SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 39.79501123468679
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
+SellInfo:
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 114.04637309954435
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(340), 39.12121439930563), source_router: 243
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 340
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5028.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -19.560607199652814
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 39.12121439930563
+  network_cost: 0
+ max_gain: 5278.120892520397, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5528.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 6278.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 340
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 2250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 302
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 9752.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
+  network_cost: 0
+ max_gain: 10002.858251522423, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10252.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10502.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 302
+SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 39.79501123468679
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
+SellInfo:
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 114.04637309954435
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(340), 39.12121439930563), source_router: 243
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 340
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5028.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -19.560607199652814
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 39.12121439930563
+  network_cost: 0
+ max_gain: 5278.120892520397, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5528.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 6278.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 340
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 2250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 302
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 9752.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
+  network_cost: 0
+ max_gain: 10002.858251522423, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10252.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10502.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 302
+SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 39.79501123468679
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
+SellInfo:
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 114.04637309954435
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(340), 39.12121439930563), source_router: 243
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 340
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5028.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -19.560607199652814
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 39.12121439930563
+  network_cost: 0
+ max_gain: 5278.120892520397, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5528.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 6278.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 340
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 2250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 302
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 9752.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
+  network_cost: 0
+ max_gain: 10002.858251522423, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10252.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10502.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 302
+SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 39.79501123468679
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
+SellInfo:
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 114.04637309954435
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(340), 39.12121439930563), source_router: 243
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 340
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5028.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -19.560607199652814
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 39.12121439930563
+  network_cost: 0
+ max_gain: 5278.120892520397, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 5528.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 6278.120892520397, device: (NodeIndex(340), 39.12121439930563), source_router: 57
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 57
+  previous_obvalue: -10776.953879222297
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 25053.907758444595
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 340
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 2250, device: (NodeIndex(302), 10.559937070527322), source_router: 243
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 243
+  previous_obvalue: -13026.953879222297
+  after_remove_obvalue: -12526.953879222297
+  before_remove_variance: 10.559937070527322
+  after_remove_variance: 0
+  network_cost: 0
+57, 243, 302
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 9752.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 415, value: 355.6897394200006)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -5.279968535263661
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 10.559937070527322
+  network_cost: 0
+ max_gain: 10002.858251522423, device: (NodeIndex(415), 355.6897394200006), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10252.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+ max_gain: 10502.858251522423, device: (NodeIndex(302), 10.559937070527322), source_router: 57
+SellInfo:
+  device: (NodeIndex: 302, value: 10.559937070527322)
+  router: 57
+  previous_obvalue: -13139.32255872331
+  after_remove_obvalue: -177.8448697100003
+  before_remove_variance: 29778.64511744662
+  after_remove_variance: 355.6897394200006
+  network_cost: 0
+243, 57, 302
+SellInfo:
+  device: (NodeIndex: 329, value: 39.79501123468679)
+  router: 117
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 39.79501123468679
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1250, device: (NodeIndex(329), 39.79501123468679), source_router: 117
+SellInfo:
+  device: (NodeIndex: 348, value: 114.04637309954435)
+  router: 81
+  previous_obvalue: -21110.182800098726
+  after_remove_obvalue: -21110.182800098726
+  before_remove_variance: 114.04637309954435
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1500, device: (NodeIndex(348), 114.04637309954435), source_router: 81
+SellInfo:
+  device: (NodeIndex: 340, value: 39.12121439930563)
+  router: 243
+  previous_obvalue: -14889.32255872331
+  after_remove_obvalue: -14889.32255872331
+  before_remove_variance: 39.12121439930563
+  after_remove_variance: 0
+  network_cost: 0
+ max_gain: 1750, device: (NodeIndex(340), 39.12121439930563), source_router: 243

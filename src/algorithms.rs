@@ -152,7 +152,6 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
             r.get_improve_queue()[index].0 = improve_value; // インデックス指定で更新
         }
 
-
         match r.get_improve_queue().iter().max_by(|a, b|  a.0.partial_cmp(&b.0).unwrap()){
             Some(result) => {
                 let (max_gain_for_this_router, sell_info) = result;     
@@ -160,11 +159,10 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
                 if max_value < *max_gain_for_this_router {
                     max_value = *max_gain_for_this_router;
                     max_candidate = sell_info.get_device();
-                    let source_router_index = sell_info.get_router();
-                    remove_router_value_device_hashmap.entry(source_router_index).or_insert(vec![]).push(max_candidate);
                     max_sell_info = Some(sell_info.clone());
-                    //sell_info.print_sell_info();
-                    println!(" max_gain: {}, source_router: {}", max_gain_for_this_router, sell_info.get_router().index());
+                    sell_info.print_sell_info();
+                    println!(" max_gain: {}, device: {:?}, source_router: {}", max_gain_for_this_router, 
+                             sell_info.get_device(), sell_info.get_router().index() );
                     max_value_router = r.get_router();
                 }
 
@@ -180,6 +178,8 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
 
     if let Some(si) = max_sell_info{
         si.print_sell_info();
+        let source_router_index = si.get_router();
+        remove_router_value_device_hashmap.entry(source_router_index).or_insert(vec![]).push(max_candidate);
     };
 
     (max_router_value_device_hashmap,remove_router_value_device_hashmap)
