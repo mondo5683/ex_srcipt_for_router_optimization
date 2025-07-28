@@ -112,6 +112,7 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
     let mut max_value = 0.0;
     let mut max_candidate: (NodeIndex,f64) = (NodeIndex::new(0), 0.0);
     let mut max_value_router: NodeIndex = NodeIndex::new(0);
+    let mut max_sell_info : Option<SellInfo> = None;
     
     for r in routers.iter_mut(){
 
@@ -161,6 +162,7 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
                     max_candidate = sell_info.get_device();
                     let source_router_index = sell_info.get_router();
                     remove_router_value_device_hashmap.entry(source_router_index).or_insert(vec![]).push(max_candidate);
+                    max_sell_info = Some(sell_info.clone());
                     //sell_info.print_sell_info();
                     println!(" max_gain: {}, source_router: {}", max_gain_for_this_router, sell_info.get_router().index());
                     max_value_router = r.get_router();
@@ -175,6 +177,10 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
     if max_value > 0.0{
         max_router_value_device_hashmap.entry(max_value_router).insert_entry(max_candidate);
     }
+
+    if let Some(si) = max_sell_info{
+        si.print_sell_info();
+    };
 
     (max_router_value_device_hashmap,remove_router_value_device_hashmap)
 
