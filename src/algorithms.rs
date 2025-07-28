@@ -120,10 +120,6 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
             continue;
         }
 
-//        let mut router_updated = false;
-//            println!("For router {}",r.get_router().index());
-//        let mut max_gain_device_value = 0.0;
-
         for si in sell_info_list.iter() {
             if si.get_router() == r.get_router(){
                 continue;
@@ -133,35 +129,12 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
             
             if improvement_for_si > 0.0 {
                 r.insert_to_improve_queue(improvement_for_si, si.clone()); 
-                
-/*
-                let new_candidate = si.get_device();
-
-                if max_gain_device_value < improvement_for_si{
-                    max_gain_device_value = improvement_for_si;
-                    
-                    if max_gain_device_value > max_value {
-                        max_value = max_gain_device_value;
-                        max_candidate = new_candidate;
-                        max_value_router = r.get_router();
-                    }
-                    router_updated = true;
-                }
-*/                
             }
         }
         
         let (_ ,max_variance_from_hasmap) = variance_hashmap.iter().max_by(|a, b| a.1.partial_cmp(b.1).unwrap()).unwrap();
 
-        /*
-        for (improve_value, sell_info) in r.get_improve_queue().iter_mut(){
-            if *max_variance_from_hasmap <= sell_info.get_before_remove_variance(){
-                *improve_value = calc_improvement_using_si_for_router(r, &sell_info, variance_hashmap);
-            }
-        }*/
-
         let mut results = Vec::new();
-
         for (index, (_, sell_info)) in r.get_improve_queue().iter_mut().enumerate() {
             let before_remove_variance = sell_info.get_before_remove_variance();
             if *max_variance_from_hasmap <= before_remove_variance {
@@ -197,27 +170,11 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
             None => {
                 r.set_optimal(true);
             }
-        
         }
-        /*
-        if !router_updated {
-            r.set_optimal(true);
-        }
-        */
     }
     if max_value > 0.0{
         max_router_value_device_hashmap.entry(max_value_router).insert_entry(max_candidate);
     }
-    /*
-    for (_, device) in max_router_value_device_hashmap.iter(){
-        for si in sell_info_list.iter(){
-            if si.get_device() == *device{
-                remove_router_value_device_hashmap.entry(si.get_router()).or_insert(vec![]).push(*device);
-                break;
-            }
-        }
-    }
-    */
 
     (max_router_value_device_hashmap,remove_router_value_device_hashmap)
 
