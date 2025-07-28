@@ -29,6 +29,7 @@ pub struct Router<'a> {
     ps:     &'a NodeIndex,
     variance_vec: HashMap::<NodeIndex,f64>,
     is_updated_in_previous_round: bool,
+    is_max_variance_router:bool,
     improved_queue: Vec<(f64,SellInfo)>
 }
 
@@ -46,6 +47,7 @@ impl<'a> Router<'a> {
             variance_vec: HashMap::new(),
             //To make routers conduct first sell info process, we initialize is_updated true
             is_updated_in_previous_round: true,
+            is_max_variance_router: false,
             improved_queue: Vec::<(f64, SellInfo)>::new()
         }
     }
@@ -87,6 +89,12 @@ impl<'a> Router<'a> {
     }
     pub fn get_improve_queue(&mut self) -> &mut Vec<(f64,SellInfo)>{
         &mut self.improved_queue
+    }
+    pub fn set_is_max_variance_router(&mut self, b:bool){
+        self.is_max_variance_router = b;
+    }
+    pub fn has_max_variance_router(&self) -> bool {
+        self.is_max_variance_router
     }
 
     pub fn print_inner_cluster_devices(&self, writer: &mut impl Write, device_index_offset:usize) -> Result<()> {

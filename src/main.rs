@@ -25,6 +25,7 @@ use clustering::*;
 use benchmark_algorithms::*;
 use manual_operation::*;
 
+use std::collections::HashMap;
 //for printing out "topology.json"
 use std::fs::File;
 use std::io::{Write, Result};
@@ -71,8 +72,8 @@ fn main() -> std::io::Result<()> {
 */
 
     let rt = generate_topology();
-    let rand_seeds: [u64; 10] = [100,101,102,103,104,105,106,107,108,109];
-    //let rand_seeds: [u64; 4] = [100,109,101,108];
+//    let rand_seeds: [u64; 10] = [100,101,102,103,104,105,106,107,108,109];
+    let rand_seeds: [u64; 1] = [100];
 //    let k_vec = [1,2,3,4,5,6,7,8,9,10,11,12,13];
 //    let k_vec = [9,10,11,12,13];
     let k_vec = [1,2,3,4];
@@ -114,6 +115,7 @@ fn main() -> std::io::Result<()> {
         for router in r.iter(){
             routers.push(Router::new(&topology_for_routers, router,&ps, model_size));
         } 
+
         //vecに応じてデバイスを割り当てる
         for (col_index, column) in e.column_iter().enumerate() {
             for (row_index, value) in column.iter().enumerate() {
@@ -142,7 +144,7 @@ fn main() -> std::io::Result<()> {
         println!("---");
 //    println!("router num:{}",router_num);
         
-        write_topology_json(routers)?;
+//      write_topology_json(routers)?;
 
     
     //The followed } is the end of loop of k
