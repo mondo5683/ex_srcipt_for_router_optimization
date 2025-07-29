@@ -168,7 +168,7 @@ impl<'a> Router<'a> {
         }else { *max_variance_from_hasmap};
 
         if max_variance_of_others > variance{
-            (ALPHA * network_traffic - BETA * max_variance_of_others, max_variance_of_others)
+            (ALPHA * network_traffic - BETA * (0.01 * variance + max_variance_of_others ), max_variance_of_others)
         } else {
             let router_value = ALPHA * network_traffic - BETA * variance;
             (router_value, variance)
