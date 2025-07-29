@@ -30,7 +30,7 @@ pub fn optimize_obvalue_in_cluster(routers: &mut  Vec<Router>) {
         
         update_max_variance_hashmap(routers, &mut variance_hashmap);
         for i in 0..routers.len(){
-            let (_, _ )  = routers[i].update_router_value();
+            routers[i].update_router_value();
         }
         let (&max_variance_router , _) = variance_hashmap.iter().max_by(|a, b| a.1.partial_cmp(b.1).unwrap()).unwrap();
         routers[max_variance_router.index()].set_is_max_variance_router(true);
@@ -145,6 +145,7 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
             }
         }
         
+        //TODO この処理でマイナスになった部分は削除する
         // improve_queue 内の該当する improve_value を更新
         for (index, sell_info_copy) in results {
             let improve_value = calc_improvement_using_si_for_router(r, &sell_info_copy, variance_hashmap);
