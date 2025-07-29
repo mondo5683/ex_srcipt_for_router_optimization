@@ -132,7 +132,7 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
                 r.insert_to_improve_queue(improvement_for_si, si.clone()); 
             }
         }
-        
+        /*
         let (_ ,max_variance_from_hasmap) = variance_hashmap.iter().max_by(|a, b| a.1.partial_cmp(b.1).unwrap()).unwrap();
 
         let mut results = Vec::new();
@@ -152,7 +152,7 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
            // println!("Update value with {}", improve_value);
             r.get_improve_queue()[index].0 = improve_value; // インデックス指定で更新
         }
-
+        */
         match r.get_improve_queue().iter().max_by(|a, b|  a.0.partial_cmp(&b.0).unwrap()){
             Some(result) => {
                 let (max_gain_for_this_router, sell_info) = result;     
@@ -161,9 +161,9 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
                     max_value = *max_gain_for_this_router;
                     max_candidate = sell_info.get_device();
                     max_sell_info = Some(sell_info.clone());
-                    sell_info.print_sell_info();
-                    println!(" max_gain: {}, device: {:?}, source_router: {}", max_gain_for_this_router, 
-                             sell_info.get_device(), sell_info.get_router().index() );
+                    //sell_info.print_sell_info();
+                    //println!(" max_gain: {}, device: {:?}, source_router: {}", max_gain_for_this_router, 
+                    //         sell_info.get_device(), sell_info.get_router().index() );
                     max_value_router = r.get_router();
                 }
 
@@ -178,7 +178,7 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
     }
 
     if let Some(si) = max_sell_info{
-        si.print_sell_info();
+//        si.print_sell_info();
         let source_router_index = si.get_router();
         remove_router_value_device_hashmap.entry(source_router_index).or_insert(vec![]).push(max_candidate);
     };
@@ -244,7 +244,7 @@ fn swap_device_between_routers(routers: &mut  Vec<Router>,
            routers[i].set_is_updated(false);
        }
 
-       routers[i].set_is_max_variance_router(false);
+       routers[i].set_is_max_variance_router(true);
        routers[i].get_improve_queue().retain(|(_value , sell_info)| 
                                              { 
                                                 let is_delete_on_device_id =  sell_info.get_device().0.index() != device_no; 
