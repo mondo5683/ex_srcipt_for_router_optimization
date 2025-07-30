@@ -216,6 +216,7 @@ fn swap_device_between_routers(routers: &mut  Vec<Router>,
 
    for (nodeindex, devices) in remove_router_value_device_hashmap.iter() {
        if let Some(&index) = routers_index_map.get(nodeindex) {
+           println!("{:?}",devices);
            for device in devices {
                source = nodeindex.index();
                source_router_index = index;

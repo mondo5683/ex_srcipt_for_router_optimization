@@ -142,6 +142,13 @@ fn main() -> std::io::Result<()> {
 
         print_current_obvalue(&mut routers);
         println!("---");
+
+        let mut device_nums = 0;
+        for r in routers {
+            let device_num = r.get_devices().len();
+            device_nums += device_num;
+        }
+        println!("device num: {}",device_nums);
 //    println!("router num:{}",router_num);
         
 //      write_topology_json(routers)?;
