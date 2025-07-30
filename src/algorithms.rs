@@ -126,9 +126,11 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
                 continue;
             }
 
+
             let improvement_for_si = calc_improvement_using_si_for_router(r, si, &variance_hashmap);
             
             if improvement_for_si > 0.0 {
+                
                 r.insert_to_improve_queue(improvement_for_si, si.clone()); 
             }
         }
@@ -217,7 +219,7 @@ fn swap_device_between_routers(routers: &mut  Vec<Router>,
 
    for (nodeindex, devices) in remove_router_value_device_hashmap.iter() {
        if let Some(&index) = routers_index_map.get(nodeindex) {
-           println!("{:?}",devices);
+           //println!("{:?}",devices);
            for device in devices {
                source = nodeindex.index();
                source_router_index = index;
