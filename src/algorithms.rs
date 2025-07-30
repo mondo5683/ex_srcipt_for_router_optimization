@@ -145,7 +145,6 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
             }
         }
         
-        //TODO この処理でマイナスになった部分は削除する
         // improve_queue 内の該当する improve_value を更新
         for (index, sell_info_copy) in results {
             let improve_value = calc_improvement_using_si_for_router(r, &sell_info_copy, variance_hashmap);
@@ -163,8 +162,8 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
                     max_value = *max_gain_for_this_router;
                     max_candidate = sell_info.get_device();
                     max_sell_info = Some(sell_info.clone());
-                    let source_router_index = sell_info.get_router();
-                    remove_router_value_device_hashmap.entry(source_router_index).or_insert(vec![]).push(max_candidate);
+                    //let source_router_index = sell_info.get_router();
+                    //remove_router_value_device_hashmap.entry(source_router_index).or_insert(vec![]).push(max_candidate);
                     println!(" max_gain: {}, device: {:?}, source_router: {}, receive_router: {}", max_gain_for_this_router, 
                              sell_info.get_device(), sell_info.get_router().index(), r_index );
                     max_value_router = r.get_router();
@@ -181,12 +180,15 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
     }
 
     if let Some(si) = max_sell_info{
+          let source_router_index = si.get_router();
+          remove_router_value_device_hashmap.entry(source_router_index).or_insert(vec![]).push(max_candidate);
 //        si.print_sell_info();
     };
 
     (max_router_value_device_hashmap,remove_router_value_device_hashmap)
 
 }
+
 fn swap_device_between_routers(routers: &mut  Vec<Router>, 
                                max_router_value_device_hashmap: &HashMap::<NodeIndex, (NodeIndex,f64)>,
                                remove_router_value_device_hashmap: &HashMap::<NodeIndex, Vec<(NodeIndex,f64)>>){
@@ -212,7 +214,6 @@ fn swap_device_between_routers(routers: &mut  Vec<Router>,
            dist_router_index = index;
        }
    }
-
 
    for (nodeindex, devices) in remove_router_value_device_hashmap.iter() {
        if let Some(&index) = routers_index_map.get(nodeindex) {
