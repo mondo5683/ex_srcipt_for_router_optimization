@@ -129,22 +129,22 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
 
             let improvement_for_si = calc_improvement_using_si_for_router(r, si, &variance_hashmap);
             
-            if improvement_for_si > 0.0 {
+        //    if improvement_for_si > 0.0 {
                 
                 r.insert_to_improve_queue(improvement_for_si, si.clone()); 
-            }
+        //    }
         }
 
-        let (_ ,max_variance_from_hasmap) = variance_hashmap.iter().max_by(|a, b| a.1.partial_cmp(b.1).unwrap()).unwrap();
+        //let (_ ,max_variance_from_hasmap) = variance_hashmap.iter().max_by(|a, b| a.1.partial_cmp(b.1).unwrap()).unwrap();
 
         let mut results = Vec::new();
         for (index, (_, sell_info)) in r.get_improve_queue().iter_mut().enumerate() {
-            let before_remove_variance = sell_info.get_before_remove_variance();
-            if *max_variance_from_hasmap <= before_remove_variance {
+          //  let before_remove_variance = sell_info.get_before_remove_variance();
+          //  if *max_variance_from_hasmap <= before_remove_variance {
                 // 必要データを clone
                 let sell_info_copy = sell_info.clone(); // Clone が必要
                 results.push((index, sell_info_copy));
-            }
+           // }
         }
         
         // improve_queue 内の該当する improve_value を更新
@@ -153,7 +153,7 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
            // println!("Update value with {}", improve_value);
             r.get_improve_queue()[index].0 = improve_value; // インデックス指定で更新
         }
-        r.get_improve_queue().retain(|&(value ,_ )| value > 0.0 );
+        //r.get_improve_queue().retain(|&(value ,_ )| value > -600.0 );
 
         let r_index = r.get_router().index();
         match r.get_improve_queue().iter().max_by(|a, b|  a.0.partial_cmp(&b.0).unwrap()){
@@ -270,7 +270,6 @@ fn swap_device_between_routers(routers: &mut  Vec<Router>,
            routers[i].set_optimal(true);
        }
    }
-
         
    println!("{}, {}, {}", dist, source, device_no);
 
