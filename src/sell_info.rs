@@ -68,6 +68,12 @@ impl SellInfo {
     pub fn get_network_cost(&self) -> f64 {
         self.network_cost
     }
+    pub fn set_previous_obvalue(&mut self, previous_obvalue:f64) {
+        self.previous_obvalue = previous_obvalue;
+    }
+    pub fn set_after_remove_obvalue(&mut self, after_remove_obvalue:f64) {
+        self.after_remove_obvalue = after_remove_obvalue;
+    }
 
     pub fn view_sell_info(&self) -> String {
         let device_s =  format!("device: {:?}\n",self.device);

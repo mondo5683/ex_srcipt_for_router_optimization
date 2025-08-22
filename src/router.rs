@@ -29,7 +29,9 @@ pub struct Router<'a> {
     ps:     &'a NodeIndex,
     variance_vec: HashMap::<NodeIndex,f64>,
     is_updated_in_previous_round: bool,
-    improved_queue: Vec<(f64,SellInfo)>
+    is_max_variance_router:bool,
+    improved_queue: Vec<(f64,SellInfo)>,
+    max_variance_before_round: Option<f64>
 }
 
 impl<'a> Router<'a> {
@@ -46,7 +48,9 @@ impl<'a> Router<'a> {
             variance_vec: HashMap::new(),
             //To make routers conduct first sell info process, we initialize is_updated true
             is_updated_in_previous_round: true,
-            improved_queue: Vec::<(f64, SellInfo)>::new()
+            is_max_variance_router: false,
+            improved_queue: Vec::<(f64, SellInfo)>::new(),
+            max_variance_before_round: None
         }
     }
     pub fn get_optimal(&self) -> bool {
@@ -87,6 +91,18 @@ impl<'a> Router<'a> {
     }
     pub fn get_improve_queue(&mut self) -> &mut Vec<(f64,SellInfo)>{
         &mut self.improved_queue
+    }
+    pub fn set_is_max_variance_router(&mut self, b:bool){
+        self.is_max_variance_router = b;
+    }
+    pub fn has_max_variance_router(&self) -> bool {
+        self.is_max_variance_router
+    }
+    pub fn set_max_variance_before_round(&mut self, max_variance: f64) {
+        self.max_variance_before_round = Some(max_variance);
+    }
+    pub fn get_max_variance_before_round(&self) -> Option<f64>{
+        self.max_variance_before_round
     }
 
     pub fn print_inner_cluster_devices(&self, writer: &mut impl Write, device_index_offset:usize) -> Result<()> {
@@ -160,7 +176,7 @@ impl<'a> Router<'a> {
         }else { *max_variance_from_hasmap};
 
         if max_variance_of_others > variance{
-            (ALPHA * network_traffic - BETA * max_variance_of_others, max_variance_of_others)
+            (ALPHA * network_traffic - BETA * (0.01 * variance + max_variance_of_others ), max_variance_of_others)
         } else {
             let router_value = ALPHA * network_traffic - BETA * variance;
             (router_value, variance)
