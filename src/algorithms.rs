@@ -233,7 +233,7 @@ fn swap_device_between_routers(routers: &mut  Vec<Router>,
    let mut source: usize = 0;
    let mut source_router_index:usize = 0;
    let mut device_no: usize = 0;
-   let mut moved_device: (NodeIndex,f64) = (NodeIndex::new(0), 0.0);
+   let mut moved_device: Option<(NodeIndex,f64)> = None;
 
    let routers_index_map: HashMap<NodeIndex, usize> = routers
                                                    .iter()
@@ -256,37 +256,38 @@ fn swap_device_between_routers(routers: &mut  Vec<Router>,
            for device in devices {
                source = nodeindex.index();
                source_router_index = index;
-               moved_device = *device;
+               moved_device = Some(*device);
            }
        }
    }
 
-   //LCAを検出しそこに配置
-   if let Some(lca) = find_lca(dist, source) {
-       if !(lca.eq(&source) || lca.eq(&dist)) {
-           println!("Redunduncy Detected!! Device:{} will be allocated to Router: {}",moved_device.0.index(),lca);
-           dist_router_index = lca;
-           dist = lca;
+   if let Some(device) = moved_device { 
+       //LCAを検出しそこに配置
+       if let Some(lca) = find_lca(dist, source) {
+           if !(lca.eq(&source) || lca.eq(&dist)) {
+               println!("Redunduncy Detected!! Device:{} will be allocated to Router: {}",device.0.index(),lca);
+               dist_router_index = lca;
+               dist = lca;
 
-           if routers[lca].get_improve_queue().len()  < 1 {
-               if let Some(previous_max_variance) = routers[source_router_index].get_max_variance_before_round(){
-                   routers[lca].set_max_variance_before_round(previous_max_variance);
-               }
-               let improve_queue_clone_source: Vec<_> = {
-                   let src_queue = routers[source_router_index].get_improve_queue();
-                   src_queue.iter().map(|(value, sell_info)| (*value, sell_info.clone())).collect()
-               };
+               if routers[lca].get_improve_queue().len()  < 1 {
+                   if let Some(previous_max_variance) = routers[source_router_index].get_max_variance_before_round(){
+                       routers[lca].set_max_variance_before_round(previous_max_variance);
+                   }
+                   let improve_queue_clone_source: Vec<_> = {
+                       let src_queue = routers[source_router_index].get_improve_queue();
+                       src_queue.iter().map(|(value, sell_info)| (*value, sell_info.clone())).collect()
+                   };
+                   
+                   let improve_queue_of_lca = routers[lca].get_improve_queue();
+                   improve_queue_of_lca.extend(improve_queue_clone_source);
                
-               let improve_queue_of_lca = routers[lca].get_improve_queue();
-               improve_queue_of_lca.extend(improve_queue_clone_source);
-           
+               }
            }
        }
+
+           routers[source_router_index].remove_device(device);
+           routers[dist_router_index].add_device(device);
    }
-
-   routers[source_router_index].remove_device(moved_device);
-   routers[dist_router_index].add_device(moved_device);
-
    for i in 0..routers.len(){
 
        if i == dist || i == source_router_index {
