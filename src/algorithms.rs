@@ -72,8 +72,8 @@ fn update_max_variance_hashmap(routers: &mut Vec::<Router>, variance_hashmap: &m
 fn generate_sell_info_list(routers: &mut Vec::<Router>) -> Vec::<SellInfo> {
 
         let mut sell_info_list = Vec::<SellInfo>::new();
-        for r in routers.iter_mut(){
-            if (r.get_devices().len() > 0) && (r.get_is_updated() || r.has_max_variance_router()) {
+        for r in routers.iter_mut() {
+            if (r.get_devices().len() > 0) && (r.get_is_updated()) {// || r.has_max_variance_router()) {
                 let sell_info_from_router: Vec<SellInfo> = r.sell_all_device();
                 sell_info_list.extend(sell_info_from_router);
             }
@@ -115,27 +115,13 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
     let mut max_sell_info : Option<SellInfo> = None;
     
     let (_ ,max_variance_from_hasmap) = variance_hashmap.iter().max_by(|a, b| a.1.partial_cmp(b.1).unwrap()).unwrap();
-    println!("max_variance: {}", *max_variance_from_hasmap);
+    //println!("max_variance: {}", *max_variance_from_hasmap);
 
     for r in routers.iter_mut(){
 
         if r.get_devices().len() < 1 {
             r.set_optimal(true);
             continue;
-        }
-
-        for si in sell_info_list.iter() {
-            if si.get_router() == r.get_router(){
-                continue;
-            }
-
-
-            let improvement_for_si = calc_improvement_using_si_for_router(r, si, &variance_hashmap);
-            
-        //    if improvement_for_si > 0.0 {
-                
-                r.insert_to_improve_queue(improvement_for_si, si.clone()); 
-        //    }
         }
 
 
@@ -176,6 +162,30 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
             let improve_value = calc_improvement_using_si_for_router(r, &sell_info_copy, variance_hashmap);
             r.get_improve_queue()[*index].0 = improve_value; // インデックス指定で更新
         }
+        
+        for si in sell_info_list.iter() {
+            if si.get_router() == r.get_router(){
+                continue;
+            }
+
+
+            let improvement_for_si = calc_improvement_using_si_for_router(r, si, &variance_hashmap);
+            
+        //    if improvement_for_si > 0.0 {
+                
+            if si.get_router().index() == 235 && r.get_router().index() == 55{
+                println!("improvement {}, device: {}", improvement_for_si, si.get_device().0.index());
+                si.print_sell_info();
+            }
+
+            r.insert_to_improve_queue(improvement_for_si, si.clone()); 
+            
+            if si.get_router().index() == 243 && r.get_router().index() == 245{
+//                println!("Len of improve queue: {}", r.get_improve_queue().len());
+//                println!("improvement {}, device: {}", improvement_for_si, si.get_device().0.index());
+            }
+        //    }
+        }
         //r.get_improve_queue().retain(|&(value ,_ )| value > -600.0 );
         r.set_max_variance_before_round(*max_variance_from_hasmap);
         let r_index = r.get_router().index();
@@ -189,8 +199,8 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
                     max_sell_info = Some(sell_info.clone());
                     //let source_router_index = sell_info.get_router();
                     //remove_router_value_device_hashmap.entry(source_router_index).or_insert(vec![]).push(max_candidate);
-                    println!(" max_gain: {}, device: {:?}, source_router: {}, receive_router: {}", max_gain_for_this_router, 
-                             sell_info.get_device(), sell_info.get_router().index(), r_index );
+//                    println!(" max_gain: {}, device: {:?}, source_router: {}, receive_router: {}", max_gain_for_this_router, 
+//                             sell_info.get_device(), sell_info.get_router().index(), r_index );
                     max_value_router = r.get_router();
                 }
 
@@ -257,6 +267,20 @@ fn swap_device_between_routers(routers: &mut  Vec<Router>,
            println!("Redunduncy Detected!! Device:{} will be allocated to Router: {}",moved_device.0.index(),lca);
            dist_router_index = lca;
            dist = lca;
+
+           if routers[lca].get_improve_queue().len()  < 1 {
+               if let Some(previous_max_variance) = routers[source_router_index].get_max_variance_before_round(){
+                   routers[lca].set_max_variance_before_round(previous_max_variance);
+               }
+               let improve_queue_clone_source: Vec<_> = {
+                   let src_queue = routers[source_router_index].get_improve_queue();
+                   src_queue.iter().map(|(value, sell_info)| (*value, sell_info.clone())).collect()
+               };
+               
+               let improve_queue_of_lca = routers[lca].get_improve_queue();
+               improve_queue_of_lca.extend(improve_queue_clone_source);
+           
+           }
        }
    }
 
@@ -273,22 +297,34 @@ fn swap_device_between_routers(routers: &mut  Vec<Router>,
        }
 
        routers[i].set_is_max_variance_router(false);
+       //if routers[i].get_router().index() == 245{
+       //     println!("245 device: {}", routers[i].get_devices().len());
+       //     println!("Before delete queue len: {}", routers[i].get_improve_queue().len());
+       //}
        routers[i].get_improve_queue().retain(|(_value , sell_info)| 
                                              { 
-                                                let is_delete_on_device_id =  sell_info.get_device().0.index() != device_no; 
-                                                let is_delete_on_router_id =  sell_info.get_router().index() != source_router_index;
+                                                let is_delete_on_source_router_id =  sell_info.get_router().index() != source_router_index;
+                                                let is_delete_on_dist_router_id =  sell_info.get_router().index() != dist_router_index;
 
-                                                if dist == 0 && source == 0 && device_no == 0 {
-                                                    println!("i: {}",i);
-                                                    println!("improved_value: {}",*_value);
-                                                    sell_info.print_sell_info();
-                                                }
+//                                                if dist == 0 && source == 0 && device_no == 0 {
+//                                                    println!("i: {}",i);
+//                                                    println!("improved_value: {}",*_value);
+//                                                    //sell_info.print_sell_info();
+//                                                }
                                                 
 //                                                if i == 44 {
 //                                                    println!(" is_device: {}, is_router: {}", is_delete_on_device_id, is_delete_on_router_id);
 //                                                }
-                                                is_delete_on_router_id  && is_delete_on_device_id
+                                                
+                                                if i == 245 && !(is_delete_on_dist_router_id && is_delete_on_source_router_id) {
+                                                    //sell_info.print_sell_info();
+                                                }
+                                                is_delete_on_dist_router_id && is_delete_on_source_router_id 
                                              });
+
+       //if routers[i].get_router().index() == 245{
+       //     println!("After delete queue len: {}", routers[i].get_improve_queue().len());
+       //}
        if dist == 0 && source == 0 && device_no == 0 {
            routers[i].set_optimal(true);
        }

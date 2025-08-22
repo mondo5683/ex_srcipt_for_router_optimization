@@ -125,7 +125,13 @@ fn main() -> std::io::Result<()> {
                 }
             }
         }
-      
+          
+        let mut device_nums = 0;
+        for r in routers.iter(){
+            let device_num = r.get_devices().len();
+            device_nums += device_num;
+        }
+        println!("device num: {}",device_nums);
         print_current_obvalue(&mut routers);
        
         /*
@@ -143,7 +149,7 @@ fn main() -> std::io::Result<()> {
         print_current_obvalue(&mut routers);
         println!("---");
 
-        let mut device_nums = 0;
+        device_nums = 0;
         for r in routers {
             let device_num = r.get_devices().len();
             device_nums += device_num;
