@@ -1,4 +1,5 @@
 use petgraph::{graph::NodeIndex, Graph, Undirected};
+use crate::Arc;
 use nalgebra as na;
 
 pub fn generate_router_array( rt: &na::DMatrix<i32>, topology: &mut Graph::<String,String,Undirected>) -> Vec::<NodeIndex> {

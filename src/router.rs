@@ -1,9 +1,9 @@
 use std::collections::HashMap;
-
 use crate::graph_operation::minimum_hop_to_node;
-use crate::{sell_info::{SellInfo}, ALPHA, BETA};
+use crate::{sell_info::{SellInfo}, ALPHA, BETA, Arc};
 use petgraph::{graph::NodeIndex, Graph,Undirected};
 use std::io::{Write, Result};
+
 
 fn median(v: &Vec<f64>) -> f64 {
     let mut s = v.clone();
@@ -17,42 +17,47 @@ fn median(v: &Vec<f64>) -> f64 {
     }
 
 }
-
-pub struct Router<'a> {
+#[derive(Clone)]
+pub struct Router {
     previous_obvalue: f64,
     router_obvalue: f64,
-    devices: Vec::<(NodeIndex,f64)>,
+    devices: Vec<(NodeIndex, f64)>,
     optimal: bool,
-    topo: &'a Graph::<String,String,Undirected>,
+    topo: Arc<Graph<String, String, Undirected>>,
     model_size: f64,
-    router: &'a NodeIndex,
-    ps:     &'a NodeIndex,
-    variance_vec: HashMap::<NodeIndex,f64>,
+    router: Arc<NodeIndex>,
+    ps: NodeIndex,
+    variance_vec: HashMap<NodeIndex, f64>,
     is_updated_in_previous_round: bool,
-    is_max_variance_router:bool,
-    improved_queue: Vec<(f64,SellInfo)>,
-    max_variance_before_round: Option<f64>
+    is_max_variance_router: bool,
+    improved_queue: Vec<(f64, SellInfo)>,
+    max_variance_before_round: Option<f64>,
 }
 
-impl<'a> Router<'a> {
-    pub fn new(topo: &'a Graph::<String, String, Undirected>, router:&'a NodeIndex, ps:&'a NodeIndex,model_size:f64) -> Self {
+impl Router {
+    pub fn new(
+        topo: Arc<Graph<String, String, Undirected>>,
+        router: Arc<NodeIndex>,
+        ps: NodeIndex,
+        model_size: f64,
+    ) -> Self {
         Self {
-            previous_obvalue: 0.0, 
+            previous_obvalue: 0.0,
             router_obvalue: 0.0,
-            devices: Vec::<(NodeIndex,f64)>::new(),
+            devices: Vec::new(),
             model_size,
             topo,
             ps,
             router,
-            optimal: false, 
+            optimal: false,
             variance_vec: HashMap::new(),
-            //To make routers conduct first sell info process, we initialize is_updated true
             is_updated_in_previous_round: true,
             is_max_variance_router: false,
-            improved_queue: Vec::<(f64, SellInfo)>::new(),
-            max_variance_before_round: None
+            improved_queue: Vec::new(),
+            max_variance_before_round: None,
         }
     }
+
     pub fn get_optimal(&self) -> bool {
         self.optimal
     }
@@ -278,15 +283,15 @@ impl<'a> Router<'a> {
 */
            let start = device;
            let goal = *self.router;
-           if let Some(hop_to_router_from_device) = minimum_hop_to_node(&goal, &start, self.topo){
+           if let Some(hop_to_router_from_device) = minimum_hop_to_node(&goal, &start, &self.topo){
                 before_merge_hopping += hop_to_router_from_device;
            }
 //               println!("Before Merge Path: {:?}", p);
 
            let start = *self.router;
-           let goal = *self.ps;
+           let goal = self.ps;
 
-           if let Some(hop_to_ps_from_router) = minimum_hop_to_node(&goal, &start, self.topo){
+           if let Some(hop_to_ps_from_router) = minimum_hop_to_node(&goal, &start, &self.topo){
                 after_merge_hopping = hop_to_ps_from_router;
            }
 
@@ -352,15 +357,15 @@ impl<'a> Router<'a> {
 */
            let start = device;
            let goal = *self.router;
-           if let Some(hop_to_router_from_device) = minimum_hop_to_node(&goal, &start, self.topo){
+           if let Some(hop_to_router_from_device) = minimum_hop_to_node(&goal, &start, &self.topo){
                 before_merge_hopping += hop_to_router_from_device;
            }
 //               println!("Before Merge Path: {:?}", p);
 
            let start = *self.router;
-           let goal = *self.ps;
+           let goal = self.ps;
 
-           if let Some(hop_to_ps_from_router) = minimum_hop_to_node(&goal, &start, self.topo){
+           if let Some(hop_to_ps_from_router) = minimum_hop_to_node(&goal, &start, &self.topo){
                 after_merge_hopping = hop_to_ps_from_router; 
            }
  
@@ -420,7 +425,7 @@ impl<'a> Router<'a> {
         for device in device_cluster{
 
 
-           match minimum_hop_to_node(self.ps, &device, self.topo){
+           match minimum_hop_to_node(&self.ps, &device, &self.topo){
                Some(cost) => {
 //                   println!("minimum_cost_to_ps:{}",cost);
                    overall_hopping += cost;
@@ -430,15 +435,15 @@ impl<'a> Router<'a> {
 
                       let start = device;
            let goal = *self.router;
-           if let Some(hop_to_router_from_device) = minimum_hop_to_node(&goal, &start, self.topo){
+           if let Some(hop_to_router_from_device) = minimum_hop_to_node(&goal, &start, &self.topo){
                 before_merge_hopping += hop_to_router_from_device;
            }
 //               println!("Before Merge Path: {:?}", p);
 
            let start = *self.router;
-           let goal = *self.ps;
+           let goal = self.ps;
 
-           if let Some(hop_to_ps_from_router) = minimum_hop_to_node(&goal, &start, self.topo){
+           if let Some(hop_to_ps_from_router) = minimum_hop_to_node(&goal, &start, &self.topo){
                 after_merge_hopping = hop_to_ps_from_router;
            }
 
