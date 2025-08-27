@@ -12,10 +12,7 @@ fn main() -> std::io::Result<()> {
     for rand in rand_seeds{
         println!("Seed: {}", rand);
         //for k in k_vec{ println!("For k: {}", k);
-    //    let time_exec = na::vector![20.0,100.0,35.0,100.0,60.0,300.0,40.0];
-
         let mut routers = prepare_routers(rand, model_size);
-          
         print_current_obvalue(&mut routers);
         /*
         match manually_operation(&mut routers, &r, &d, time_exec.column(0).iter().map(|x| *x).collect()){
@@ -24,23 +21,17 @@ fn main() -> std::io::Result<()> {
 
         };
         */
-        
         //clustering(k, &d, &time_exec ,&mut routers);
-
         optimize_obvalue_in_cluster(&mut routers);
-
         print_current_obvalue(&mut routers);
         println!("---");
 
 //    println!("router num:{}",router_num);
-        
 //      write_topology_json(routers)?;
-
-    
     //The followed } is the end of loop of k
     //}
-
     }
+
     Ok(())
 }
 
