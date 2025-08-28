@@ -76,48 +76,52 @@ pub fn prepare_routers(seed: u64, model_size: f64) -> Vec<Router> {
 
 
     use rand::{SeedableRng, rngs::StdRng, Rng};
-
-    // topology を Arc に包む
-    let mut rng = StdRng::seed_from_u64(seed);
-    let te_seed: u64 = rng.random();
-    let ed_seed: u64 = rng.random();
-    let ps_location_seed: u64 = rng.random();
-
     let rt = generate_topology();
+    
+    let mut rng = StdRng::seed_from_u64(seed);
+    let te_seed:u64 = rng.random();
+    let ed_seed:u64 = rng.random();
+    let ps_location_seed:u64 = rng.random();
+
     let time_exec = generate_random_time_exec_based_on_ratio(DEVICE_NUM, te_seed);
     let e = generate_random_edge_distribution(rt.nrows(), DEVICE_NUM, ed_seed);
+//    println!("{:?}", e);
+    println!("{:?}",time_exec);
 
-    let mut topology = Graph::<String, String, _>::new_undirected();
+    let mut topology = Graph::<String, String, Undirected>::new_undirected();
 
-    // ノード追加はここでやる
-    let ps_node = topology.add_node("parameter_server".to_string());
-    let r_nodes = generate_router_array(&rt, &mut topology);
-    let d_nodes = generate_device_array(&e, &mut topology);
+    let r = generate_router_array(&rt, &mut topology);
+    let d = generate_device_array(&e, &mut topology);
 
-    // 完成したら Arc に包む
 
-    let mut edge_array = generate_edge_array(&rt, &e, &r_nodes, &d_nodes);
-    edge_array.push(random_locate_ps(rt.nrows(), &ps_node, &r_nodes, ps_location_seed));
+    // Create Vertexes
+    let ps = topology.add_node(String::from("parameter_server"));
+    let mut edge_array = generate_edge_array(&rt, &e, &r, &d);
+    edge_array.push(random_locate_ps(rt.nrows(), &ps, &r, ps_location_seed));
+    //edge_array.push((ps, r[143]));
     topology.extend_with_edges(&edge_array);
-    
-    let topology = Arc::new(topology);
 
-    // Router の生成
-    let mut routers = Vec::new();
-    for router_node in r_nodes.iter() {
-        routers.push(Router::new(
-            Arc::clone(&topology),
-            Arc::new(*router_node),
-            ps_node.clone(),
-            model_size,
-        ));
+
+//    println!("{:?}",topology);
+    let topology_for_routers = Arc::new(topology);
+
+    let mut routers = Vec::<Router>::new();
+    for router_node in r.iter(){
+        routers.push(
+            Router::new(
+                Arc::clone(&topology_for_routers),
+                Arc::new(*router_node),
+                ps.clone(),
+                model_size
+            )
+        );
     }
 
-    // デバイス割り当て
+    //vecに応じてデバイスを割り当てる
     for (col_index, column) in e.column_iter().enumerate() {
         for (row_index, value) in column.iter().enumerate() {
             if *value == 1 {
-                let device = (d_nodes[col_index], time_exec[col_index]);
+                let device = (d[col_index], time_exec[col_index]);
                 routers[row_index].add_device(device);
             }
         }
