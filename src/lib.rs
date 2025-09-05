@@ -36,6 +36,8 @@ pub use std::io::{Write, Result};
 pub const ALPHA: f64 = 0.5;
 pub const BETA: f64 = 0.5;
 pub const INF: f64 = 9999999999999999.0;
+pub const LEAF_NUM: usize = 4;
+pub const LAYER_NUM: usize = 3;
 
 // Parameters for random_generation
 pub const DEVICE_NUM: usize = 130;
@@ -150,7 +152,16 @@ pub fn get_descendants(matrix: &na::DMatrix<i32>, root_id: usize) -> Vec<usize> 
 
 pub fn generate_topology() -> na::DMatrix<i32> {
 
-    let n = 294; // 総ルータ数
+    let layer = LAYER_NUM;
+    let num_leaf = LEAF_NUM;
+    let mut num_top_routers = 14;
+    // 総ルータ数
+    let mut  n = 0;
+    for _ in 0..layer{
+        n += num_top_routers;
+        num_top_routers *= num_leaf;
+    };
+    println!("n : {}", n);
     let mut matrix = na::DMatrix::<i32>::zeros(n, n);
 
     // ルータの接続関係（最上位14個）
@@ -169,10 +180,10 @@ pub fn generate_topology() -> na::DMatrix<i32> {
     let mut next_id = 14; // 13番目まで使っているので14から開始
     let mut current_layer = vec![0,1,2,3,4,5,6,7,8,9,10,11,12,13];
     
-    for _ in 0..2 { // 4層分の4分木を作成
+    for _ in 0..layer { // 4層分の4分木を作成
         let mut next_layer = Vec::new();
         for &parent in &current_layer {
-            for _ in 0..4 {
+            for _ in 0..num_leaf {
                 if next_id >= n { break; }
                 matrix[(parent, next_id)] = 1;
 //                matrix[(next_id, parent)] = 1;
@@ -228,7 +239,7 @@ fn write_topology_json(routers: Vec<Router>) -> std::io::Result<()>{
 
 }
 
-fn clustering(k: usize, d:&Vec<NodeIndex>, time_exec:&DVector<f64>,  routers: &mut Vec<Router>){
+pub fn clustering(k: usize, d:&Vec<NodeIndex>, time_exec:&DVector<f64>,  routers: &mut Vec<Router>){
 
     let max_iter = 100;
 

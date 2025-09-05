@@ -4,6 +4,7 @@ use crate::{sell_info::{SellInfo}, ALPHA, BETA, Arc};
 use petgraph::{graph::NodeIndex, Graph,Undirected};
 use std::io::{Write, Result};
 
+//Hoptonodeの部分を辞書から持ってくる処理にして初期化の段階で全てのルータとの距離を計算するようにする
 
 fn median(v: &Vec<f64>) -> f64 {
     let mut s = v.clone();
@@ -31,6 +32,7 @@ pub struct Router {
     is_updated_in_previous_round: bool,
     is_max_variance_router: bool,
     improved_queue: Vec<(f64, SellInfo)>,
+    hop_to_routers: HashMap<NodeIndex,usize>,
     max_variance_before_round: Option<f64>,
 }
 
@@ -54,6 +56,7 @@ impl Router {
             is_updated_in_previous_round: true,
             is_max_variance_router: false,
             improved_queue: Vec::new(),
+            hop_to_routers: HashMap::new(),
             max_variance_before_round: None,
         }
     }
@@ -109,7 +112,6 @@ impl Router {
     pub fn get_max_variance_before_round(&self) -> Option<f64>{
         self.max_variance_before_round
     }
-
     pub fn print_inner_cluster_devices(&self, writer: &mut impl Write, device_index_offset:usize) -> Result<()> {
         write!(writer, "\t\"{}\": [", self.router.index())?;
     
@@ -127,10 +129,19 @@ impl Router {
         Ok(())
     }
     
-    pub fn hop_to_node(&self, target_node_index: &NodeIndex) -> usize {
-        match  minimum_hop_to_node(target_node_index, &self.router, &self.topo) {
-            Some(hop_to_ps) => hop_to_ps,
-            None => 0
+    pub fn hop_to_node(&mut self, target_node_index: &NodeIndex) -> usize {
+
+        if self.hop_to_routers.contains_key(target_node_index){
+            *self.hop_to_routers.get(target_node_index).unwrap()
+        }
+        else {
+            match  minimum_hop_to_node(target_node_index, &self.router, &self.topo) {
+                Some(hop_to_ps) => {
+                    self.hop_to_routers.insert(*target_node_index, hop_to_ps);
+                    hop_to_ps
+                }
+                None => 0
+            }
         }
 
     }
