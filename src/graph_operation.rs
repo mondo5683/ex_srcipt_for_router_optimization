@@ -1,3 +1,5 @@
+use std::sync::Arc;
+
 use petgraph::{algo::dijkstra,graph::{NodeIndex, UnGraph}};
 
 
@@ -27,9 +29,9 @@ pub fn _divide_path(path: &Vec::<NodeIndex>,pivot:NodeIndex)
     return Some((previous, merged));
 }
 
-pub fn minimum_hop_to_node(target_node_index: &NodeIndex, source_node_index: &NodeIndex, gr:&UnGraph<String,String>) -> Option<usize> {
+pub fn minimum_hop_to_node(target_node_index: &NodeIndex, source_node_index: &NodeIndex, gr:&Arc<UnGraph<String,String>>) -> Option<usize> {
 
-    let res = dijkstra(gr, *source_node_index, None,|_| 1);
+    let res = dijkstra(&**gr, *source_node_index, None,|_| 1);
 
     if res.contains_key(target_node_index){
         let hop_num = *res.get(target_node_index).unwrap() as usize; 

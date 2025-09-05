@@ -1,5 +1,6 @@
 use petgraph::graph::NodeIndex;
 
+#[derive(Clone)]
 pub struct SellInfo{
     device: (NodeIndex, f64),
     previous_obvalue: f64,
