@@ -7,7 +7,7 @@ fn bench_optimize(c: &mut Criterion) {
     for seed in 100..110 {
 */
         // ベンチマーク名をユニークにする
-        let routers_template = prepare_routers(100, 500.0);
+        let (_, _, routers_template) = prepare_routers(100, 500.0);
         let bench_name = format!("optimize_obvalue_in_cluster");
 
         c.bench_function(&bench_name, |b| {

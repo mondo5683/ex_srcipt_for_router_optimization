@@ -1,4 +1,5 @@
 use std::collections::{HashMap};
+use std::time;
 
 use petgraph::graph::NodeIndex;
 
@@ -117,8 +118,12 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
     let (_ ,max_variance_from_hasmap) = variance_hashmap.iter().max_by(|a, b| a.1.partial_cmp(b.1).unwrap()).unwrap();
     //println!("max_variance: {}", *max_variance_from_hasmap);
 
+    let mut now: Option<time::Instant> = None;
     for r in routers.iter_mut(){
 
+        if r.get_router().index() == 0{
+           now = Some(time::Instant::now()); 
+        }
         if r.get_devices().len() < 1 {
             r.set_optimal(true);
             continue;
@@ -207,6 +212,11 @@ fn search_maximized_swap_node(routers: &mut  Vec<Router>,
             }
             None => {
                 r.set_optimal(true);
+            }
+        }
+        if r.get_router().index() == 1{
+            if let Some(t) = now {
+                println!("process time {:?}", t.elapsed());
             }
         }
     }

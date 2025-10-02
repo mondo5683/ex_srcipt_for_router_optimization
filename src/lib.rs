@@ -37,10 +37,10 @@ pub const ALPHA: f64 = 0.5;
 pub const BETA: f64 = 0.5;
 pub const INF: f64 = 9999999999999999.0;
 pub const LEAF_NUM: usize = 4;
-pub const LAYER_NUM: usize = 3;
+pub const LAYER_NUM: usize = 4;
 
 // Parameters for random_generation
-pub const DEVICE_NUM: usize = 130;
+pub const DEVICE_NUM: usize = 128;
 pub const TE_MEAN: f64 = 32.0;
 pub const SEED: u64 = 100;
 pub const TE_STD: f64 = 97.0;
@@ -48,34 +48,7 @@ pub const TE_STD: f64 = 97.0;
 // pub const ED_SEED: u64 = 55;
 // pub const PS_LOCATION_SEED: u64 = 44;
 
-pub fn prepare_routers(seed: u64, model_size: f64) -> Vec<Router> {
-
-    
-    /*
-     let rt = na::dmatrix![
-        0,1,1,1;
-        0,0,0,0;
-        0,0,0,0;
-        0,0,0,0;
-    ];
-    */
-
-/*
-    let rt = na::dmatrix![
-        0,1,1,0,0,0,0,0,0,0,0;
-        0,0,0,1,1,0,0,0,0,0,0;
-        0,0,0,0,0,1,1,0,0,0,0;
-        0,0,0,0,0,0,0,1,1,0,0;
-        0,0,0,0,0,0,0,0,0,0,0;
-        0,0,0,0,0,0,0,0,0,0,0;
-        0,0,0,0,0,0,0,0,0,1,1;
-        0,0,0,0,0,0,0,0,0,0,0;
-        0,0,0,0,0,0,0,0,0,0,0;
-        0,0,0,0,0,0,0,0,0,0,0;
-        0,0,0,0,0,0,0,0,0,0,0;
-    ];
-*/
-
+pub fn prepare_routers(seed: u64, model_size: f64) ->( Vec<NodeIndex>, DVector<f64>, Vec<Router>) {
 
     use rand::{SeedableRng, rngs::StdRng, Rng};
     let rt = generate_topology();
@@ -88,13 +61,15 @@ pub fn prepare_routers(seed: u64, model_size: f64) -> Vec<Router> {
     let time_exec = generate_random_time_exec_based_on_ratio(DEVICE_NUM, te_seed);
     let e = generate_random_edge_distribution(rt.nrows(), DEVICE_NUM, ed_seed);
 //    println!("{:?}", e);
-    println!("{:?}",time_exec);
+//    println!("{:?}",time_exec);
 
     let mut topology = Graph::<String, String, Undirected>::new_undirected();
 
     let r = generate_router_array(&rt, &mut topology);
     let d = generate_device_array(&e, &mut topology);
 
+    println!("e rows:{} cols:{}",e.nrows(),e.ncols());
+    println!("time cols:{}",time_exec.len());
 
     // Create Vertexes
     let ps = topology.add_node(String::from("parameter_server"));
@@ -123,13 +98,15 @@ pub fn prepare_routers(seed: u64, model_size: f64) -> Vec<Router> {
     for (col_index, column) in e.column_iter().enumerate() {
         for (row_index, value) in column.iter().enumerate() {
             if *value == 1 {
-                let device = (d[col_index], time_exec[col_index]);
+                let device = 
+                    (d[col_index], 
+                     time_exec[col_index]);
                 routers[row_index].add_device(device);
             }
         }
     }
 
-    routers
+    (d, time_exec, routers)
 }
 
 pub fn get_descendants(matrix: &na::DMatrix<i32>, root_id: usize) -> Vec<usize> {
@@ -241,7 +218,7 @@ fn write_topology_json(routers: Vec<Router>) -> std::io::Result<()>{
 
 pub fn clustering(k: usize, d:&Vec<NodeIndex>, time_exec:&DVector<f64>,  routers: &mut Vec<Router>){
 
-    let max_iter = 100;
+    let max_iter = 10000;
 
     let mut device_list = Vec::<Device>::new();
     for i in 0..d.len(){

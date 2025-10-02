@@ -14,7 +14,7 @@ fn main() -> std::io::Result<()> {
         println!("Seed: {}", rand);
         //for k in k_vec{ println!("For k: {}", k);
 
-        let mut routers = prepare_routers(rand, model_size);
+        let (d, time_exec,mut routers) = prepare_routers(rand, model_size);
 
         print_current_obvalue(&mut routers);
         /*
@@ -24,7 +24,8 @@ fn main() -> std::io::Result<()> {
 
         };
         */
-        //clustering(k, &d, &time_exec ,&mut routers);
+        let k = 3;
+//        clustering(k, &d, &time_exec ,&mut routers);
         optimize_obvalue_in_cluster(&mut routers);
         print_current_obvalue(&mut routers);
         println!("---");
