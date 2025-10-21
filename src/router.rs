@@ -172,9 +172,6 @@ impl Router {
         before_variance: f64,
         after_variance: f64,
     ) -> (f64, f64) {
-        //        if self.devices.len() < 1 {
-        //            return INF;
-        //        }
         //更新した相手が最大だった場合，更新後のvarianceではなくて変更後のvarianceをとってくる必要がある
         let mut assume_device_list = self.devices.clone();
         let mut variance_vec = self.variance_vec.clone();
@@ -254,9 +251,6 @@ impl Router {
 
         self.previous_obvalue = ALPHA * network_traffic + BETA * variance;
 
-        //        println!("network traffic: {}, variance: {}", network_traffic, variance);
-        //        println!("objective value : {}",self.previous_obvalue);
-
         (network_traffic, variance)
     }
     pub fn update_router_value(&mut self) -> (f64, f64) {
@@ -280,8 +274,6 @@ impl Router {
         }
 
         (network_traffic, variance)
-        //        println!("network traffic: {}, variance: {}", network_traffic, variance);
-        //        println!("objective value : {}",self.previous_obvalue);
     }
 
     pub fn remove_device(&mut self, device: (NodeIndex, f64)) {
@@ -304,15 +296,6 @@ impl Router {
         //        println!("{:?}", device_cluster);
 
         for device in device_cluster {
-            /*
-                       match minimum_cost_to_ps(self.ps, &device, self.topo){
-                           Some(cost) => {
-            //                   println!("minimum_cost_to_ps:{}",cost);
-                               overall_hopping += cost;
-                           },
-                           None => println!("Can't go to {:?}", device),
-                       }
-            */
             let start = device;
             let goal = *self.router;
             if let Some(hop_to_router_from_device) = minimum_hop_to_node(&goal, &start, &self.topo)
@@ -352,9 +335,6 @@ impl Router {
             //            println!("Variance: {}", variance);
         }
         let obvalue = ALPHA * network_traffic + BETA * variance;
-        //        println!("objective value : {}",obvalue);
-
-        //        println!("-------------------------------------------\n\n");
 
         obvalue
     }
@@ -374,15 +354,6 @@ impl Router {
         let device_cluster: Vec<NodeIndex> = device_list.iter().map(|(x, _)| *x).collect();
 
         for device in device_cluster {
-            /*
-                       match minimum_cost_to_ps(self.ps, &device, self.topo){
-                           Some(cost) => {
-            //                   println!("minimum_cost_to_ps:{}",cost);
-                               overall_hopping += cost;
-                           },
-                           None => println!("Can't go to {:?}", device),
-                       }
-            */
             let start = device;
             let goal = *self.router;
             if let Some(hop_to_router_from_device) = minimum_hop_to_node(&goal, &start, &self.topo)
@@ -422,13 +393,6 @@ impl Router {
             }
         }
 
-        /*
-                let min = device_time_list.iter().cloned().min_by(|a, b| a.partial_cmp(b).unwrap()).unwrap();
-                let max = device_time_list.iter().cloned().max_by(|a, b| a.partial_cmp(b).unwrap()).unwrap();
-
-                let diff = max - min;
-                let variance = diff * diff;
-        */
         (network_traffic, variance)
     }
 
@@ -493,14 +457,6 @@ impl Router {
             }
         }
 
-        //TODO CHANGE いったん分散をクラスタごとの最小値と最大値の差の二乗に変えてみる
-        /*
-                let min = device_time_list.iter().cloned().min_by(|a, b| a.partial_cmp(b).unwrap()).unwrap();
-                let max = device_time_list.iter().cloned().max_by(|a, b| a.partial_cmp(b).unwrap()).unwrap();
-
-                let diff = max - min;
-                let variance = diff * diff;
-        */
         (network_traffic, variance)
     }
 }
