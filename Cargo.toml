@@ -17,5 +17,5 @@ clustering = "0.2.1"
 criterion = "0.5"
 
 [[bench]]
-name = "optimize_benches"
+name = "cluster_benches"
 harness = false
