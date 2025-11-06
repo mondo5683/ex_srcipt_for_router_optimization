@@ -1,6 +1,7 @@
 use std::collections::HashMap;
 
 use petgraph::graph::NodeIndex;
+use petgraph::Direction::Incoming;
 
 use crate::router::Router;
 use crate::sell_info::SellInfo;
@@ -92,8 +93,8 @@ fn calc_improvement_using_si_for_router(
     r: &mut Router,
     si: &SellInfo,
     variance_hashmap: &HashMap<NodeIndex, f64>,
-) -> f64 {
-    let (assume_router_value, max_variance_from_others) = r.assume_add_device(
+) -> (f64, f64, f64) {
+    let (assume_router_value, max_variance_from_others, add_assume_variance) = r.assume_add_device(
         si.get_device(),
         *variance_hashmap.get(&si.get_router()).unwrap(),
         si.get_after_remove_variance(),
@@ -109,7 +110,11 @@ fn calc_improvement_using_si_for_router(
         ALPHA * si.get_network_cost() - BETA * max_variance_from_others - si.get_previous_obvalue()
     };
 
-    buyer_improve_value + seller_improve_value
+    (
+        buyer_improve_value,
+        seller_improve_value,
+        add_assume_variance,
+    )
 }
 
 fn search_maximized_swap_node(
@@ -127,11 +132,15 @@ fn search_maximized_swap_node(
     let mut max_value_router: NodeIndex = NodeIndex::new(0);
     let mut max_sell_info: Option<SellInfo> = None;
 
-    let (_, max_variance_from_hasmap) = variance_hashmap
+    let (router, max_variance_from_hasmap) = variance_hashmap
         .iter()
         .max_by(|a, b| a.1.partial_cmp(b.1).unwrap())
         .unwrap();
-    //println!("max_variance: {}", *max_variance_from_hasmap);
+    println!(
+        "max_variance: {}, router_id: {}",
+        *max_variance_from_hasmap,
+        router.index()
+    );
 
     let mut now: Option<time::Instant> = None;
     let mut is_first_router = true;
@@ -144,7 +153,13 @@ fn search_maximized_swap_node(
 
         if is_first_router {
             now = Some(time::Instant::now());
-            //            println!("first_router: {}", first_router_id);
+            let first_router_id = r.get_router().index();
+            let number_of_devices = r.get_devices().len();
+            println!(
+                "first_router: {}, #devices: {}",
+                first_router_id, number_of_devices
+            );
+            is_first_router = false;
         }
 
         let mut results = Vec::new();
@@ -156,19 +171,29 @@ fn search_maximized_swap_node(
             results.push((index, sell_info_copy));
             // }
         }
-
+        /*
+                if is_first_router {
+                    if let Some(t) = &now {
+                        println!("sell_info copy {:?}", t.elapsed());
+                    }
+                }
+        */
         // improve_queue 内の該当する improve_value を更新
+        // 始めに自身の持つsell_info_listに直前のトレードを反映し更新させる
+        let mut decreased_variance = 0.0;
         for (index, sell_info_copy) in results.iter_mut() {
             // println!("Update value with {}", improve_value);
-            //
+            //一回目のtrade roundでないなら更新する必要がある（このifの処理が実行される）
             if let Some(max_variance_before_round) = r.get_max_variance_before_round() {
                 let previous_obvalue = sell_info_copy.get_previous_obvalue();
-                let decreased_variance = max_variance_before_round - *max_variance_from_hasmap;
+                //各sell_infoのvariance部分を改善した分下げる
+                decreased_variance = max_variance_before_round - *max_variance_from_hasmap;
                 r.get_improve_queue()[*index]
                     .1
                     .set_previous_obvalue(previous_obvalue + BETA * decreased_variance);
                 sell_info_copy.set_previous_obvalue(previous_obvalue + BETA * decreased_variance);
 
+                //updateする対象がmax_varianceを持つ対象の場合そのまま更新
                 if *max_variance_from_hasmap == sell_info_copy.get_before_remove_variance() {
                     let network_cost = sell_info_copy.get_network_cost();
                     let after_remove_variance = sell_info_copy.get_after_remove_variance();
@@ -178,6 +203,7 @@ fn search_maximized_swap_node(
                         .1
                         .set_after_remove_obvalue(up_to_date_after_remove_obvalue);
                     sell_info_copy.set_after_remove_obvalue(up_to_date_after_remove_obvalue);
+                //そうでない場合はvarianceのみを減少量分下げる
                 } else {
                     let after_remove_obvalue = sell_info_copy.get_after_remove_cost();
                     let up_to_date_after_remove_obvalue =
@@ -188,10 +214,74 @@ fn search_maximized_swap_node(
                     sell_info_copy.set_after_remove_obvalue(up_to_date_after_remove_obvalue);
                 }
             }
+            //            if is_first_router {
+            //                if let Some(t) = &now {
+            //                    println!("Update improve queue 1 {:?}", t.elapsed());
+            //                }
+            //            }
 
-            let improve_value =
-                calc_improvement_using_si_for_router(r, &sell_info_copy, variance_hashmap);
-            r.get_improve_queue()[*index].0 = improve_value; // インデックス指定で更新
+            //let (buyer_improve_value, seller_improve_value, add_assume_variance) =
+            //    calc_improvement_using_si_for_router(r, &sell_info_copy, variance_hashmap);
+            // For acceleralating process, Skip calc_improvement_using_si_for_router() if it's unnessesary
+            let before_add_assume_variance =
+                r.get_improve_queue()[*index].0.get_assume_add_variance();
+            let is_variance_checked = r.get_improve_queue()[*index].0.is_variance_checked();
+
+            let (buyer_improve_value, seller_improve_value, add_assume_variance) = if r
+                .get_is_updated()
+            {
+                r.get_improve_queue()[*index].0.set_variance_checked(false);
+                calc_improvement_using_si_for_router(r, &sell_info_copy, variance_hashmap)
+            } else if before_add_assume_variance > *max_variance_from_hasmap {
+                if !is_variance_checked {
+                    r.get_improve_queue()[*index].0.set_variance_checked(true);
+                    calc_improvement_using_si_for_router(r, &sell_info_copy, variance_hashmap)
+                } else {
+                    let before_buyer = r.get_improve_queue()[*index].0.get_buyer_improved_value()
+                        - BETA * decreased_variance;
+                    let before_seller = r.get_improve_queue()[*index].0.get_seller_improved_value()
+                        - BETA * decreased_variance;
+                    (before_buyer, before_seller, before_add_assume_variance)
+                }
+            } else {
+                let before_variance = sell_info_copy.get_before_remove_variance();
+                let (buyer_improve_value, seller_improve_value) = if before_variance
+                    == *max_variance_from_hasmap
+                {
+                    let (biv, siv, _) =
+                        calc_improvement_using_si_for_router(r, &sell_info_copy, variance_hashmap);
+                    (biv, siv)
+                } else {
+                    let before_buyer = r.get_improve_queue()[*index].0.get_buyer_improved_value();
+                    let before_seller = r.get_improve_queue()[*index].0.get_seller_improved_value();
+                    (before_buyer, before_seller)
+                };
+                (
+                    buyer_improve_value,
+                    seller_improve_value,
+                    before_add_assume_variance,
+                )
+            };
+
+            let improve_value = buyer_improve_value + seller_improve_value;
+            r.get_improve_queue()[*index]
+                .0
+                .set_buyer_improved_value(buyer_improve_value);
+            r.get_improve_queue()[*index]
+                .0
+                .set_seller_improved_value(seller_improve_value);
+            r.get_improve_queue()[*index]
+                .0
+                .set_improve_value(improve_value);
+            r.get_improve_queue()[*index]
+                .0
+                .set_assume_add_variance(add_assume_variance);
+            //            if is_first_router {
+            //                is_first_router = false;
+            //                if let Some(t) = &now {
+            //                    println!("Update improve queue 2 {:?}", t.elapsed());
+            //                }
+            //            }
         }
 
         for si in sell_info_list.iter() {
@@ -199,25 +289,34 @@ fn search_maximized_swap_node(
                 continue;
             }
 
-            let improvement_for_si = calc_improvement_using_si_for_router(r, si, &variance_hashmap);
+            let (buyer_improve_value, seller_improve_value, add_assume_variance) =
+                calc_improvement_using_si_for_router(r, si, &variance_hashmap);
 
+            let improvement_for_si = buyer_improve_value + seller_improve_value;
             //    if improvement_for_si > 0.0 {
-            r.insert_to_improve_queue(improvement_for_si, si.clone());
+            r.insert_to_improve_queue(
+                improvement_for_si,
+                buyer_improve_value,
+                seller_improve_value,
+                add_assume_variance,
+                si.clone(),
+            );
             //    }
         }
         //r.get_improve_queue().retain(|&(value ,_ )| value > -600.0 );
         r.set_max_variance_before_round(*max_variance_from_hasmap);
         let _r_index = r.get_router().index();
-        match r
-            .get_improve_queue()
-            .iter()
-            .max_by(|a, b| a.0.partial_cmp(&b.0).unwrap())
-        {
+        match r.get_improve_queue().iter().max_by(|a, b| {
+            a.0.get_improve_value()
+                .partial_cmp(&b.0.get_improve_value())
+                .unwrap()
+        }) {
             Some(result) => {
-                let (max_gain_for_this_router, sell_info) = result;
+                let (queue_data, sell_info) = result;
 
-                if max_value < *max_gain_for_this_router {
-                    max_value = *max_gain_for_this_router;
+                let max_gain_for_this_router = queue_data.get_improve_value();
+                if max_value < max_gain_for_this_router {
+                    max_value = max_gain_for_this_router;
                     max_candidate = sell_info.get_device();
                     max_sell_info = Some(sell_info.clone());
                     //let source_router_index = sell_info.get_router();
@@ -229,12 +328,6 @@ fn search_maximized_swap_node(
             }
             None => {
                 r.set_optimal(true);
-            }
-        }
-        if is_first_router {
-            is_first_router = false;
-            if let Some(t) = now {
-                println!("process time {:?}", t.elapsed());
             }
         }
     }
@@ -319,7 +412,7 @@ fn swap_device_between_routers(
                         let src_queue = routers[source_router_index].get_improve_queue();
                         src_queue
                             .iter()
-                            .map(|(value, sell_info)| (*value, sell_info.clone()))
+                            .map(|(value, sell_info)| (value.clone(), sell_info.clone()))
                             .collect()
                     };
 

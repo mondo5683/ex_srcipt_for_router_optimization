@@ -1,4 +1,5 @@
 use crate::graph_operation::minimum_hop_to_node;
+use crate::improve_queue_data::QueueData;
 use crate::{sell_info::SellInfo, Arc, ALPHA, BETA};
 use petgraph::{graph::NodeIndex, Graph, Undirected};
 use std::collections::HashMap;
@@ -17,7 +18,7 @@ pub struct Router {
     variance_vec: HashMap<NodeIndex, f64>,
     is_updated_in_previous_round: bool,
     is_max_variance_router: bool,
-    improved_queue: Vec<(f64, SellInfo)>,
+    improved_queue: Vec<(QueueData, SellInfo)>,
     hop_to_routers: HashMap<NodeIndex, usize>,
     max_variance_before_round: Option<f64>,
 }
@@ -80,10 +81,23 @@ impl Router {
     pub fn get_is_updated(&self) -> bool {
         self.is_updated_in_previous_round
     }
-    pub fn insert_to_improve_queue(&mut self, value: f64, sell_info: SellInfo) {
-        self.improved_queue.push((value, sell_info));
+    pub fn insert_to_improve_queue(
+        &mut self,
+        improve_value: f64,
+        buyer_improved_value: f64,
+        seller_improved_value: f64,
+        add_assume_variance: f64,
+        sell_info: SellInfo,
+    ) {
+        let queuedata = QueueData::new(
+            buyer_improved_value,
+            seller_improved_value,
+            improve_value,
+            add_assume_variance,
+        );
+        self.improved_queue.push((queuedata, sell_info));
     }
-    pub fn get_improve_queue(&mut self) -> &mut Vec<(f64, SellInfo)> {
+    pub fn get_improve_queue(&mut self) -> &mut Vec<(QueueData, SellInfo)> {
         &mut self.improved_queue
     }
     pub fn set_is_max_variance_router(&mut self, b: bool) {
@@ -171,7 +185,7 @@ impl Router {
         device: (NodeIndex, f64),
         before_variance: f64,
         after_variance: f64,
-    ) -> (f64, f64) {
+    ) -> (f64, f64, f64) {
         //更新した相手が最大だった場合，更新後のvarianceではなくて変更後のvarianceをとってくる必要がある
         let mut assume_device_list = self.devices.clone();
         let mut variance_vec = self.variance_vec.clone();
@@ -192,17 +206,18 @@ impl Router {
                 .unwrap();
             after_variance.max(*max_variance_from_hasmap)
         } else {
+            //after_variance.max(*max_variance_from_hasmap)
             *max_variance_from_hasmap
         };
-
         if max_variance_of_others > variance {
             (
                 ALPHA * network_traffic - BETA * (0.01 * variance + max_variance_of_others),
                 max_variance_of_others,
+                variance,
             )
         } else {
             let router_value = ALPHA * network_traffic - BETA * variance;
-            (router_value, variance)
+            (router_value, variance, variance)
         }
     }
     pub fn assume_remove_device(&mut self, device: (NodeIndex, f64)) -> (f64, f64, f64, f64) {
@@ -440,6 +455,7 @@ impl Router {
         let after_merge_cost =
             self.model_size * (after_merge_hopping + before_merge_hopping) as f64;
         let network_traffic = before_merge_cost - after_merge_cost;
+        //let network_traffic = -1.0 *  after_merge_cost;
 
         let device_time_list: Vec<f64> = device_list.iter().map(|(_, x)| *x).collect();
 
