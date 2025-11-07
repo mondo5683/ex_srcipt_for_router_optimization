@@ -40,7 +40,7 @@ pub fn generate_random_time_exec_based_on_ratio(device_num:usize, seed:u64) -> n
     ]);
 
     let hashmap_timeexec_kind_to_mean_and_std = HashMap::from([
-        ("server", (15.0,3.0)),
+        ("server", (2.0,0.3)),
         ("desktop", (40.0,8.0)),
         ("laptop", (80.0,25.0)),
         ("raspi", (150.0, 15.0)),
@@ -51,7 +51,7 @@ pub fn generate_random_time_exec_based_on_ratio(device_num:usize, seed:u64) -> n
     for device_type in device_type_order {
         let mean_and_std = hashmap_timeexec_kind_to_mean_and_std[device_type];
         let ratio = hashmap_device_type_to_ratio[device_type];
-        let num_samples = (device_num as f64 * ratio) as usize;
+        let mut num_samples = (device_num as f64 * ratio) as usize;
 
         let time_exec_for_the_device_type = generate_random_time_exec(num_samples, seed, mean_and_std.0, mean_and_std.1)
                                             .iter().copied().collect::<Vec<f64>>();
