@@ -1,7 +1,6 @@
 use std::collections::HashMap;
 
 use petgraph::graph::NodeIndex;
-use petgraph::Direction::Incoming;
 
 use crate::router::Router;
 use crate::sell_info::SellInfo;
