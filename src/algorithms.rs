@@ -1,11 +1,12 @@
 use std::collections::HashMap;
 use std::ops::Index;
 
-use petgraph::graph::NodeIndex;
+use petgraph::graph::{Node, NodeIndex};
 
+use crate::imp_info::ImpInfo;
 use crate::router::Router;
 use crate::sell_info::SellInfo;
-use crate::{ALPHA, BETA};
+use crate::{Device, ALPHA, BETA};
 use std::time;
 
 pub fn optimize_obvalue_in_cluster(routers: &mut Vec<Router>) {
@@ -42,14 +43,16 @@ pub fn optimize_obvalue_in_cluster(routers: &mut Vec<Router>) {
         }
         let sell_info_list = generate_sell_info_list(routers);
 
-        let (max_router_value_device_hashmap, remove_router_value_device_hashmap) =
-            search_maximized_swap_node(routers, &sell_info_list, &variance_hashmap);
+        // let (max_router_value_device_hashmap, remove_router_value_device_hashmap) =
+        //     search_maximized_swap_node(routers, &sell_info_list, &variance_hashmap);
+        let max_imp_info = search_maximized_swap_node(routers, &sell_info_list, &variance_hashmap);
+        swap_device_between_routers(routers, &max_imp_info);
 
-        swap_device_between_routers(
-            routers,
-            &max_router_value_device_hashmap,
-            &remove_router_value_device_hashmap,
-        );
+        // swap_device_between_routers(
+        //     routers,
+        //     &max_router_value_device_hashmap,
+        //     &remove_router_value_device_hashmap,
+        // );
 
         //        let mut terminate = false;
         for r in routers.iter_mut() {
@@ -121,16 +124,14 @@ fn search_maximized_swap_node(
     routers: &mut Vec<Router>,
     sell_info_list: &Vec<SellInfo>,
     variance_hashmap: &HashMap<NodeIndex, f64>,
-) -> (
-    HashMap<NodeIndex, (NodeIndex, f64)>,
-    HashMap<NodeIndex, Vec<(NodeIndex, f64)>>,
-) {
-    let mut max_router_value_device_hashmap = HashMap::<NodeIndex, (NodeIndex, f64)>::new();
-    let mut remove_router_value_device_hashmap = HashMap::<NodeIndex, Vec<(NodeIndex, f64)>>::new();
+) -> (Option<ImpInfo>) {
+    //    let mut max_router_value_device_hashmap = HashMap::<NodeIndex, (NodeIndex, f64)>::new();
+    //    let mut remove_router_value_device_hashmap = HashMap::<NodeIndex, Vec<(NodeIndex, f64)>>::new();
     let mut max_value = 0.0;
     let mut max_candidate: (NodeIndex, f64) = (NodeIndex::new(0), 0.0);
     let mut max_value_router: NodeIndex = NodeIndex::new(0);
     let mut max_sell_info: Option<SellInfo> = None;
+    let mut max_imp_info: Option<ImpInfo> = None;
 
     let (router, max_variance_from_hasmap) = variance_hashmap
         .iter()
@@ -287,7 +288,7 @@ fn search_maximized_swap_node(
             //                }
             //            }
         }
-        
+
         //ここから自身が行うアクションでもっとも改善する選択肢を探す段階
         for si in sell_info_list.iter() {
             if si.get_router() == r.get_router() {
@@ -310,7 +311,7 @@ fn search_maximized_swap_node(
         }
         //r.get_improve_queue().retain(|&(value ,_ )| value > -600.0 );
         r.set_max_variance_before_round(*max_variance_from_hasmap);
-        let _r_index = r.get_router().index();
+        let _r_index = r.get_router();
         match r.get_improve_queue().iter().max_by(|a, b| {
             a.0.get_improve_value()
                 .partial_cmp(&b.0.get_improve_value())
@@ -321,14 +322,31 @@ fn search_maximized_swap_node(
 
                 let max_gain_for_this_router = queue_data.get_improve_value();
                 if max_value < max_gain_for_this_router {
+                    let improve_value = max_gain_for_this_router;
+                    let mut max_candidate_devices: Vec<Device> = Vec::new();
+                    let mut send_router: Vec<NodeIndex> = Vec::new();
+                    send_router.push(sell_info.get_router());
+                    max_candidate_devices.push(Device::new(
+                        sell_info.get_device().0,
+                        sell_info.get_device().1,
+                    ));
+
+                    let max_move_device_info = ImpInfo::new(
+                        max_candidate_devices,
+                        _r_index,
+                        send_router,
+                        improve_value,
+                        false,
+                    );
                     max_value = max_gain_for_this_router;
-                    max_candidate = sell_info.get_device();
-                    max_sell_info = Some(sell_info.clone());
+                    max_imp_info = Some(max_move_device_info);
+                    //                    max_candidate = sell_info.get_device();
+                    //                    max_sell_info = Some(sell_info.clone());
                     //let source_router_index = sell_info.get_router();
                     //remove_router_value_device_hashmap.entry(source_router_index).or_insert(vec![]).push(max_candidate);
                     //                    println!(" max_gain: {}, device: {:?}, source_router: {}, receive_router: {}", max_gain_for_this_router,
                     //                             sell_info.get_device(), sell_info.get_router().index(), _r_index );
-                    max_value_router = r.get_router();
+                    // max_value_router = r.get_router();
                 }
             }
             None => {
@@ -341,38 +359,35 @@ fn search_maximized_swap_node(
             }
         }
     }
-    if max_value > 0.0 {
-        max_router_value_device_hashmap
-            .entry(max_value_router)
-            .insert_entry(max_candidate);
-    }
+    // if max_value > 0.0 {
+    //     max_router_value_device_hashmap
+    //         .entry(max_value_router)
+    //         .insert_entry(max_candidate);
+    // }
 
-    if let Some(si) = max_sell_info {
-        let source_router_index = si.get_router();
-        remove_router_value_device_hashmap
-            .entry(source_router_index)
-            .or_insert(vec![])
-            .push(max_candidate);
-        //          si.print_sell_info();
-    };
+    // if let Some(si) = max_sell_info {
+    //     let source_router_index = si.get_router();
+    //     remove_router_value_device_hashmap
+    //         .entry(source_router_index)
+    //         .or_insert(vec![])
+    //         .push(max_candidate);
+    //     //          si.print_sell_info();
+    // };
 
-    (
-        max_router_value_device_hashmap,
-        remove_router_value_device_hashmap,
-    )
+    (max_imp_info)
 }
 
 fn swap_device_between_routers(
     routers: &mut Vec<Router>,
-    max_router_value_device_hashmap: &HashMap<NodeIndex, (NodeIndex, f64)>,
-    remove_router_value_device_hashmap: &HashMap<NodeIndex, Vec<(NodeIndex, f64)>>,
+    max_imp_info: &Option<ImpInfo>, // max_router_value_device_hashmap: &HashMap<NodeIndex, (NodeIndex, f64)>,
+                                    // remove_router_value_device_hashmap: &HashMap<NodeIndex, Vec<(NodeIndex, f64)>>,
 ) {
     let mut dist: usize = 0;
     let mut dist_router_index: usize = 0;
     let mut source: usize = 0;
     let mut source_router_index: usize = 0;
     let mut device_no: usize = 0;
-    let mut moved_device: Option<(NodeIndex, f64)> = None;
+    let mut moved_device: Option<Device> = None;
 
     let routers_index_map: HashMap<NodeIndex, usize> = routers
         .iter()
@@ -381,24 +396,46 @@ fn swap_device_between_routers(
         .collect();
 
     // HashMapを使ってVecを更新
-    for (nodeindex, device) in max_router_value_device_hashmap.iter() {
-        if let Some(&index) = routers_index_map.get(nodeindex) {
-            dist = nodeindex.index();
-            device_no = device.0.index();
-            dist_router_index = index;
-        }
-    }
+    // for (nodeindex, device) in max_router_value_device_hashmap.iter() {
+    //     if let Some(&index) = routers_index_map.get(nodeindex) {
+    //         dist = nodeindex.index();
+    //         device_no = device.0.index();
+    //         dist_router_index = index;
+    //     }
+    // }
 
-    for (nodeindex, devices) in remove_router_value_device_hashmap.iter() {
-        if let Some(&index) = routers_index_map.get(nodeindex) {
-            //println!("{:?}",devices);
-            for device in devices {
+    // for (nodeindex, devices) in remove_router_value_device_hashmap.iter() {
+    //     if let Some(&index) = routers_index_map.get(nodeindex) {
+    //         //println!("{:?}",devices);
+    //         for device in devices {
+    //             source = nodeindex.index();
+    //             source_router_index = index;
+    //             moved_device = Some(*device);
+    //         }
+    //     }
+    // }
+    if let Some(imp_info) = max_imp_info {
+        if !imp_info.is_pair() {
+            let device = imp_info.devices()[0].clone();
+
+            let mut nodeindex = &imp_info.receive_router();
+            if let Some(&index) = routers_index_map.get(nodeindex) {
+                dist = nodeindex.index();
+                device_no = device.get_id().index();
+                dist_router_index = index;
+            }
+            let mut nodeindex = &imp_info.send_routers()[0];
+            if let Some(&index) = routers_index_map.get(nodeindex) {
+                //         //println!("{:?}",devices);
+                //         for device in devices {
                 source = nodeindex.index();
                 source_router_index = index;
-                moved_device = Some(*device);
+                moved_device = Some(device);
+                //         }
+                //     }
             }
         }
-    }
+    };
 
     if let Some(device) = moved_device {
         //LCAを検出しそこに配置
@@ -406,7 +443,7 @@ fn swap_device_between_routers(
             if !(lca.eq(&source) || lca.eq(&dist)) {
                 println!(
                     "Redunduncy Detected!! Device:{} will be allocated to Router: {}",
-                    device.0.index(),
+                    device.get_id().index(),
                     lca
                 );
                 dist_router_index = lca;
@@ -432,8 +469,8 @@ fn swap_device_between_routers(
             }
         }
 
-        routers[source_router_index].remove_device(device);
-        routers[dist_router_index].add_device(device);
+        routers[source_router_index].remove_device((device.get_id(), device.get_learning_time()));
+        routers[dist_router_index].add_device((device.get_id(), device.get_learning_time()));
     }
     for i in 0..routers.len() {
         if i == dist || i == source_router_index {

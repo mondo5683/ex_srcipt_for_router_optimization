@@ -213,6 +213,7 @@ impl Router {
                 minimum_value = _find_minimum_improve_value_from_sell_info(top_m, &pair_candidates)
             }
         }
+        /*
         if pair_candidates.len() > 1 {
             println!(
                 "router_id {}: Top-10 improve_value",
@@ -222,9 +223,10 @@ impl Router {
         for candi in pair_candidates {
             println!("improve_value: {}", candi.0);
         }
+        */
         //ペアを作るための全探索
-        
-        //ペアのimprove_rateを再計算 
+
+        //ペアのimprove_rateを再計算
     }
 
     pub fn assume_add_device(
