@@ -8,6 +8,7 @@ pub mod device;
 pub mod device_clustering;
 pub mod gen_topology;
 pub mod graph_operation;
+pub mod imp_info;
 pub mod improve_queue_data;
 pub mod manual_operation;
 pub mod random_generation;

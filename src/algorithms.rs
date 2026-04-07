@@ -1,4 +1,5 @@
 use std::collections::HashMap;
+use std::ops::Index;
 
 use petgraph::graph::NodeIndex;
 
@@ -146,8 +147,12 @@ fn search_maximized_swap_node(
 
     for r in routers.iter_mut() {
         if r.get_devices().len() < 1 {
+            //新しいペアを見つける処理を書く
             r.set_optimal(true);
-            continue;
+            r.find_new_pair();
+            if r.get_router().index() != 0 {
+                continue;
+            }
         }
 
         if is_first_router {
@@ -282,7 +287,8 @@ fn search_maximized_swap_node(
             //                }
             //            }
         }
-
+        
+        //ここから自身が行うアクションでもっとも改善する選択肢を探す段階
         for si in sell_info_list.iter() {
             if si.get_router() == r.get_router() {
                 continue;

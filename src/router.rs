@@ -1,9 +1,9 @@
 use crate::graph_operation::minimum_hop_to_node;
-use crate::improve_queue_data::QueueData;
+use crate::improve_queue_data::{self, QueueData};
 use crate::{sell_info::SellInfo, Arc, ALPHA, BETA};
 use petgraph::{graph::NodeIndex, Graph, Undirected};
 use std::collections::HashMap;
-use std::io::{Result, Write};
+use std::io::{Result, SeekFrom, Write};
 
 #[derive(Clone)]
 pub struct Router {
@@ -178,6 +178,53 @@ impl Router {
         }
 
         sell_info_list
+    }
+
+    pub fn find_new_pair(&mut self) {
+        let top_m = 10;
+        //sell_infoからTOP-mの改善率のルータをリストに入れる
+        let mut pair_candidates: Vec<(f64, SellInfo)> = Vec::new();
+
+        //improve_queueの詳細を見る
+        let mut minimum_value = 0.0;
+
+        for (index, imp) in self.get_improve_queue().iter().enumerate() {
+            let improve_rate = imp.1.get_previous_obvalue() - imp.1.get_after_remove_cost();
+            if pair_candidates.len() < 10 {
+                pair_candidates.push((improve_rate, imp.1.clone()));
+
+                if pair_candidates.len() == 10 {
+                    minimum_value =
+                        _find_minimum_improve_value_from_sell_info(top_m, &pair_candidates);
+                }
+                continue;
+            }
+
+            if improve_rate > minimum_value {
+                //入れ替えする処理を書く
+                let mut swap_index = 0;
+                for (i, candi) in pair_candidates.iter().enumerate() {
+                    if candi.0 == minimum_value {
+                        swap_index = i;
+                        break;
+                    }
+                }
+                pair_candidates[swap_index] = (improve_rate, imp.1.clone());
+                minimum_value = _find_minimum_improve_value_from_sell_info(top_m, &pair_candidates)
+            }
+        }
+        if pair_candidates.len() > 1 {
+            println!(
+                "router_id {}: Top-10 improve_value",
+                self.get_router().index()
+            );
+        }
+        for candi in pair_candidates {
+            println!("improve_value: {}", candi.0);
+        }
+        //ペアを作るための全探索
+        
+        //ペアのimprove_rateを再計算 
     }
 
     pub fn assume_add_device(
@@ -475,4 +522,23 @@ impl Router {
 
         (network_traffic, variance)
     }
+}
+
+fn _find_minimum_improve_value_from_sell_info(
+    top_m: usize,
+    pair_candidates: &Vec<(f64, SellInfo)>,
+) -> f64 {
+    let minimum_value = if pair_candidates.len() < top_m {
+        0.0
+    } else {
+        let mut minimum_value_in_candidates = 0.0;
+        for candi in pair_candidates.iter() {
+            if candi.0 < minimum_value_in_candidates {
+                minimum_value_in_candidates = candi.0;
+            }
+        }
+        minimum_value_in_candidates
+    };
+
+    minimum_value
 }
