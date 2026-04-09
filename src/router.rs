@@ -1,5 +1,6 @@
 use crate::graph_operation::minimum_hop_to_node;
 use crate::improve_queue_data::{self, QueueData};
+use crate::{device_clustering, Device};
 use crate::{sell_info::SellInfo, Arc, ALPHA, BETA};
 use petgraph::{graph::NodeIndex, Graph, Undirected};
 use std::collections::HashMap;
@@ -180,53 +181,54 @@ impl Router {
         sell_info_list
     }
 
-    pub fn find_new_pair(&mut self) {
-        let top_m = 10;
-        //sell_infoからTOP-mの改善率のルータをリストに入れる
-        let mut pair_candidates: Vec<(f64, SellInfo)> = Vec::new();
+    pub fn find_new_candidates(&mut self) {
+        if self.has_max_variance_router() {
+            let mut devices = self.get_devices().clone();
+            let mut minimum_variance = 9999999999999.0;
+            let mut sold_deivices: Option<Vec<(NodeIndex, f64)>> = None;
 
-        //improve_queueの詳細を見る
-        let mut minimum_value = 0.0;
-
-        for (index, imp) in self.get_improve_queue().iter().enumerate() {
-            let improve_rate = imp.1.get_previous_obvalue() - imp.1.get_after_remove_cost();
-            if pair_candidates.len() < 10 {
-                pair_candidates.push((improve_rate, imp.1.clone()));
-
-                if pair_candidates.len() == 10 {
-                    minimum_value =
-                        _find_minimum_improve_value_from_sell_info(top_m, &pair_candidates);
+            //まずは1重ループ
+            for d in devices.iter() {
+                let (_, _, variance, _) = self.assume_remove_device(*d);
+                if minimum_variance > variance {
+                    minimum_variance = variance;
+                    let sold_device_list = vec![*d];
+                    sold_deivices = Some(sold_device_list);
                 }
-                continue;
             }
 
-            if improve_rate > minimum_value {
-                //入れ替えする処理を書く
-                let mut swap_index = 0;
-                for (i, candi) in pair_candidates.iter().enumerate() {
-                    if candi.0 == minimum_value {
-                        swap_index = i;
-                        break;
+            //つぎに2重ループ
+            for i in 0..devices.len() {
+                let first_removed_device = devices[i];
+                devices.retain(|&x| x != first_removed_device);
+                for j in i..devices.len() {
+                    let second_removed_device = devices[j];
+                    devices.retain(|&x| x != first_removed_device);
+
+                    let variance = _calculate_variance(&devices);
+                    let sold_device_variance = _calculate_variance_of_two_devices(
+                        Device::new(first_removed_device.0, first_removed_device.1),
+                        Device::new(second_removed_device.0, second_removed_device.1),
+                    );
+                    if minimum_variance > variance + 0.5 * sold_device_variance {
+                        minimum_variance = variance + 0.5 * sold_device_variance;
+                        let sold_device_list = vec![first_removed_device, second_removed_device];
+                        sold_deivices = Some(sold_device_list);
                     }
+
+                    devices.push(second_removed_device);
                 }
-                pair_candidates[swap_index] = (improve_rate, imp.1.clone());
-                minimum_value = _find_minimum_improve_value_from_sell_info(top_m, &pair_candidates)
+                devices.push(first_removed_device);
+            }
+
+            println!("Minimum Variance: {}", minimum_variance);
+            if let Some(sold_d) = sold_deivices {
+                println!("Sold Devices");
+                for d in sold_d {
+                    println!("{:?}", d);
+                }
             }
         }
-        /*
-        if pair_candidates.len() > 1 {
-            println!(
-                "router_id {}: Top-10 improve_value",
-                self.get_router().index()
-            );
-        }
-        for candi in pair_candidates {
-            println!("improve_value: {}", candi.0);
-        }
-        */
-        //ペアを作るための全探索
-
-        //ペアのimprove_rateを再計算
     }
 
     pub fn assume_add_device(
@@ -543,4 +545,30 @@ fn _find_minimum_improve_value_from_sell_info(
     };
 
     minimum_value
+}
+
+fn _calculate_variance(device_list: &Vec<(NodeIndex, f64)>) -> f64 {
+    let device_time_list: Vec<f64> = device_list.iter().map(|(_, x)| *x).collect();
+    let time_exec_average =
+        device_time_list.iter().sum::<f64>() as f64 / device_time_list.len() as f64;
+    let device_num = device_list.len();
+
+    let mut variance = 0.0;
+
+    if device_list.len() <= 1 {
+        variance = time_exec_average
+    } else {
+        for time in device_time_list {
+            let std = (time as f64 - time_exec_average) * (time as f64 - time_exec_average)
+                / device_num as f64;
+            variance = variance + std;
+        }
+    }
+    variance
+}
+
+fn _calculate_variance_of_two_devices(device1: Device, device2: Device) -> f64 {
+    let average = (device1.get_learning_time() + device2.get_learning_time()) as f64 / 2.0;
+
+    average * average - device1.get_learning_time() * device2.get_learning_time()
 }

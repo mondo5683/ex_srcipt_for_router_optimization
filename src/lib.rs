@@ -101,6 +101,8 @@ pub fn prepare_routers(seed: u64, model_size: f64) -> (Vec<NodeIndex>, DVector<f
         }
     }
 
+    //_write_topology_json(&routers);
+
     (d, time_exec, routers)
 }
 
@@ -212,7 +214,7 @@ pub fn print_current_obvalue(routers: &mut Vec<Router>) {
     );
 }
 
-fn _write_topology_json(routers: Vec<Router>) -> std::io::Result<()> {
+fn _write_topology_json(routers: &Vec<Router>) -> std::io::Result<()> {
     //let filename = format!("topology_cluster_{}_with_seed_{}_generated_ratio_oriented.json",k,rand.to_string());
     //let mut file = File::create(filename)?;
     let mut file = File::create("topology.json")?;
