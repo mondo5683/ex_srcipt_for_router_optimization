@@ -96,10 +96,10 @@ pub fn allocate_cluster_to_optimal_router(
         let mut cluster_assinged_router_id = 0;
         let mut assined_cluster_id = 0;
         for (clusterid, reduction_vec) in hashmap_clusterid_to_router_index.iter() {
-            let max_network_cost_redecution_in_cluster: f64 = reduction_vec[0].1;
+            let max_network_cost_reduction_in_cluster: f64 = reduction_vec[0].1;
 
-            if max_network_cost_redecution < max_network_cost_redecution_in_cluster {
-                max_network_cost_redecution = max_network_cost_redecution_in_cluster;
+            if max_network_cost_redecution < max_network_cost_reduction_in_cluster {
+                max_network_cost_redecution = max_network_cost_reduction_in_cluster;
                 cluster_assinged_router_id = reduction_vec[0].0.index();
                 assined_cluster_id = *clusterid;
                 //println!("max_network_cost_redecution:{}, cluster_assinged_router_id: :{}, assined_cluster_id: {}", max_network_cost_redecution,cluster_assinged_router_id, assined_cluster_id);

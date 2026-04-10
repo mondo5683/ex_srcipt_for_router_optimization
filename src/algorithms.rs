@@ -59,9 +59,10 @@ pub fn optimize_obvalue_in_cluster(routers: &mut Vec<Router>) {
             &variance_hashmap,
             max_variance_from_hasmap,
         );
-        routers[max_variance_router.index()].find_new_candidates();
-        let max_imp_info = search_maximized_swap_node(routers);
-        swap_device_between_routers(routers, &max_imp_info);
+        //let variance_candidates = routers[max_variance_router.index()].find_new_candidates();
+        // let max_imp_new_routers = propose_new_pair_by_new_routers(routers, variance_candidates);
+        let max_imp_exsiting_routers = search_maximized_swap_node(routers);
+        swap_device_between_routers(routers, &max_imp_exsiting_routers);
 
         //        let mut terminate = false;
         for r in routers.iter_mut() {
@@ -128,7 +129,29 @@ fn calc_improvement_using_si_for_router(
         add_assume_variance,
     )
 }
+/*
+fn propose_new_pair_by_new_routers(
+    routers: &mut Vec<Router>,
+    variance_candidates: Vec<(NodeIndex, f64)>,
+) -> Option<ImpInfo> {
+    let mut new_routers_impinfo: Option<ImpInfo> = None;
 
+    //はじめに売り手の改善値を出す。
+
+    let seller_improve_value = 1; //improve_queueより取ってくる
+    for r in routers.iter_mut() {
+        if r.get_devices().iter().len() > 0 {
+            continue;
+        }
+
+        let buyer_improve_value = router_add_assume();
+    }
+
+    new_routers_impinfo = Some(max_imp_value);
+
+    new_routers_impinfo
+}
+*/
 fn search_maximized_swap_node(routers: &mut Vec<Router>) -> (Option<ImpInfo>) {
     let mut max_value = 0.0;
     let mut max_imp_info: Option<ImpInfo> = None;
@@ -144,7 +167,7 @@ fn search_maximized_swap_node(routers: &mut Vec<Router>) -> (Option<ImpInfo>) {
                 continue;
             }
         }
-        r.find_new_candidates();
+        //r.find_new_candidates();
 
         /*処理時間計測用
         if is_first_router {

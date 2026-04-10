@@ -22,8 +22,9 @@ fn main() -> std::io::Result<()> {
 
         };
         */
-        let _k = 3;
-        //        clustering(_k, &_d, &_time_exec ,&mut routers);
+        let _k = 20;
+        clustering(_k, &_d, &_time_exec, &mut routers);
+        print_current_obvalue(&mut routers);
         optimize_obvalue_in_cluster(&mut routers);
         print_current_obvalue(&mut routers);
         println!("---");

@@ -22,6 +22,8 @@ pub struct Router {
     improved_queue: Vec<(QueueData, SellInfo)>,
     hop_to_routers: HashMap<NodeIndex, usize>,
     max_variance_before_round: Option<f64>,
+    alpha: f64,
+    beta: f64,
 }
 
 impl Router {
@@ -46,6 +48,8 @@ impl Router {
             improved_queue: Vec::new(),
             hop_to_routers: HashMap::new(),
             max_variance_before_round: None,
+            alpha: ALPHA,
+            beta: BETA,
         }
     }
 
@@ -181,11 +185,11 @@ impl Router {
         sell_info_list
     }
 
-    pub fn find_new_candidates(&mut self) {
+    pub fn find_new_candidates(&mut self) -> Option<Vec<(NodeIndex, f64)>> {
+        let mut sold_devices: Option<Vec<(NodeIndex, f64)>> = None;
         if self.has_max_variance_router() {
             let mut devices = self.get_devices().clone();
             let mut minimum_variance = 9999999999999.0;
-            let mut sold_deivices: Option<Vec<(NodeIndex, f64)>> = None;
 
             //まずは1重ループ
             for d in devices.iter() {
@@ -193,7 +197,7 @@ impl Router {
                 if minimum_variance > variance {
                     minimum_variance = variance;
                     let sold_device_list = vec![*d];
-                    sold_deivices = Some(sold_device_list);
+                    sold_devices = Some(sold_device_list);
                 }
             }
 
@@ -213,7 +217,7 @@ impl Router {
                     if minimum_variance > variance + 0.5 * sold_device_variance {
                         minimum_variance = variance + 0.5 * sold_device_variance;
                         let sold_device_list = vec![first_removed_device, second_removed_device];
-                        sold_deivices = Some(sold_device_list);
+                        sold_devices = Some(sold_device_list);
                     }
 
                     devices.push(second_removed_device);
@@ -222,13 +226,16 @@ impl Router {
             }
 
             println!("Minimum Variance: {}", minimum_variance);
-            if let Some(sold_d) = sold_deivices {
+            if let Some(ref sold_d) = sold_devices {
                 println!("Sold Devices");
                 for d in sold_d {
+                    let (_, _, _, imrpove_value) = self.assume_remove_device(*d);
                     println!("{:?}", d);
+                    println!("improve_value: {}", imrpove_value);
                 }
             }
         }
+        sold_devices
     }
 
     pub fn assume_add_device(
@@ -262,12 +269,13 @@ impl Router {
         };
         if max_variance_of_others > variance {
             (
-                ALPHA * network_traffic - BETA * (0.01 * variance + max_variance_of_others),
+                self.alpha * network_traffic
+                    - self.beta * (0.01 * variance + max_variance_of_others),
                 max_variance_of_others,
                 variance,
             )
         } else {
-            let router_value = ALPHA * network_traffic - BETA * variance;
+            let router_value = self.alpha * network_traffic - self.beta * variance;
             (router_value, variance, variance)
         }
     }
@@ -292,14 +300,14 @@ impl Router {
                     network_traffic,
                     before_variance,
                     variance,
-                    ALPHA * network_traffic - BETA * variance,
+                    self.alpha * network_traffic - self.beta * variance,
                 )
             } else {
                 (
                     network_traffic,
                     before_variance,
                     variance,
-                    ALPHA * network_traffic - BETA * *max_variance_from_hasmap,
+                    self.alpha * network_traffic - self.beta * *max_variance_from_hasmap,
                 )
             }
         } else {
@@ -307,7 +315,7 @@ impl Router {
                 network_traffic,
                 before_variance,
                 variance,
-                ALPHA * network_traffic - BETA * variance,
+                self.alpha * network_traffic - self.beta * variance,
             )
         }
     }
@@ -315,7 +323,7 @@ impl Router {
         let device_list = self.devices.clone();
         let (network_traffic, variance) = self.calc_obvalue_return_two_variables(&device_list);
 
-        self.previous_obvalue = ALPHA * network_traffic + BETA * variance;
+        self.previous_obvalue = self.alpha * network_traffic + self.beta * variance;
 
         (network_traffic, variance)
     }
@@ -330,13 +338,14 @@ impl Router {
         {
             if *max_variance_from_hasmap > variance {
                 //println!("Use max variance value: {}",*max_variance_from_hasmap);
-                self.router_obvalue = ALPHA * network_traffic - BETA * *max_variance_from_hasmap;
+                self.router_obvalue =
+                    self.alpha * network_traffic - self.beta * *max_variance_from_hasmap;
             } else {
                 //println!("Use self variance value: {}, {}",network_traffic,variance);
-                self.router_obvalue = ALPHA * network_traffic - BETA * variance;
+                self.router_obvalue = self.alpha * network_traffic - self.beta * variance;
             }
         } else {
-            self.router_obvalue = ALPHA * network_traffic - BETA * variance;
+            self.router_obvalue = self.alpha * network_traffic - self.beta * variance;
         }
 
         (network_traffic, variance)
@@ -400,7 +409,7 @@ impl Router {
 
             //            println!("Variance: {}", variance);
         }
-        let obvalue = ALPHA * network_traffic + BETA * variance;
+        let obvalue = self.alpha * network_traffic + self.beta * variance;
 
         obvalue
     }
