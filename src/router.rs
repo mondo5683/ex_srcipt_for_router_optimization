@@ -111,6 +111,18 @@ impl Router {
     pub fn has_max_variance_router(&self) -> bool {
         self.is_max_variance_router
     }
+    pub fn alpha(&self) -> f64 {
+        self.alpha
+    }
+    pub fn beta(&self) -> f64 {
+        self.beta
+    }
+    pub fn set_alpha(&mut self, alpha: f64) {
+        self.alpha = alpha;
+    }
+    pub fn set_beta(&mut self, beta: f64) {
+        self.beta = beta;
+    }
     pub fn set_max_variance_before_round(&mut self, max_variance: f64) {
         self.max_variance_before_round = Some(max_variance);
     }

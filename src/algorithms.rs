@@ -120,7 +120,9 @@ fn calc_improvement_using_si_for_router(
     let seller_improve_value = if max_variance_from_others < si.get_after_remove_variance() {
         si.get_after_remove_cost() - si.get_previous_obvalue()
     } else {
-        ALPHA * si.get_network_cost() - BETA * max_variance_from_others - si.get_previous_obvalue()
+        r.alpha() * si.get_network_cost()
+            - r.beta() * max_variance_from_others
+            - si.get_previous_obvalue()
     };
 
     (
@@ -360,7 +362,7 @@ fn update_routers_sell_info_list(
                     let network_cost = sell_info_copy.get_network_cost();
                     let after_remove_variance = sell_info_copy.get_after_remove_variance();
                     let up_to_date_after_remove_obvalue =
-                        ALPHA * network_cost - BETA * after_remove_variance;
+                        r.alpha() * network_cost - r.beta() * after_remove_variance;
                     r.get_improve_queue()[*index]
                         .1
                         .set_after_remove_obvalue(up_to_date_after_remove_obvalue);
