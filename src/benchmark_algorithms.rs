@@ -48,7 +48,6 @@ pub fn calculate_variances_clusters(clustered_group: &HashMap<usize, Vec<Device>
     variance_vec
 }
 
-//TODO その後各クラスターの最適なルータを検索できる
 pub fn allocate_cluster_to_optimal_router(
     routers: &mut Vec<Router>,
     clustered_group: HashMap<usize, Vec<Device>>,
@@ -63,7 +62,8 @@ pub fn allocate_cluster_to_optimal_router(
 
     let mut hashmap_clusterid_to_router_index: HashMap<usize, Vec<(NodeIndex, f64)>> =
         HashMap::new();
-
+    
+    //すべてのクラスタをすべてのルータに割り当てて最適なものを計算する
     for (clusterid, devices) in clustered_group.iter() {
         let device_list: Vec<(NodeIndex, f64)> = devices
             .iter()
@@ -95,7 +95,13 @@ pub fn allocate_cluster_to_optimal_router(
         let mut max_network_cost_redecution = -99999999999.0;
         let mut cluster_assinged_router_id = 0;
         let mut assined_cluster_id = 0;
+        //現状で最大の効率をもつクラスタをもとめる。（Greedy）
         for (clusterid, reduction_vec) in hashmap_clusterid_to_router_index.iter() {
+
+            //Deviceが存在しないクラスター番号は飛ばす
+            if reduction_vec.len() == 0{
+                continue;
+            }
             let max_network_cost_reduction_in_cluster: f64 = reduction_vec[0].1;
 
             if max_network_cost_redecution < max_network_cost_reduction_in_cluster {
