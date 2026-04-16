@@ -9,7 +9,7 @@ use crate::sell_info::SellInfo;
 use crate::{Device, ALPHA, BETA};
 use std::time;
 
-pub fn optimize_obvalue_in_cluster(routers: &mut Vec<Router>) {
+pub fn optimize_obvalue_in_cluster(routers: &mut Vec<Router>, is_first_round:bool) {
     //各ルータのobvalueを計算
     for i in 0..routers.len() {
         let (_, _variance) = routers[i].update_router_value();
@@ -26,6 +26,8 @@ pub fn optimize_obvalue_in_cluster(routers: &mut Vec<Router>) {
 
     let mut terminate = false;
     let mut _stop_flag = false;
+
+    let mut before_max_variance = 0.0;
 
     loop {
         update_max_variance_hashmap(routers, &mut variance_hashmap);
@@ -51,6 +53,14 @@ pub fn optimize_obvalue_in_cluster(routers: &mut Vec<Router>) {
             *max_variance_from_hasmap,
             router.index()
         );
+
+        //TO Interrupt for Experiments
+        if is_first_round {
+            if *max_variance_from_hasmap == before_max_variance {
+                break;
+            }
+        }
+        before_max_variance = *max_variance_from_hasmap;
 
         let sell_info_list = generate_sell_info_list(routers);
         update_routers_sell_info_list(

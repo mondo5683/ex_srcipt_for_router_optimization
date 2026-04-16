@@ -37,7 +37,7 @@ pub fn manually_operation(
                     }
                     "optimize" => {
                         println!("最適化を実行します...");
-                        optimize_obvalue_in_cluster(routers);
+                        //optimize_obvalue_in_cluster(routers);
                     }
                     "exit" => {
                         println!("操作を終了します");

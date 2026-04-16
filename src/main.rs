@@ -22,10 +22,26 @@ fn main() -> std::io::Result<()> {
 
         };
         */
-        let _k = 20;
-        clustering(_k, &_d, &_time_exec, &mut routers);
+//        let _k = 50;
+//        clustering(_k, &_d, &_time_exec, &mut routers);
+        let is_first_round = true;
+        println!("Starting Initial optimization...");
+        for r in routers.iter_mut(){
+            r.set_alpha(0.001);
+            r.set_beta(0.999);
+            r.set_is_first_round(true);
+        }
+        optimize_obvalue_in_cluster(&mut routers, is_first_round);
         print_current_obvalue(&mut routers);
-        optimize_obvalue_in_cluster(&mut routers);
+        println!("Starting Second optimization...");
+        for r in routers.iter_mut(){
+            r.set_alpha(0.5);
+            r.set_beta(0.5);
+            r.set_optimal(false);
+            r.set_is_first_round(false);
+        }
+        let is_first_round = false;
+        optimize_obvalue_in_cluster(&mut routers, is_first_round);
         print_current_obvalue(&mut routers);
         println!("---");
 

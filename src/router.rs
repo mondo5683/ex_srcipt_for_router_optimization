@@ -24,6 +24,7 @@ pub struct Router {
     max_variance_before_round: Option<f64>,
     alpha: f64,
     beta: f64,
+    is_first_round: bool,
 }
 
 impl Router {
@@ -50,6 +51,7 @@ impl Router {
             max_variance_before_round: None,
             alpha: ALPHA,
             beta: BETA,
+            is_first_round: false,
         }
     }
 
@@ -85,6 +87,9 @@ impl Router {
     }
     pub fn get_is_updated(&self) -> bool {
         self.is_updated_in_previous_round
+    }
+    pub fn set_is_first_round(&mut self, b:bool){
+        self.is_first_round = b;
     }
     pub fn insert_to_improve_queue(
         &mut self,
@@ -374,53 +379,7 @@ impl Router {
             return 0.0;
         }
 
-        let device_num = device_list.len();
-
-        let mut before_merge_hopping = 0;
-        let mut after_merge_hopping = 0;
-        let device_cluster: Vec<NodeIndex> = device_list.iter().map(|(x, _)| *x).collect();
-
-        //        println!("{:?}", device_cluster);
-
-        for device in device_cluster {
-            let start = device;
-            let goal = *self.router;
-            if let Some(hop_to_router_from_device) = minimum_hop_to_node(&goal, &start, &self.topo)
-            {
-                before_merge_hopping += hop_to_router_from_device;
-            }
-            //               println!("Before Merge Path: {:?}", p);
-
-            let start = *self.router;
-            let goal = self.ps;
-
-            if let Some(hop_to_ps_from_router) = minimum_hop_to_node(&goal, &start, &self.topo) {
-                after_merge_hopping = hop_to_ps_from_router;
-            }
-        }
-
-        //        let before_merge_cost = self.model_size * overall_hopping as f64;
-        let after_merge_cost =
-            self.model_size * (after_merge_hopping + before_merge_hopping) as f64;
-        let network_traffic = after_merge_cost;
-        //        println!("network packet amount cost: {}", network_traffic);
-
-        let device_time_list: Vec<f64> = device_list.iter().map(|(_, x)| *x).collect();
-        let time_exec_average =
-            device_time_list.iter().sum::<f64>() as f64 / device_time_list.len() as f64;
-        let mut variance = 0.0;
-
-        if device_list.len() <= 1 {
-            variance = time_exec_average;
-        } else {
-            for time in device_time_list {
-                let std = (time as f64 - time_exec_average) * (time as f64 - time_exec_average)
-                    / device_num as f64;
-                variance = variance + std;
-            }
-
-            //            println!("Variance: {}", variance);
-        }
+        let (network_traffic, variance) = self.calc_obvalue_return_two_variables(&device_list);
         let obvalue = self.alpha * network_traffic + self.beta * variance;
 
         obvalue
@@ -483,6 +442,8 @@ impl Router {
         (network_traffic, variance)
     }
 
+
+    //calculation for router's utility function
     pub fn calc_router_value_return_two_variables(
         &self,
         device_list: &Vec<(NodeIndex, f64)>,
@@ -535,7 +496,7 @@ impl Router {
             device_time_list.iter().sum::<f64>() as f64 / device_time_list.len() as f64;
         let mut variance = 0.0;
 
-        if device_list.len() <= 1 {
+        if device_list.len() <= 1 && !self.is_first_round {
             variance = time_exec_average;
         } else {
             for time in device_time_list {
@@ -593,3 +554,4 @@ fn _calculate_variance_of_two_devices(device1: Device, device2: Device) -> f64 {
 
     average * average - device1.get_learning_time() * device2.get_learning_time()
 }
+
