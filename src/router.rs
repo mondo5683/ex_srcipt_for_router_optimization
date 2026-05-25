@@ -58,6 +58,10 @@ impl Router {
     pub fn get_optimal(&self) -> bool {
         self.optimal
     }
+
+    pub fn get_topology(&self) -> &Arc<Graph<String, String, Undirected>> {
+        &self.topo
+    }
     pub fn set_optimal(&mut self, b: bool) {
         self.optimal = b;
     }
@@ -88,7 +92,7 @@ impl Router {
     pub fn get_is_updated(&self) -> bool {
         self.is_updated_in_previous_round
     }
-    pub fn set_is_first_round(&mut self, b:bool){
+    pub fn set_is_first_round(&mut self, b: bool) {
         self.is_first_round = b;
     }
     pub fn insert_to_improve_queue(
@@ -442,7 +446,6 @@ impl Router {
         (network_traffic, variance)
     }
 
-
     //calculation for router's utility function
     pub fn calc_router_value_return_two_variables(
         &self,
@@ -554,4 +557,3 @@ fn _calculate_variance_of_two_devices(device1: Device, device2: Device) -> f64 {
 
     average * average - device1.get_learning_time() * device2.get_learning_time()
 }
-
