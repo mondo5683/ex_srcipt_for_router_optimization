@@ -62,7 +62,7 @@ pub fn allocate_cluster_to_optimal_router(
 
     let mut hashmap_clusterid_to_router_index: HashMap<usize, Vec<(NodeIndex, f64)>> =
         HashMap::new();
-    
+
     //すべてのクラスタをすべてのルータに割り当てて最適なものを計算する
     for (clusterid, devices) in clustered_group.iter() {
         let device_list: Vec<(NodeIndex, f64)> = devices
@@ -82,49 +82,39 @@ pub fn allocate_cluster_to_optimal_router(
         }
     }
 
-    //いまのところすべてのルータをベクタに格納，TODO メモリ的にTOP-Kにしないといけないかも
-    for vec in hashmap_clusterid_to_router_index.values_mut() {
-        vec.sort_by(|a, b| b.1.partial_cmp(&a.1).unwrap());
-    }
-
     let mut num_of_not_allocated_clusters = clustered_group.len();
     while num_of_not_allocated_clusters > 0 {
-        //println!("{:?}",hashmap_clusterid_to_router_index);
         //Allocate cluster to router by Greedy Algorithms
-        //max_network_cost_redecutionを計算
-        let mut max_network_cost_redecution = -99999999999.0;
-        let mut cluster_assinged_router_id = 0;
-        let mut assined_cluster_id = 0;
+        //max_network_cost_reductionを計算
+        let mut max_network_cost_reduction = -99999999999.0;
+        let mut cluster_assigned_router_id = 0;
+        let mut assigned_cluster_id = 0;
         //現状で最大の効率をもつクラスタをもとめる。（Greedy）
         for (clusterid, reduction_vec) in hashmap_clusterid_to_router_index.iter() {
-
-            //Deviceが存在しないクラスター番号は飛ばす
-            if reduction_vec.len() == 0{
-                continue;
-            }
             let max_network_cost_reduction_in_cluster: f64 = reduction_vec[0].1;
 
-            if max_network_cost_redecution < max_network_cost_reduction_in_cluster {
-                max_network_cost_redecution = max_network_cost_reduction_in_cluster;
-                cluster_assinged_router_id = reduction_vec[0].0.index();
-                assined_cluster_id = *clusterid;
+            if max_network_cost_reduction < max_network_cost_reduction_in_cluster {
+                max_network_cost_reduction = max_network_cost_reduction_in_cluster;
+
+                cluster_assigned_router_id = reduction_vec[0].0.index();
+                assigned_cluster_id = *clusterid;
                 //println!("max_network_cost_redecution:{}, cluster_assinged_router_id: :{}, assined_cluster_id: {}", max_network_cost_redecution,cluster_assinged_router_id, assined_cluster_id);
             }
         }
 
         //routerにデバイスをallocate
-        for device in clustered_group.get(&assined_cluster_id).iter() {
+        for device in clustered_group.get(&assigned_cluster_id).iter() {
             for d in device.iter().map(|a| (a.get_id(), a.get_learning_time())) {
-                routers[cluster_assinged_router_id].add_device(d);
+                routers[cluster_assigned_router_id].add_device(d);
             }
         }
 
         //割り当てたclusterのエントリをhashmapより削除
-        hashmap_clusterid_to_router_index.remove(&assined_cluster_id);
+        hashmap_clusterid_to_router_index.remove(&assigned_cluster_id);
 
         //割り当てられたrouterのエントリを各hashmapより削除
         for (_, reduction_vec) in hashmap_clusterid_to_router_index.iter_mut() {
-            reduction_vec.retain(|x| x.0.index() != cluster_assinged_router_id);
+            reduction_vec.retain(|x| x.0.index() != cluster_assigned_router_id);
         }
 
         num_of_not_allocated_clusters -= 1;
@@ -138,13 +128,15 @@ fn insert_and_trim(
     key: usize,
     value: (NodeIndex, f64),
 ) {
+    let top_k = 25;
+
     // Entry APIを使うと便利
     let vec = map.entry(key).or_insert_with(Vec::new);
     vec.push(value);
 
-    if vec.len() > 10 {
+    if vec.len() > top_k {
         // 降順（大きい順）にソートして最初の10個だけ残す
         vec.sort_by(|a, b| b.1.partial_cmp(&a.1).unwrap());
-        vec.truncate(10);
+        vec.truncate(top_k);
     }
 }
