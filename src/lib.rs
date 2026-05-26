@@ -215,10 +215,11 @@ pub fn print_current_obvalue(routers: &mut Vec<Router>) {
     );
 }
 
-pub fn write_topology_json(routers: &Vec<Router>) -> std::io::Result<()> {
+pub fn write_topology_json(routers: &Vec<Router>, cluster_num: usize, seed: u64) -> std::io::Result<()> {
     //let filename = format!("topology_cluster_{}_with_seed_{}_generated_ratio_oriented.json",k,rand.to_string());
     //let mut file = File::create(filename)?;
-    let mut file = File::create("topology.json")?;
+    
+    let mut file = File::create(format!("{}_{}_topology.json", seed,cluster_num))?;
 
     writeln!(file, "{{")?;
     let last_index = routers.len().saturating_sub(1);
@@ -254,21 +255,21 @@ pub fn clustering(
     }
     println!("");
 
-    //let clustering_result = clustering_device(&device_list, k, max_iter);
+    let clustering_result = clustering_device(&device_list, k, max_iter);
 
-    let distribute_device_one_by_one = {
+/*    let distribute_device_one_by_one = {
         let mut distributed_membership = Vec::new();
         for i in 0..DEVICE_NUM {
             distributed_membership.push(i);
         }
         distributed_membership
     };
-
+*/
     let clustered_group = generate_hashmap(
         time_exec.as_slice().to_vec(),
         &d,
-        //      clustering_result.membership,
-        distribute_device_one_by_one,
+        clustering_result.membership,
+//        distribute_device_one_by_one,
     );
     let variance_vec = calculate_variances_clusters(&clustered_group);
 

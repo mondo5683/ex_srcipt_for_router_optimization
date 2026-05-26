@@ -27,9 +27,9 @@ fn main() -> std::io::Result<()> {
 
         };
         */
-        let _k = 75;
+        let _k = 100;
         clustering(_k, &_d, &_time_exec, &mut routers);
-        write_topology_json(&routers)?;
+        write_topology_json(&routers, _k, rand)?;
 
         // Router Hop Count
         /*
