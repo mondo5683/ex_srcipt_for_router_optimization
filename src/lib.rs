@@ -31,8 +31,10 @@ pub use random_generation::{
     generate_random_edge_distribution, generate_random_time_exec_based_on_ratio, random_locate_ps,
 };
 pub use router::Router;
+use std::collections::VecDeque;
 use std::sync::Arc;
 
+use serde_json::{Map, Value};
 pub use std::collections::HashMap;
 pub use std::fs::File;
 pub use std::io::{Result, Write};
@@ -45,7 +47,7 @@ pub const LEAF_NUM: usize = 4;
 pub const LAYER_NUM: usize = 4;
 
 // Parameters for random_generation
-pub const DEVICE_NUM: usize = 300;
+pub const DEVICE_NUM: usize = 450;
 pub const TE_MEAN: f64 = 32.0;
 pub const SEED: u64 = 100;
 pub const TE_STD: f64 = 97.0;
@@ -78,6 +80,9 @@ pub fn prepare_routers(seed: u64, model_size: f64) -> (Vec<NodeIndex>, DVector<f
     edge_array.push(random_locate_ps(rt.nrows(), &ps, &r, ps_location_seed));
     //edge_array.push((ps, r[143]));
     topology.extend_with_edges(&edge_array);
+
+    let router_hop_export_path = format!("tree_Leaf:{}_Layer:{}.json", LEAF_NUM, LAYER_NUM,);
+    export_hop_matrix(&rt, router_hop_export_path);
 
     //    println!("{:?}",topology);
     let topology_for_routers = Arc::new(topology);
@@ -165,7 +170,7 @@ pub fn generate_topology() -> na::DMatrix<i32> {
 
     for &(a, b) in &edges {
         matrix[(a, b)] = 1;
-        //        matrix[(b, a)] = 1;
+        matrix[(b, a)] = 1;
     }
 
     // 各ルータに4分木の子を4層追加
@@ -181,7 +186,7 @@ pub fn generate_topology() -> na::DMatrix<i32> {
                     break;
                 }
                 matrix[(parent, next_id)] = 1;
-                //                matrix[(next_id, parent)] = 1;
+                matrix[(next_id, parent)] = 1;
                 next_layer.push(next_id);
                 next_id += 1;
             }
@@ -190,6 +195,42 @@ pub fn generate_topology() -> na::DMatrix<i32> {
     }
 
     matrix
+}
+
+pub fn export_hop_matrix(matrix: &na::DMatrix<i32>, path: String) {
+    let n = matrix.nrows();
+
+    let mut root = Map::new();
+
+    for start in 0..n {
+        // BFS
+        let mut dist = vec![-1i32; n];
+        let mut q = VecDeque::new();
+
+        dist[start] = 0;
+        q.push_back(start);
+
+        while let Some(v) = q.pop_front() {
+            for u in 0..n {
+                if matrix[(v, u)] != 0 && dist[u] == -1 {
+                    dist[u] = dist[v] + 1;
+                    q.push_back(u);
+                }
+            }
+        }
+
+        let mut row = Map::new();
+        for i in 0..n {
+            row.insert(i.to_string(), Value::from(dist[i]));
+        }
+
+        root.insert(start.to_string(), Value::Object(row));
+    }
+
+    let json = Value::Object(root);
+
+    let mut file = File::create(path).unwrap();
+    write!(file, "{}", serde_json::to_string_pretty(&json).unwrap()).unwrap();
 }
 
 pub fn print_current_obvalue(routers: &mut Vec<Router>) {
@@ -215,11 +256,27 @@ pub fn print_current_obvalue(routers: &mut Vec<Router>) {
     );
 }
 
-pub fn write_topology_json(routers: &Vec<Router>, cluster_num: usize, seed: u64) -> std::io::Result<()> {
+pub fn write_topology_json(
+    routers: &Vec<Router>,
+    cluster_num: usize,
+    seed: u64,
+    model_size: f64,
+    is_after_optimized: bool,
+) -> std::io::Result<()> {
     //let filename = format!("topology_cluster_{}_with_seed_{}_generated_ratio_oriented.json",k,rand.to_string());
     //let mut file = File::create(filename)?;
-    
-    let mut file = File::create(format!("{}_{}_topology.json", seed,cluster_num))?;
+
+    let mut file = if is_after_optimized {
+        File::create(format!(
+            "LEAF:{}_{}_{}_{}_{}d_topology.json",
+            LEAF_NUM, model_size, seed, cluster_num, DEVICE_NUM
+        ))?
+    } else {
+        File::create(format!(
+            "LEAF:{}_{}_{}_{}_{}d_initial_topology.json",
+            LEAF_NUM, model_size, seed, cluster_num, DEVICE_NUM
+        ))?
+    };
 
     writeln!(file, "{{")?;
     let last_index = routers.len().saturating_sub(1);
@@ -257,19 +314,19 @@ pub fn clustering(
 
     let clustering_result = clustering_device(&device_list, k, max_iter);
 
-/*    let distribute_device_one_by_one = {
-        let mut distributed_membership = Vec::new();
-        for i in 0..DEVICE_NUM {
-            distributed_membership.push(i);
-        }
-        distributed_membership
-    };
-*/
+    /*    let distribute_device_one_by_one = {
+            let mut distributed_membership = Vec::new();
+            for i in 0..DEVICE_NUM {
+                distributed_membership.push(i);
+            }
+            distributed_membership
+        };
+    */
     let clustered_group = generate_hashmap(
         time_exec.as_slice().to_vec(),
         &d,
         clustering_result.membership,
-//        distribute_device_one_by_one,
+        //        distribute_device_one_by_one,
     );
     let variance_vec = calculate_variances_clusters(&clustered_group);
 

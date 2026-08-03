@@ -9,7 +9,7 @@ fn main() -> std::io::Result<()> {
     //    let k_vec = [1,2,3,4,5,6,7,8,9,10,11,12,13];
     //    let k_vec = [9,10,11,12,13];
     //    let k_vec = [1,2,3,4];
-    let model_size = 500.0;
+    let model_size = 15.0;
 
     let ps_allocated_router: [usize; 10] = [524, 281, 1090, 1178, 1183, 224, 1108, 832, 280, 922];
 
@@ -28,8 +28,9 @@ fn main() -> std::io::Result<()> {
         };
         */
         let _k = 100;
+        write_topology_json(&routers, _k, rand, model_size, false)?;
         clustering(_k, &_d, &_time_exec, &mut routers);
-        write_topology_json(&routers, _k, rand)?;
+        //write_topology_json(&routers, _k, rand)?;
 
         // Router Hop Count
         /*
@@ -37,7 +38,7 @@ fn main() -> std::io::Result<()> {
         let mut most_hopped_router_count: HashMap<NodeIndex, usize> = HashMap::new();
 
         for d in _d {
-            let r = routers[ps_router].get_router();
+            let r = routers[ps_router].get_route101_100_topologyr();
             let gr = routers[0].get_topology();
             let res = algo::astar(&**gr, d, |n| n == r, |e| 1, |_| 0);
 
@@ -55,32 +56,31 @@ fn main() -> std::io::Result<()> {
         println!("sort result: {:?}", vec);
         */ //-- END Router Hop Count
 
-        // let is_first_round = true;
-        // println!("Starting Initial optimization...");
-        // for r in routers.iter_mut(){
-        //     r.set_alpha(0.001);
-        //     r.set_beta(0.999);
-        //     r.set_is_first_round(true);
-        // }
-        // optimize_obvalue_in_cluster(&mut routers, is_first_round);
         print_current_obvalue(&mut routers);
-        // println!("Starting Second optimization...");
-        // for r in routers.iter_mut(){
-        //     r.set_alpha(0.5);
-        //     r.set_beta(0.5);
-        //     r.set_optimal(false);
-        //     r.set_is_first_round(false);
-        // }
         let is_first_round = false;
         optimize_obvalue_in_cluster(&mut routers, is_first_round);
         print_current_obvalue(&mut routers);
+        print_max_diff_arrival_time(&routers);
         println!("---");
 
         //    println!("router num:{}",router_num);
-        //write_topology_json(routers)?;
+        write_topology_json(&routers, _k, rand, model_size, true)?;
         //The followed } is the end of loop of k
         //}
     }
 
     Ok(())
+}
+
+fn print_max_diff_arrival_time(routers: &Vec<Router>) {
+    let mut max_diff = 0.0;
+
+    for r in routers {
+        let diff = r.get_diff_arrival_time();
+        if max_diff < diff {
+            max_diff = diff
+        }
+    }
+
+    println!("MAX DIFFERENCE OF ARRIVAL TIME: {}", max_diff);
 }

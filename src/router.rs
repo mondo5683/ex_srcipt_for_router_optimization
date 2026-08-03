@@ -138,6 +138,30 @@ impl Router {
     pub fn get_max_variance_before_round(&self) -> Option<f64> {
         self.max_variance_before_round
     }
+    pub fn get_diff_arrival_time(&self) -> f64 {
+        if self.devices.len() < 2 {
+            return 0.0;
+        } else {
+            let min = self
+                .devices
+                .iter()
+                .map(|&(_, val)| val)
+                .min_by(|a, b| a.partial_cmp(b).unwrap());
+
+            // 最大値の取得
+            let max = self
+                .devices
+                .iter()
+                .map(|&(_, val)| val)
+                .max_by(|a, b| a.partial_cmp(b).unwrap());
+
+            if let (Some(fastest), Some(slowest)) = (min, max) {
+                return slowest - fastest;
+            } else {
+                return 0.0;
+            }
+        }
+    }
     pub fn print_inner_cluster_devices(
         &self,
         writer: &mut impl Write,
@@ -412,14 +436,13 @@ impl Router {
             }
             //               println!("Before Merge Path: {:?}", p);
 
-            let start = *self.router;
-            let goal = self.ps;
-
-            if let Some(hop_to_ps_from_router) = minimum_hop_to_node(&goal, &start, &self.topo) {
-                after_merge_hopping = hop_to_ps_from_router;
-            }
-
             //         println!("After Merge Path: {:?}", p);
+        }
+
+        let start = *self.router;
+        let goal = self.ps;
+        if let Some(hop_to_ps_from_router) = minimum_hop_to_node(&goal, &start, &self.topo) {
+            after_merge_hopping = hop_to_ps_from_router;
         }
 
         //let before_merge_cost = self.model_size * overall_hopping as f64;
@@ -478,20 +501,20 @@ impl Router {
                 before_merge_hopping += hop_to_router_from_device;
             }
             //               println!("Before Merge Path: {:?}", p);
+        }
 
-            let start = *self.router;
-            let goal = self.ps;
+        let start = *self.router;
+        let goal = self.ps;
 
-            if let Some(hop_to_ps_from_router) = minimum_hop_to_node(&goal, &start, &self.topo) {
-                after_merge_hopping = hop_to_ps_from_router;
-            }
+        if let Some(hop_to_ps_from_router) = minimum_hop_to_node(&goal, &start, &self.topo) {
+            after_merge_hopping = hop_to_ps_from_router;
         }
 
         let before_merge_cost = self.model_size * overall_hopping as f64;
         let after_merge_cost =
             self.model_size * (after_merge_hopping + before_merge_hopping) as f64;
-        let network_traffic = before_merge_cost - after_merge_cost;
-        //let network_traffic = -1.0 *  after_merge_cost;
+        //let network_traffic = before_merge_cost - after_merge_cost;
+        let network_traffic = -1.0 * after_merge_cost;
 
         let device_time_list: Vec<f64> = device_list.iter().map(|(_, x)| *x).collect();
 

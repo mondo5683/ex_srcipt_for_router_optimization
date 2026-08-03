@@ -9,7 +9,7 @@ use crate::sell_info::SellInfo;
 use crate::{Device, ALPHA, BETA};
 use std::time;
 
-pub fn optimize_obvalue_in_cluster(routers: &mut Vec<Router>, is_first_round:bool) {
+pub fn optimize_obvalue_in_cluster(routers: &mut Vec<Router>, is_first_round: bool) {
     //各ルータのobvalueを計算
     for i in 0..routers.len() {
         let (_, _variance) = routers[i].update_router_value();
@@ -279,35 +279,35 @@ fn swap_device_between_routers(routers: &mut Vec<Router>, max_imp_info: &Option<
 
     if let Some(device) = moved_device {
         //LCAを検出しそこに配置
-        if let Some(lca) = find_lca(dist, source) {
-            if !(lca.eq(&source) || lca.eq(&dist)) {
-                println!(
-                    "Redunduncy Detected!! Device:{} will be allocated to Router: {}",
-                    device.get_id().index(),
-                    lca
-                );
-                dist_router_index = lca;
-                dist = lca;
+        // if let Some(lca) = find_lca(dist, source) {
+        //     if !(lca.eq(&source) || lca.eq(&dist)) {
+        //         println!(
+        //             "Redunduncy Detected!! Device:{} will be allocated to Router: {}",
+        //             device.get_id().index(),
+        //             lca
+        //         );
+        //         dist_router_index = lca;
+        //         dist = lca;
 
-                if routers[lca].get_improve_queue().len() < 1 {
-                    if let Some(previous_max_variance) =
-                        routers[source_router_index].get_max_variance_before_round()
-                    {
-                        routers[lca].set_max_variance_before_round(previous_max_variance);
-                    }
-                    let improve_queue_clone_source: Vec<_> = {
-                        let src_queue = routers[source_router_index].get_improve_queue();
-                        src_queue
-                            .iter()
-                            .map(|(value, sell_info)| (value.clone(), sell_info.clone()))
-                            .collect()
-                    };
+        //         if routers[lca].get_improve_queue().len() < 1 {
+        //             if let Some(previous_max_variance) =
+        //                 routers[source_router_index].get_max_variance_before_round()
+        //             {
+        //                 routers[lca].set_max_variance_before_round(previous_max_variance);
+        //             }
+        //             let improve_queue_clone_source: Vec<_> = {
+        //                 let src_queue = routers[source_router_index].get_improve_queue();
+        //                 src_queue
+        //                     .iter()
+        //                     .map(|(value, sell_info)| (value.clone(), sell_info.clone()))
+        //                     .collect()
+        //             };
 
-                    let improve_queue_of_lca = routers[lca].get_improve_queue();
-                    improve_queue_of_lca.extend(improve_queue_clone_source);
-                }
-            }
-        }
+        //             let improve_queue_of_lca = routers[lca].get_improve_queue();
+        //             improve_queue_of_lca.extend(improve_queue_clone_source);
+        //         }
+        //     }
+        // }
 
         routers[source_router_index].remove_device((device.get_id(), device.get_learning_time()));
         routers[dist_router_index].add_device((device.get_id(), device.get_learning_time()));
@@ -346,6 +346,9 @@ fn update_routers_sell_info_list(
     max_variance_from_hashmap: &f64,
 ) {
     for r in routers.iter_mut() {
+        if r.get_devices().len() < 1 {
+            continue;
+        }
         let mut results = Vec::new();
         for (index, (_, sell_info)) in r.get_improve_queue().iter_mut().enumerate() {
             // 必要データを clone

@@ -118,6 +118,7 @@ pub fn allocate_cluster_to_optimal_router(
         }
 
         num_of_not_allocated_clusters -= 1;
+        
     }
 
     //    println!("{:?}",hashmap_clusterid_to_router_index);
@@ -128,7 +129,7 @@ fn insert_and_trim(
     key: usize,
     value: (NodeIndex, f64),
 ) {
-    let top_k = 25;
+    let top_k = 100;
 
     // Entry APIを使うと便利
     let vec = map.entry(key).or_insert_with(Vec::new);
