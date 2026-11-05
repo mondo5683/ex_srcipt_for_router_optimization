@@ -22,4 +22,3 @@
 - **研究テーマ**: リソース異種性を考慮したFederated Learningにおけるインネットワーク集約（In-Network Aggregation）による通信データ量の削減
 - - **使用言語**: Rust
 
--
