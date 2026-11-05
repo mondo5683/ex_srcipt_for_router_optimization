@@ -44,7 +44,7 @@ pub const ALPHA: f64 = 0.5;
 pub const BETA: f64 = 0.5;
 pub const INF: f64 = 9999999999999999.0;
 pub const LEAF_NUM: usize = 4;
-pub const LAYER_NUM: usize = 4;
+pub const LAYER_NUM: usize = 3;
 
 // Parameters for random_generation
 pub const DEVICE_NUM: usize = 450;
@@ -65,6 +65,8 @@ pub fn prepare_routers(seed: u64, model_size: f64) -> (Vec<NodeIndex>, DVector<f
     let ps_location_seed: u64 = rng.random();
 
     let time_exec = generate_random_time_exec_based_on_ratio(DEVICE_NUM, te_seed);
+    
+
     let e = generate_random_edge_distribution(rt.nrows(), DEVICE_NUM, ed_seed);
     //    println!("{:?}", e);
     //    println!("{:?}",time_exec);
@@ -254,6 +256,31 @@ pub fn print_current_obvalue(routers: &mut Vec<Router>) {
         max_variance,
         ALPHA * network_traffic_cost + BETA * max_variance
     );
+}
+
+pub fn write_time_exec_json(
+    file_name: String,
+    time_exec: &DVector<f64>,
+) -> std::io::Result<()>{
+
+
+    let mut file = File::create(file_name)?;
+    writeln!(file,"{{")?;
+
+    for time_array in time_exec.column_iter() {
+        let last_index = time_array.len();
+        for (i, time) in time_array.row_iter().enumerate() {
+            write!(file,"    \"{}\": [{}]",i,time[0])?;
+            if i != last_index{
+                writeln!(file, ",")?;
+            } else{
+                writeln!(file)?;
+            }
+        }
+    }
+    writeln!(file,"}}")?;
+
+    Ok(())
 }
 
 pub fn write_topology_json(

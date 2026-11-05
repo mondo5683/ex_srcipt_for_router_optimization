@@ -9,7 +9,7 @@ fn main() -> std::io::Result<()> {
     //    let k_vec = [1,2,3,4,5,6,7,8,9,10,11,12,13];
     //    let k_vec = [9,10,11,12,13];
     //    let k_vec = [1,2,3,4];
-    let model_size = 15.0;
+    let model_size = 100.0;
 
     let ps_allocated_router: [usize; 10] = [524, 281, 1090, 1178, 1183, 224, 1108, 832, 280, 922];
 
@@ -19,6 +19,8 @@ fn main() -> std::io::Result<()> {
 
         let (_d, _time_exec, mut routers) = prepare_routers(rand, model_size);
 
+        write_time_exec_json("test_time_exec.txt".to_string(), &_time_exec)?;
+
         print_current_obvalue(&mut routers);
         /*
         match manually_operation(&mut routers, &r, &d, time_exec.column(0).iter().map(|x| *x).collect()){
@@ -27,9 +29,9 @@ fn main() -> std::io::Result<()> {
 
         };
         */
-        let _k = 100;
-        write_topology_json(&routers, _k, rand, model_size, false)?;
-        clustering(_k, &_d, &_time_exec, &mut routers);
+        let _k = 20;
+//        write_topology_json(&routers, _k, rand, model_size, false)?;
+//        clustering(_k, &_d, &_time_exec, &mut routers);
         //write_topology_json(&routers, _k, rand)?;
 
         // Router Hop Count
@@ -58,13 +60,13 @@ fn main() -> std::io::Result<()> {
 
         print_current_obvalue(&mut routers);
         let is_first_round = false;
-        optimize_obvalue_in_cluster(&mut routers, is_first_round);
+//        optimize_obvalue_in_cluster(&mut routers, is_first_round);
         print_current_obvalue(&mut routers);
         print_max_diff_arrival_time(&routers);
         println!("---");
 
         //    println!("router num:{}",router_num);
-        write_topology_json(&routers, _k, rand, model_size, true)?;
+        //write_topology_json(&routers, _k, rand, model_size, true)?;
         //The followed } is the end of loop of k
         //}
     }
